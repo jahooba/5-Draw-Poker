@@ -6,7 +6,7 @@
  
  > Authors:
 > \<[Name-insert link](https://github.com/)\>
-> \<[Name-insert link](https://github.com/)\>
+> \<[Samyak Kakatur](https://github.com/therealsamyak)\>
 > \<[Joshua Pena](https://github.com/jahooba)\>
 > \<[Name-insert link](https://github.com/)\>
 
