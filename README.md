@@ -32,15 +32,15 @@ Currently, our project features:
 This will all be done in C++ and its associated, built-in libraries such as iostream, cmath, ctime, and cstdlib.
 <br>
 
-This project takes in **Text Input** whenever necessary to interact with all the menus and games. A Keyboard is mandatory to gain the full experience.
+This project takes in **Keyboard Input** whenever necessary to interact with all the menus and games. A Keyboard is mandatory to gain the full experience.
 <br>
 
-The project can output a variety of different screens, such as:
+The project can output a variety of different screens **to the terminal**, such as:
 * Specific UIs for each of the games.
 
     * Ex. Your current hand in Poker.
 
-* Menus to go between features of the games.
+* Menus to go between features of the projects.
 * User statistics.
 
 
