@@ -1,33 +1,50 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
- > Your author list below should include links to all members GitHub (remove existing author).
- 
- > Authors:
-> \<[Name-insert link](https://github.com/)\>
-> \<[Samyak Kakatur](https://github.com/therealsamyak)\>
-> \<[Joshua Pena](https://github.com/jahooba)\>
-> \<[Name-insert link](https://github.com/)\>
+# Casino Game 
 
- > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
-
- > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
+## Authors:
+[Samyak Kakatur](https://github.com/therealsamyak) | 
+[Joshua Pena](https://github.com/jahooba) | 
+[Ram Rao](https://github.com/KleeWai) | 
+[Arya Thammanna](https://github.com/atham011)
 
 ## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- > * What will be the input/output of your project?
- > * What are the features that the project provides?
- > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
- > 
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+
+
+### Why a Casino?
+This project involves data collection, data retrieval, and Computer Opponent coding in C++. Normally, this is all done in Python / SQL using databases, instead of the more rudamentry method we are using. However, by limiting ourselves to the basics, we are further demonstrating our knowledge of C++.
+
+Currently, our project features:
+* Multiple Casino games (Poker, Craps).
+
+    * All games have a computer opponent.
+
+* Gambling!
+
+    * Users can win / lose money through wagers.
+    * Financial and Statistical information is stored to User Profiles so users can restart from where they left off.
+
+* Statistics collected and displayed (both per user, and can be compared globally!):
+
+    * Games played.
+    * Money won (or lost) over lifetime of the account
+    * Win Rate.
+<br>
+
+This will all be done in C++ and its associated, built-in libraries such as iostream, cmath, ctime, and cstdlib.
+<br>
+
+This project takes in **Keyboard Input** whenever necessary to interact with all the menus and games. A Keyboard is mandatory to gain the full experience.
+<br>
+
+The project can output a variety of different screens **to the terminal**, such as:
+* Specific UIs for each of the games.
+
+    * Ex. Your current hand in Poker.
+
+* Menus to go between features of the projects.
+* User statistics.
+
+
+
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
