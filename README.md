@@ -4,7 +4,7 @@
 [Samyak Kakatur](https://github.com/therealsamyak) | 
 [Joshua Pena](https://github.com/jahooba) | 
 [Ram Rao](https://github.com/KleeWai) | 
-[Name-insert link](https://github.com/)
+[Arya Thammanna](https://github.com/atham011)
 
 ## Project Description
 
