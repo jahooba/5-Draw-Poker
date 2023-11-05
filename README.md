@@ -67,7 +67,48 @@ The project can output a variety of different screens **to the terminal**, such 
 
 ## Class Diagram
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
- 
+
+<img src="images/diagrams/Casino Game Class Diagram.drawio.png" alt="Class Diagram">
+
+### Poker
+This is a typical game of Texas hold'em poker. The class contains a map for win conditions, a vector of all participating players, a Deck to distribute cards out of, and a Hand to keep track of cards drawn. It can also score Hands according to its own algorithm, to see who wins the game.
+<br>
+<br>
+
+### Hand
+The hand stores a vector of Cards, and has functionality relating to adding to / dealing from the hand. In addition, the hand can sort itself automatically.
+
+#### Deck
+A Deck is a special type of hand, that has all the same functionality, but also automatically generates a 52-card deck, and can distribute a random card from that deck. 
+
+#### Cards
+Cards are a struct that hold both a suit, and a value. Both of which can hold values similar to a standard 52-card deck, respectively.
+<br>
+<br>
+
+### Player
+Player is an abstract class that all players are based off of. All Players have a name, a Hand to hold cards, and a Balance (money to gamble). 
+
+#### Balance
+Balance keeps track of a balance, as well as has the ability to modifiy that balance.
+
+#### Statistics
+Statistics keeps track of a file (or creates a file if one isn't available), where all the user statistics are stored / updated. 
+
+#### Poker Player
+A Poker Player additionally has statistics that are related to their performance in Poker. They also gain the ability to make poker actions.
+
+#### Poker Computer
+A special type of Poker Player that has similar functionality, but makes their moves according to an algorithm instead of user-input. 
+
+#### Poker Action
+A Poker Action is a struct that has a field for the type of the action as well as the bet amount. 
+
+#### PokerActionTypes
+* Hold
+* Bet
+* Fold
+
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
  
