@@ -61,9 +61,14 @@ The project can output a variety of different screens **to the terminal**, such 
 
 ### Navigation Diagram
 > Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
+
 >
-> 
 >
+
+<img width="785" alt="casino-navigation-diagram" src="https://github.com/cs100/final-project-atham011-jpena079-rrao011-skaka008/assets/146978995/074fbace-9069-49d7-94f3-c14a2e4ac9ad">
+
+
+### Descrtiption
 > This nagivation diagram shows the different ways in which the user can navigate the program. They can beging by either logging in to an existing account or creating a new log in, which will then promt them to log in using their new account. After that the user will be taken to a home page where they can either check their profile, begin playing poker, or logout. By checking out their profile they can view both thier stats and account balance. If the user chooses to instead play poker, they will be given the option to resume an existing game, or start a new game. While playing, the user will be prompted to take different poker actions until either the game is finished or they choose to puase and exit the game. Both scenerios will take the user back to the home page from which they have the option to logout.
 >
 
