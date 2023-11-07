@@ -44,44 +44,89 @@ The project can output a variety of different screens **to the terminal**, such 
 * User statistics.
 
 
-
- > ## Phase II
- > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
- > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Break down the "Epics" into smaller actionable user stories (i.e. smaller development tasks). Convert them into issues and assign them to team members. Place these in the `TODO` (aka Sprint Backlog) column.
- >   * These cards should represent roughly 7 days worth of development time for your team. Then, once the sprint is over you should be repeating these steps to plan a new sprint, taking you until your second scrum meeting with the reader in phase III.
- > * Schedule two check-ins using Calendly. You need to pick both time slots on Tuesday of week 6. The check-ins will occur on Zoom. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
-> Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
-
->
->
-
-<img width="785" alt="casino-navigation-diagram" src="https://github.com/cs100/final-project-atham011-jpena079-rrao011-skaka008/assets/146978995/074fbace-9069-49d7-94f3-c14a2e4ac9ad">
+<img src="images/diagrams/Navigation Diagram.png" alt="Navigation Diagram">
 
 
-### Descrtiption
-> This nagivation diagram shows the different ways in which the user can navigate the program. They can beging by either logging in to an existing account or creating a new log in, which will then promt them to log in using their new account. After that the user will be taken to a home page where they can either check their profile, begin playing poker, or logout. By checking out their profile they can view both thier stats and account balance. If the user chooses to instead play poker, they will be given the option to resume an existing game, or start a new game. While playing, the user will be prompted to take different poker actions until either the game is finished or they choose to puase and exit the game. Both scenerios will take the user back to the home page from which they have the option to logout.
->
+#### Description
+This nagivation diagram shows the different ways in which the user can navigate the program. They can beging by either logging in to an existing account or creating a new log in, which will then promt them to log in using their new account. After that the user will be taken to a home page where they can either check their profile, begin playing poker, or logout. By checking out their profile they can view both thier stats and account balance. If the user chooses to instead play poker, they will be given the option to resume an existing game, or start a new game. While playing, the user will be prompted to take different poker actions until either the game is finished or they choose to puase and exit the game. Both scenerios will take the user back to the home page from which they have the option to logout.
+
 
 ### Screen Layouts
-> Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
+
+#### Opening Screen
+
+<img src="images/diagrams/openingscreen.png" alt="Opening Screen">
+
+This screen is to get the user initiated with their first time playing, and let's them know to create an account or proceed. It also clearly, very simply states the instructions the user needs to follow to create an account or Login, this is a simple screen without any visual clutter so the user can have a good experience.
+<br>
+
+#### Create Account Screen
+
+<img src="images/diagrams/createanaccount.png" alt="Create Account Screen">
+
+This is another simple screen where the user is directed to create their username and password, the user is instructed to create a unique and safe password for account safety, and is reassured that we don't save their password anywhere, and at the end the user knows that their creation was successful.
+<br>
+
+#### Login Screen
+
+<img src="images/diagrams/loginscreen.png" alt="Login Screen">
+
+This is another simple screen where the user is directed to create their username and password, the user is instructed to create a unique and safe password for account safety, and is reassured that we don't save their password anywhere, and at the end the user knows that their creation was successful.
+<br>
+
+#### Main Menu Screen
+
+<img src="images/diagrams/menuscreen.png" alt="Menu Screen">
+
+This is a very simple menu screen where the user can see that they are logged in correctly, and they are also hyper linked to see the latest updates, this is a standard we want to follow from video games. Then the user is simply instructed on how to proceed next, this also has no visual clutter.
+<br>
+
+#### Profile Screen
+
+<img src="images/diagrams/profilescreen.png" alt="Profile Screen">
+
+This is a very simple profile screen where the user has the choice to go to two separate screens, and is properly instructed how to do them, we have it like this so we can avoid confusion and visual clutter between balance info and their overall stats.
+<br>
+
+#### Statistics Screen
+
+<img src="images/diagrams/statsscreen.png" alt="Statistics Screen">
+
+This is a very simple way the user can get information of their lifetime performance in the game for their own fun and enjoyment, and this adds potential for a leaderboard and adds an aspect of competition.
+<br>
+
+#### Balance Screen
+
+<img src="images/diagrams/statsscreen.png" alt="Statistics Screen">
+
+This is a very simple way the user can get information of their lifetime performance in the game for their own fun and enjoyment, and this adds potential for a leaderboard and adds an aspect of competition.
+<br>
+
+#### Poker Main Manu Screen
+
+<img src="images/diagrams/pokerstartscreen.png" alt="Poker Start Screen">
+
+In this screen, the user can clearly select an option of their choice, to either start a new game, to resume their old game (if there is one), or to quit to main menu. The screen clearly instructs the user what key to press to get their desired option, and gets rid of visual clutter.
+<br>
+
+#### Poker Action Screen
+
+<img src="images/diagrams/pokeractionscreen.png" alt="Poker Action Screen">
+
+On the top of the screen, the user is told that they are in poker action, and they can clearly see their hand  and their current bet in dollars. This way, they already have the most crucial information at their first glance. The rest of the screen serves to let the user know how to pick one of the four actions to do.
+<br>
+
+
 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
 
 <img src="images/diagrams/Casino Game Class Diagram.drawio.png" alt="Class Diagram">
 
 ### Poker
-This is a typical game of Texas hold'em poker. The class contains a map for win conditions, a vector of all participating players, a Deck to distribute cards out of, and a Hand to keep track of cards drawn. It can also score Hands according to its own algorithm, to see who wins the game.
+This is a typical game of 5-card Draw poker. The class contains a map for win conditions, a vector of all participating players, a Deck to distribute cards out of, and a Hand to keep track of cards drawn. It can also score Hands according to its own algorithm, to see who wins the game.
 <br>
 <br>
 
