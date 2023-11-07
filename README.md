@@ -160,7 +160,8 @@ A special type of Poker Player that has similar functionality, but makes their m
 A Poker Action is a struct that has a field for the type of the action as well as the bet amount. 
 
 #### PokerActionTypes
-* Hold
+* Check
+* Call
 * Bet
 * Fold
 
