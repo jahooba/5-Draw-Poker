@@ -2,7 +2,7 @@
 #include <vector>
 
 enum CardSuit {Clubs, Spades, Diamonds, Hearts};
-enum CardValue {A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K};
+enum CardValue {A, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, J, Q, K};
 
 struct Card{
 	CardSuit suit;
