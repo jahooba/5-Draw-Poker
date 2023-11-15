@@ -1,5 +1,5 @@
-#include "../header/deck.cpp"
-#include "../header/hand.cpp"
+#include "../header/deck.hpp"
+#include "../header/hand.hpp"
 
 void Deck::generateDeck(){
     
