@@ -1,10 +1,10 @@
 #pragma once
-#include "hanp.hpp"
+#include "../header/hand.hpp"
 
-class Deck::public Hand{
+class Deck: public Hand{
         private:
                 void generateDeck();
         public:
                 Deck();
-                distributeRandomCard();
+                Card* distributeRandomCard();
 };
