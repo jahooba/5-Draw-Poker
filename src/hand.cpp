@@ -9,11 +9,7 @@ Hand::Hand() {
 }
 
 Hand::~Hand() {
-    for (Card* item : hand) {
-        if (item != nullptr) {
-            delete item;
-        }
-    }
+    Hand::clearHand();
     hand.clear();
 }
 
@@ -136,3 +132,10 @@ string Hand::viewHand() const {
     return ss.str();
 }
 
+void Hand::clearHand() {
+    for (Card* item : hand) {
+        if (item != nullptr) {
+            delete item;
+        }
+    }
+}
