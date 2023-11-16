@@ -45,7 +45,7 @@ Card* Hand::distributeCard(CardValue v, CardSuit s) {
         }
     }
 
-    //Hand::sortHand();
+    Hand::sortHand();
 
     return temp;
 }
