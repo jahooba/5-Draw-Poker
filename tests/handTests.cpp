@@ -21,6 +21,25 @@ TEST(HandOperations, ObtainMultipleCards) {
 
 }
 
+TEST(HandOperations, SortHandMethod){
+  Hand hand;
+
+  Card* card_one = new Card(Ten, Hearts);
+  hand.obtainCard(card_one);
+  Card* card_two = new Card(Two, Spades);
+  hand.obtainCard(card_two);
+  Card* card_three = new Card(Three, Clubs);
+  hand.obtainCard(card_three);
+  Card* card_four = new Card(K, Hearts);
+  hand.obtainCard(card_four);
+  Card* card_five = new Card(J, Diamonds);
+  hand.obtainCard(card_five);
+
+  cout << hand.viewHand() << endl;
+
+  EXPECT_EQ("| ♤ 2 | ♧ 3 | ♡ 10 | ♢ J | ♡ K | ", hand.viewHand());
+}
+
 TEST(HandOperations, EqualityOperator) {
 
   Hand hand_one;

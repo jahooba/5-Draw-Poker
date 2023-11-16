@@ -34,6 +34,8 @@ void Hand::obtainCard(Card* card) {
         hand.push_back(card);
     }
 
+    Hand::sortHand();
+
     return;
 }
 
@@ -47,13 +49,24 @@ Card* Hand::distributeCard(CardValue v, CardSuit s) {
         }
     }
 
-    Hand::sortHand();
+    //Hand::sortHand();
 
     return temp;
 }
 
 void Hand::sortHand() {
-    return;
+    if (hand.size() > 1){
+        int i, j, temp;
+
+        for (i=1; i<hand.size(); i++){
+            temp = hand.at(i)->value;
+            j = i - 1;
+            while(j>=0 && hand.at(j)->value > temp){
+                swap(hand.at(j+1), hand.at(j));
+                j--;
+            }
+        }
+    }
 }
 
 string Hand::viewHand() const {
