@@ -41,7 +41,7 @@ struct Card {
 
 class Hand {
     private:
-        //sorts the hand from highest suit to lowest
+        //sorts the hand from lowest to highest
         void sortHand();
         const int MAX_SIZE = 5;
     
