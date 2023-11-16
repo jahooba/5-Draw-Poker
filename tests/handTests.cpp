@@ -65,7 +65,7 @@ TEST(HandOperations, EqualityOperator) {
 
 }
 
-TEST(HandOperations, DeleteExistingCard) {
+TEST(HandOperations, DeleteExistingCardMiddle) {
 
   Hand hand_one;
   Hand hand_two;
@@ -83,15 +83,75 @@ TEST(HandOperations, DeleteExistingCard) {
   EXPECT_EQ("| ♧ 2 | ♢ J | ♡ K | ", hand_one.viewHand());
   EXPECT_EQ("Empty!", hand_two.viewHand());
 
-  Card* discard = hand_one.distributeCard(K, Hearts);
+  Card* discard = hand_one.distributeCard(J, Diamonds);
   hand_two.obtainCard(discard);
 
 
   cout << hand_one.viewHand() << endl;  
   cout << hand_two.viewHand() << endl;
 
-  EXPECT_EQ("| ♧ 2 | ♢ J | ", hand_one.viewHand());
-  EXPECT_EQ("| ♡ K | ", hand_two.viewHand());
+  EXPECT_EQ("| ♧ 2 | ♡ K | ", hand_one.viewHand());
+  EXPECT_EQ("| ♢ J | ", hand_two.viewHand());
+
+}
+
+TEST(HandOperations, DeleteExistingCardEnd) {
+
+  Hand hand_one;
+  Hand hand_two;
+  Card* card_one = new Card(Two, Clubs);
+  Card* card_two = new Card(J, Diamonds);
+  Card* card_three = new Card(K, Hearts);
+
+  hand_one.obtainCard(card_one);
+  hand_one.obtainCard(card_two);
+  hand_one.obtainCard(card_three);
+  
+  cout << hand_one.viewHand() << endl;
+  cout << hand_two.viewHand() << endl;
+
+  EXPECT_EQ("| ♧ 2 | ♢ J | ♡ K | ", hand_one.viewHand());
+  EXPECT_EQ("Empty!", hand_two.viewHand());
+
+  Card* discard = hand_one.distributeCard(J, Diamonds);
+  hand_two.obtainCard(discard);
+
+
+  cout << hand_one.viewHand() << endl;  
+  cout << hand_two.viewHand() << endl;
+
+  EXPECT_EQ("| ♧ 2 | ♡ K | ", hand_one.viewHand());
+  EXPECT_EQ("| ♢ J | ", hand_two.viewHand());
+
+}
+
+TEST(HandOperations, DeleteExistingCardStart) {
+
+  Hand hand_one;
+  Hand hand_two;
+  Card* card_one = new Card(Two, Clubs);
+  Card* card_two = new Card(J, Diamonds);
+  Card* card_three = new Card(K, Hearts);
+
+  hand_one.obtainCard(card_one);
+  hand_one.obtainCard(card_two);
+  hand_one.obtainCard(card_three);
+  
+  cout << hand_one.viewHand() << endl;
+  cout << hand_two.viewHand() << endl;
+
+  EXPECT_EQ("| ♧ 2 | ♢ J | ♡ K | ", hand_one.viewHand());
+  EXPECT_EQ("Empty!", hand_two.viewHand());
+
+  Card* discard = hand_one.distributeCard(Two, Clubs);
+  hand_two.obtainCard(discard);
+
+
+  cout << hand_one.viewHand() << endl;  
+  cout << hand_two.viewHand() << endl;
+
+  EXPECT_EQ("| ♢ J | ♡ K | ", hand_one.viewHand());
+  EXPECT_EQ("| ♧ 2 | ", hand_two.viewHand());
 
 }
 
