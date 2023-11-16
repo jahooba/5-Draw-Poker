@@ -41,7 +41,6 @@ struct Card {
 
 class Hand {
     private:
-        //sorts the hand from lowest to highest
         const int MAX_SIZE = 5;
     
     protected:
@@ -63,7 +62,7 @@ class Hand {
         Appends a card to hand.
         input: card to add
         */
-        void obtainCard(Card*);
+        virtual void obtainCard(Card*);
 
         /*
         Discards a Card
@@ -78,6 +77,7 @@ class Hand {
         //clears out the hand
         void clearHand();
 
+        //returns the entire hand.
         vector<Card*> getHand() const;
 
 };
