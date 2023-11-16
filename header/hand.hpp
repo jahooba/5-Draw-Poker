@@ -14,10 +14,6 @@ enum CardSuit {
 };
 
 enum CardValue {
-    J = 11,
-    Q = 12,
-    K = 13,
-    A = 14,
     Two = 2,
     Three = 3,
     Four = 4,
@@ -27,6 +23,10 @@ enum CardValue {
     Eight = 8,
     Nine = 9,
     Ten = 10,
+    J = 11,
+    Q = 12,
+    K = 13,
+    A = 14
 };
 
 struct Card {
