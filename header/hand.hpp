@@ -42,11 +42,11 @@ struct Card {
 class Hand {
     private:
         //sorts the hand from lowest to highest
-        void sortHand();
         const int MAX_SIZE = 5;
     
     protected:
         vector<Card*> hand;
+        void sortHand();
 
     public:
 
