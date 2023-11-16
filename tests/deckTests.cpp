@@ -16,9 +16,26 @@ TEST(DeckOperations, GenerateDeck) {
 
 }
 
+TEST(DeckOperations, DistributeRandomCard) {
+  Deck deck;
+  Hand hand_one;
+  Hand hand_two;
+
+  for (int i = 0; i < 5; i++) {
+    hand_one.obtainCard(deck.distributeRandomCard());
+    hand_two.obtainCard(deck.distributeRandomCard());
+  }
+
+  EXPECT_EQ(hand_one.getHand().size(), 5);
+  EXPECT_EQ(hand_two.getHand().size(), 5);
+  EXPECT_EQ(deck.getHand().size(), (52-10));  
+
+}
+
 
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
+  return 0;
 }

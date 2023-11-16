@@ -1,5 +1,6 @@
 #pragma once
 #include "../header/hand.hpp"
+#include <ctime>
 
 class Deck: public Hand {
         private:

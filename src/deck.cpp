@@ -1,5 +1,4 @@
 #include "../header/deck.hpp"
-#include "../header/hand.hpp"
 
 using namespace std;
 
@@ -12,9 +11,7 @@ void Deck::generateDeck(){
         for (int suit = Clubs; suit <= Hearts; suit++) {
 
             CardSuit suit_actual = static_cast<CardSuit>(suit);
-            
-            Card* newCard = new Card(value_actual, suit_actual);
-            Deck::obtainCard(newCard);
+            Deck::obtainCard(new Card(value_actual, suit_actual));
         
         }
     }
@@ -31,8 +28,14 @@ Deck::~Deck() {
     hand.clear();
 }
 
-Card* Deck::distributeRandomCard(){
-    return nullptr;
+Card* Deck::distributeRandomCard() {
+    srand(0);
+
+    int index = rand() % (hand.size());
+    Card* discarded_card = hand.at(index);
+    Hand::distributeCard(discarded_card->value, discarded_card->suit);
+
+    return discarded_card;
 }
 
 void Deck::obtainCard(Card* card) {
