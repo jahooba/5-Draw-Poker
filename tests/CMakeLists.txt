@@ -8,10 +8,14 @@ add_executable(handTests
   handTests.cpp
 )
 
+target_link_libraries(handTests gmock gtest gtest_main)
+target_link_libraries(handTests simpleLibrary)
+
+
+
 add_executable(deckTests
   deckTests.cpp
 )
 
-target_link_libraries(handTests gmock gtest gtest_main)
-target_link_libraries(handTests simpleLibrary)
-
+target_link_libraries(deckTests gmock gtest gtest_main)
+target_link_libraries(deckTests simpleLibrary)
