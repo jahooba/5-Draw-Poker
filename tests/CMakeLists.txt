@@ -8,6 +8,10 @@ add_executable(handTests
   handTests.cpp
 )
 
+add_executable(playerTests
+  playerTests.cpp
+)
+
 target_link_libraries(handTests gmock gtest gtest_main)
 target_link_libraries(handTests simpleLibrary)
 
