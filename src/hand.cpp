@@ -1,6 +1,4 @@
 #include "../header/hand.hpp"
-#include <vector>
-#include <unordered_map>
 
 using namespace std;
 
@@ -9,11 +7,7 @@ Hand::Hand() {
 }
 
 Hand::~Hand() {
-    for (Card* item : hand) {
-        if (item != nullptr) {
-            delete item;
-        }
-    }
+    Hand::clearHand();
     hand.clear();
 }
 
@@ -45,12 +39,10 @@ Card* Hand::distributeCard(CardValue v, CardSuit s) {
     for (int i = 0; i < hand.size(); i++) {
         if (hand.at(i)->value == v && hand.at(i)->suit == s) {
             temp = hand.at(i);
-            hand.at(i) = nullptr;
+            hand.erase(hand.begin() + i);
+            break;
         }
     }
-
-    //Hand::sortHand();
-
     return temp;
 }
 
@@ -58,7 +50,7 @@ void Hand::sortHand() {
     if (hand.size() > 1){
         int i, j, temp;
 
-        for (i=1; i<hand.size(); i++){
+        for (i=1; i < hand.size(); i++){
             temp = hand.at(i)->value;
             j = i - 1;
             while(j>=0 && hand.at(j)->value > temp){
@@ -136,3 +128,10 @@ string Hand::viewHand() const {
     return ss.str();
 }
 
+void Hand::clearHand() {
+    for (Card* item : hand) {
+        if (item != nullptr) {
+            delete item;
+        }
+    }
+}

@@ -1,5 +1,7 @@
 add_library(simpleLibrary
   hand.cpp
+  deck.cpp
+  # poker.cpp
 )
 
 find_library(M_LIB m)
