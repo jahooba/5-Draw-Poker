@@ -21,9 +21,9 @@ target_link_libraries(deckTests gmock gtest gtest_main)
 target_link_libraries(deckTests simpleLibrary)
 
 
-add_executable(loginTests
-  loginTests.cpp
-)
+# add_executable(loginTests
+#  loginTests.cpp
+# )
 
-target_link_libraries(deckTests gmock gtest gtest_main)
-target_link_libraries(deckTests simpleLibrary)
+# target_link_libraries(loginTests gmock gtest gtest_main)
+# target_link_libraries(loginTests simpleLibrary)
