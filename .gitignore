@@ -10,3 +10,4 @@ test/Makefile
 settings.json
 tests/test.exe
 a.out
+userdata.txt

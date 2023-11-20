@@ -13,7 +13,7 @@ public:
 
     //~Login();
 
-    void registerUser(const string& username, const string& password);
+    bool registerUser(const string& username, const string& password);
 
     bool authenticateUser( string& username, string& password);
 

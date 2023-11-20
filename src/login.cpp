@@ -19,16 +19,19 @@ void Login::loadUserData() {
     }
 }
 
-void Login::registerUser(const string& username, const string& password)
+bool Login::registerUser(const string& username, const string& password)
 {
     if (userMap.find(username) == userMap.end())
     {
         userMap[username] = password;
         cout << "User registered successfully!\n";
+        saveUserData();
+        return true;
     } 
     else 
     {
         cout << "Username already exists, choose a different one\n";
+        return false;
     }
 }
 
