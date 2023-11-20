@@ -19,3 +19,10 @@ TEST(LoginTests, AuthenticateUserFail)
     login.registerUser("test_user", "test_password");
     EXPECT_FALSE(login.authenticateUser("nonexistent_user", "wrong_password"));
 }
+
+
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
