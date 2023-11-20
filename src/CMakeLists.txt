@@ -1,7 +1,10 @@
 add_library(simpleLibrary
   hand.cpp
   deck.cpp
-  # poker.cpp
+  poker.cpp
+
+  balance.cpp
+  player.cpp
   # login.cpp
 )
 
