@@ -29,7 +29,7 @@ Deck::~Deck() {
 }
 
 Card* Deck::distributeRandomCard() {
-    srand(0);
+    srand(time(0));
 
     int index = rand() % (hand.size());
     Card* discarded_card = hand.at(index);
@@ -46,5 +46,10 @@ void Deck::obtainCard(Card* card) {
     Hand::sortHand();
 
     return;
+}
+
+void Deck::reset() {
+    Hand::clearHand();
+    Deck::generateDeck();
 }
 
