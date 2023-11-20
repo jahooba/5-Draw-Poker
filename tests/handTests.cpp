@@ -78,7 +78,7 @@ TEST(SortHand, ValueSameSuitDifferent) {
 
     cout << hand.viewHand() << endl;
 
-    EXPECT_EQ("| ♤ 2 | ♧ 3 | ♡ 10 | ♢ J | ♡ K | ", hand.viewHand());
+    EXPECT_EQ("| ♧ 10 | ♤ 10 | ♢ 10 | ♡ 10 | ♧ J | ", hand.viewHand());
 }
 
 TEST(SortHand, SuitSameValueDifferent) {
@@ -97,7 +97,7 @@ TEST(SortHand, SuitSameValueDifferent) {
 
     cout << hand.viewHand() << endl;
 
-    EXPECT_EQ("| ♤ 2 | ♧ 3 | ♡ 10 | ♢ J | ♡ K | ", hand.viewHand());
+    EXPECT_EQ("| ♡ 4 | ♡ 10 | ♡ Q | ♡ K | ♡ A | ", hand.viewHand());
 }
 
 TEST(DeleteCardHand, DeleteExistingCardMiddle) {
