@@ -81,17 +81,3 @@ class Hand {
 
 };
 
-struct HandHasher {
-    size_t operator()(const Hand& h) const {
-        using std::size_t;
-        using std::hash;
-
-        return ( 
-                (((hash<int>()(h.getHand().at(0)->value)) 
-                        ^ (hash<int>()(h.getHand().at(1)->value))
-                        ^ (hash<int>()(h.getHand().at(2)->value))
-                        ^ (hash<int>()(h.getHand().at(3)->value)) << 1) >> 1) 
-                ^ ((hash<int>()(h.getHand().at(4)->value)) << 1)  
-                );
-    }
-};
