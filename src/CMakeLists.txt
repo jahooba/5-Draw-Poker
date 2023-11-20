@@ -2,6 +2,7 @@ add_library(simpleLibrary
   hand.cpp
   deck.cpp
   poker.cpp
+  pokerScoreKey.cpp
   balance.cpp
   player.cpp
   login.cpp
