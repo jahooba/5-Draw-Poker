@@ -38,19 +38,6 @@ struct Card {
     }
 };
 
-// struct HandHasher {
-//     size_t operator()(const Hand& h) const {
-//         using std::size_t;
-//         using std::hash;
-//         using std::string;
-
-//         handDupe = h.getHand();
-
-//         return ((hash<string>()(k.first) ^ (hash<string>()(k.second) << 1)) >> 1) ^ (hash<int>()(k.third) << 1);
-//     }
-// };
-
-
 class Hand {
     private:
         const int MAX_SIZE = 5;
@@ -92,4 +79,19 @@ class Hand {
         //returns the entire hand.
         vector<Card*> getHand() const;
 
+};
+
+struct HandHasher {
+    size_t operator()(const Hand& h) const {
+        using std::size_t;
+        using std::hash;
+
+        return ( 
+                (((hash<int>()(h.getHand().at(0)->value)) 
+                        ^ (hash<int>()(h.getHand().at(1)->value))
+                        ^ (hash<int>()(h.getHand().at(2)->value))
+                        ^ (hash<int>()(h.getHand().at(3)->value)) << 1) >> 1) 
+                ^ ((hash<int>()(h.getHand().at(4)->value)) << 1)  
+                );
+    }
 };
