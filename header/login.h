@@ -4,24 +4,26 @@
 #include <string>
 #include <map>
 
+using namespace std;
+
 class Login {
 public:
 
-    Login(const std::string& filename);
+    Login(const string& filename);
 
     //~Login();
 
-    void registerUser(const std::string& username, const std::string& password);
+    void registerUser(const string& username, const string& password);
 
-    bool authenticateUser( std::string& username, std::string& password);
+    bool authenticateUser( string& username, string& password);
 
 private:
 
-    std::string filename;
+    string filename;
 
     bool isLoggedIn;
 
-    std::map<std::string, std::string> userMap; //key value pair (unhashed for now)
+    map<string, string> userMap; //key value pair (unhashed for now)
 
     void loadUserData();
 
