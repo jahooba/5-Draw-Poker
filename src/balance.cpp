@@ -1,5 +1,6 @@
 #include "../header/balance.hpp"
-#include "../header/player.hpp"
+
+using namespace std;
 
 void Balance::setBalance(double balance){
     this->balance = balance;
