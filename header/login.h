@@ -1,17 +1,19 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 
 class Login {
 public:
 
     Login(const std::string& filename);
 
-    ~Login();
+    //~Login();
 
     void registerUser(const std::string& username, const std::string& password);
 
-    bool authenticateUser(const std::string& username, const std::string& password);
+    bool authenticateUser( std::string& username, std::string& password);
 
 private:
 
@@ -19,9 +21,9 @@ private:
 
     bool isLoggedIn;
 
+    std::map<std::string, std::string> userMap; //key value pair (unhashed for now)
+
     void loadUserData();
 
     void saveUserData();
 };
-
-#endif // LOGIN_H
