@@ -19,3 +19,11 @@ add_executable(deckTests
 
 target_link_libraries(deckTests gmock gtest gtest_main)
 target_link_libraries(deckTests simpleLibrary)
+
+
+add_executable(deckTests
+  loginTests.cpp
+)
+
+target_link_libraries(deckTests gmock gtest gtest_main)
+target_link_libraries(deckTests simpleLibrary)
