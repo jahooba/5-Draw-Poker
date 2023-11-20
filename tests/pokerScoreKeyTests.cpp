@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../header/poker.hpp"
+#include "../header/hand.hpp"
 #include "../header/pokerScoreKey.hpp"
 #include <iostream>
 using namespace std;

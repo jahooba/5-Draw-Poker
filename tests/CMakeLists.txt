@@ -29,9 +29,9 @@ target_link_libraries(loginTests gmock gtest gtest_main)
 target_link_libraries(loginTests simpleLibrary)
 
 
-add_executable(pokerTests
- pokerTests.cpp
+add_executable(pokerScoreKeyTests
+ pokerScoreKeyTests.cpp
 )
 
-target_link_libraries(pokerTests gmock gtest gtest_main)
-target_link_libraries(pokerTests simpleLibrary)
+target_link_libraries(pokerScoreKeyTests gmock gtest gtest_main)
+target_link_libraries(pokerScoreKeyTests simpleLibrary)
