@@ -38,6 +38,18 @@ struct Card {
     }
 };
 
+// struct HandHasher {
+//     size_t operator()(const Hand& h) const {
+//         using std::size_t;
+//         using std::hash;
+//         using std::string;
+
+//         handDupe = h.getHand();
+
+//         return ((hash<string>()(k.first) ^ (hash<string>()(k.second) << 1)) >> 1) ^ (hash<int>()(k.third) << 1);
+//     }
+// };
+
 
 class Hand {
     private:
