@@ -2,11 +2,6 @@
 
 #include <unordered_map>
 #include "../header/hand.hpp"
-#include "../header/deck.hpp"
-#include "../header/player.hpp"
-#include "../header/poker.hpp"
-#include <vector>
-
 
 class PokerScoreKey {
     private:
@@ -27,7 +22,7 @@ class PokerScoreKey {
 
     public:
         PokerScoreKey();
-        unordered_map<string, int>& getScoreKey() {
-            return scoreKey;
-        }
+        ~PokerScoreKey();
+        int at(const string&) const;
+        void clear();
 };

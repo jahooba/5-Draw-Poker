@@ -3,6 +3,18 @@
 using namespace std;
 
 
+PokerScoreKey::PokerScoreKey() {
+    PokerScoreKey::generateScoreKey();
+}
+
+int PokerScoreKey::at(const string& handStr) const {
+    return scoreKey.at(handStr);
+}
+
+void PokerScoreKey::clear() {
+    scoreKey.clear();
+}
+
 void PokerScoreKey::generateScoreKey() {
 
     Hand temporaryHand;
@@ -63,7 +75,7 @@ void PokerScoreKey::generateScoreKey() {
                                             if (scoreKey.count(strHand) == 0) {
                                                 
                                                 //score hand
-                                                int handScore = Poker::scoreHand(temporaryHand);
+                                                int handScore = PokerScoreKey::scoreHand(temporaryHand);
                                                 scoreKey[strHand] = handScore;   
                                             }
 
@@ -80,16 +92,29 @@ void PokerScoreKey::generateScoreKey() {
     }
 
 
-    temporaryHand.clearHand() //just to be safe haha
+    temporaryHand.clearHand(); //just to be safe haha
 }
 
 
 int PokerScoreKey::scoreHand(const Hand& h) {
     string handStr = h.viewHand();
+
+    return 1;
 }
 
+bool PokerScoreKey::isStraight(const Hand& h) {
+    return false;
+}
 
-bool isFourofaKind(const Hand& h) {
+bool PokerScoreKey::isFlush(const Hand& h) {
+    return true;
+}
+
+bool PokerScoreKey::isFullHouse(const Hand& h) {
+    return false;
+}
+
+bool PokerScoreKey::isFourofaKind(const Hand& h) {
     int count = 0;
 
 
@@ -108,6 +133,7 @@ bool isFourofaKind(const Hand& h) {
     return false;
 }
 
-bool isStraightFlush(const Hand& h) {
-    return (PokerScoreKey::isFlush() && PokerScoreKey::isStraight());
+bool PokerScoreKey::isStraightFlush(const Hand& h) {
+
+    return (PokerScoreKey::isFlush(h) && PokerScoreKey::isStraight(h));
 }
