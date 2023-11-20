@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "../header/deck.hpp"
-//#include "../header/player.hpp"
+#include "../header/player.hpp"
 #include <vector>
 
 class Poker{

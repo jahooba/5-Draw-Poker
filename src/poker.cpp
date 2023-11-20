@@ -1,9 +1,10 @@
-#include <unordered_map>
-#include "../header/deck.hpp"
-//#include "../header/player.hpp"
-#include <vector>
+#include "../header/poker.hpp"
 
-Poker::Poker(vector<Player*> playerList){}
+using namespace std;
+
+Poker::Poker(vector<Player*> playerList){
+
+}
 
 void Poker::generateScoreKey(){}
 
