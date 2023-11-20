@@ -129,9 +129,15 @@ string Hand::viewHand() const {
 }
 
 void Hand::clearHand() {
+    if (hand.empty()) {
+        return;
+    }
+
     for (Card* item : hand) {
         if (item != nullptr) {
             delete item;
         }
     }
+
+    hand.clear();
 }
