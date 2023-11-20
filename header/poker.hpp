@@ -7,7 +7,7 @@
 class Poker{
 	private:
 		Deck deck;
-		unordered_map<Hand, int, HandHasher> SCORE_KEY;
+		unordered_map<string, int> SCORE_KEY;
 		vector<Player*> playerList;
 		double pot;
 		void generateScoreKey();
