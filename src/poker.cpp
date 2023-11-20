@@ -1,15 +1,24 @@
 #include "../header/poker.hpp"
-
 using namespace std;
 
 Poker::Poker(vector<Player*> playerList){
-
+    Poker::generateScoreKey();
 }
 
-void Poker::generateScoreKey(){}
+~Poker::Poker() {
+    POKER_SCORE_KEY.clear();
+}
+
+void Poker::generateScoreKey() {
+    POKER_SCORE_KEY = PokerScoreKey().getScoreKey();
+}
 
 void Poker::Game_Start(){}
 
-int Poker::getHandScore(Hand hand){}
+const int Poker::getHandScore(const Hand& h) const {
+    string handStr = h.viewHand();
+
+    return POKER_SCORE_KEY.at(handStr);
+}
 
 void Poker::payout(Player* player){}

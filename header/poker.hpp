@@ -1,20 +1,24 @@
 #pragma once
-#include <unordered_map>
+#include "../header/hand.hpp"
 #include "../header/deck.hpp"
 #include "../header/player.hpp"
+#include "../header/pokerScoreKey.hpp"
+
+#include <unordered_map>
 #include <vector>
+
 
 class Poker{
 	private:
 		Deck deck;
-		unordered_map<string, int> SCORE_KEY;
+		unordered_map<string, int> POKER_SCORE_KEY;
 		vector<Player*> playerList;
 		double pot;
 		void generateScoreKey();
 	public:
 		Poker(vector<Player*> playerList);
 		void Game_Start();
-		int getHandScore(Hand);
+		const int getHandScore(const Hand& ) const;
 		void payout(Player*);
 };
 
