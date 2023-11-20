@@ -40,7 +40,7 @@ TEST(HandOperations, SortHandMethod){
   EXPECT_EQ("| ♤ 2 | ♧ 3 | ♡ 10 | ♢ J | ♡ K | ", hand.viewHand());
 }
 
-TEST(HandOperations, EqualityOperator) {
+TEST(HandOperations, LogicalEqualityOperator) {
 
   Hand hand_one;
   Hand hand_two;
