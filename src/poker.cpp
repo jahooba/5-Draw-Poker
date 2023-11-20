@@ -5,7 +5,7 @@ Poker::Poker(vector<Player*> playerList){
     Poker::generateScoreKey();
 }
 
-~Poker::Poker() {
+Poker::~Poker() {
     POKER_SCORE_KEY.clear();
 }
 

@@ -17,6 +17,7 @@ class Poker{
 		void generateScoreKey();
 	public:
 		Poker(vector<Player*> playerList);
+		~Poker();
 		void Game_Start();
 		const int getHandScore(const Hand& ) const;
 		void payout(Player*);
