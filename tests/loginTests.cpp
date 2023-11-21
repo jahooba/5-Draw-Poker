@@ -7,15 +7,35 @@ using namespace std;
 
 TEST(LoginTests, RegisterUser)
 {
-    Login login = Login("test_userdata.txt");
-    login.registerUser("test_user", "test_password");
-    EXPECT_TRUE(login.authenticateUser("test_user", "test_password"));
+    Login login = Login("testUserdata.txt");
+
+    string testUser = "testUser";
+    string testPassword = "testPassword";
+
+    login.registerUser(testUser, testUser);
+    
+    EXPECT_TRUE(login.authenticateUser(testUser, testPassword));
 }
 
 
 TEST(LoginTests, AuthenticateUserFail) 
 {
-    Login login = Login("test_userdata.txt");
-    login.registerUser("test_user", "test_password");
-    EXPECT_FALSE(login.authenticateUser("nonexistent_user", "wrong_password"));
+    Login login = Login("testUserdata.txt");
+    
+    string testUser = "testUser";
+    string testPassword = "testPassword";
+
+    string failUser = "nonexistentUser";
+    string wrongPassword = "wrongPassword";
+
+    login.registerUser(testUser, testUser);
+
+    EXPECT_FALSE(login.authenticateUser(failUser, wrongPassword));
+}
+
+
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

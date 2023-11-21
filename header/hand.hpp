@@ -38,7 +38,6 @@ struct Card {
     }
 };
 
-
 class Hand {
     private:
         const int MAX_SIZE = 5;
@@ -81,3 +80,4 @@ class Hand {
         vector<Card*> getHand() const;
 
 };
+

@@ -6,12 +6,12 @@ using namespace std;
 void Deck::generateDeck(){
     for (int value = Two; value <= A; value++) {
 
-        CardValue value_actual = static_cast<CardValue>(value); 
+        CardValue valueActual = static_cast<CardValue>(value); 
 
         for (int suit = Clubs; suit <= Hearts; suit++) {
 
-            CardSuit suit_actual = static_cast<CardSuit>(suit);
-            Deck::obtainCard(new Card(value_actual, suit_actual));
+            CardSuit suitActual = static_cast<CardSuit>(suit);
+            Deck::obtainCard(new Card(valueActual, suitActual));
         
         }
     }
@@ -29,13 +29,13 @@ Deck::~Deck() {
 }
 
 Card* Deck::distributeRandomCard() {
-    srand(0);
+    srand(time(0));
 
     int index = rand() % (hand.size());
-    Card* discarded_card = hand.at(index);
-    Hand::distributeCard(discarded_card->value, discarded_card->suit);
+    Card* discardedCard = hand.at(index);
+    Hand::distributeCard(discardedCard->value, discardedCard->suit);
 
-    return discarded_card;
+    return discardedCard;
 }
 
 void Deck::obtainCard(Card* card) {
@@ -46,5 +46,10 @@ void Deck::obtainCard(Card* card) {
     Hand::sortHand();
 
     return;
+}
+
+void Deck::reset() {
+    Hand::clearHand();
+    Deck::generateDeck();
 }
 
