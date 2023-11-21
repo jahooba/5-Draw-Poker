@@ -105,13 +105,13 @@ int PokerScoreKey::scoreHand(const Hand& h) {
     int handScore = 0;
     // Rank values 
     const int SFR = 1000,     
-              FOUR = 900;     
-              FHR = 800;
-              FR = 700;
-              SR = 600;
-              THREE = 500;
-              TWO = 400;
-              PAIR = 200;
+              FOUR = 900,     
+              FHR = 800,
+              FR = 700,
+              SR = 600,
+              THREE = 500,
+              TWO = 400,
+              PAIR = 200,
               HIGH = 100;
 
 
