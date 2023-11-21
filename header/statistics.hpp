@@ -10,9 +10,10 @@ private:
     int wins;
     int gamesPlayed;
     string fileName;
+    string playerName;
 
 public:
-    Statistics(string);
+    Statistics(string, string);
     Statistics(int, int);
     void print();
     void update(int, int);
