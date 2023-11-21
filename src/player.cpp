@@ -8,7 +8,7 @@ Player::Player(string name){
 }
 
 
-Player::Player(string name, int balance){
+Player::Player(string name, double balance){
     this->name = name;
     this->balance = new Balance(balance);
 }

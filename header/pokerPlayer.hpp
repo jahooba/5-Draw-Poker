@@ -3,7 +3,7 @@
 #include "../header/statistics.hpp"
 using namespace std;
 
-class PokerPlayer: public Player(){
+class PokerPlayer: public Player{
 private: 
     Statistics pokerStats;
 

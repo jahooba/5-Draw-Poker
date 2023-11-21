@@ -10,7 +10,7 @@ private:
     Balance *balance;
 public:
     Player(string name);
-    Player(string name, int balance);
+    Player(string name, double balance);
     ~Player();
     string getName();
     Balance* getBalance();

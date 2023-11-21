@@ -15,3 +15,6 @@ add_executable(playerTests
 target_link_libraries(handTests gmock gtest gtest_main)
 target_link_libraries(handTests simpleLibrary)
 
+target_link_libraries(playerTests gmock gtest gtest_main)
+target_link_libraries(playerTests simpleLibrary)
+

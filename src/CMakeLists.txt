@@ -1,5 +1,7 @@
 add_library(simpleLibrary
   hand.cpp
+  player.cpp
+  balance.cpp
 )
 
 find_library(M_LIB m)
