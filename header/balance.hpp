@@ -10,6 +10,6 @@ public:
     Balance(double balance);
     double getBalance();
     void appendBalance(double);
-    void setBalanceDouble(double);
+    void setBalance(double);
     
 };

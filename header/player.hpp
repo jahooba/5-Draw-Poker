@@ -7,11 +7,10 @@ class Player {
 private:
     string name;
     Hand hand;
-    Balance *balance;
+    Balance balance;
 public:
     Player(string name);
     Player(string name, double balance);
-    ~Player();
     string getName();
-    Balance* getBalance();
+    double getBalance();
 };

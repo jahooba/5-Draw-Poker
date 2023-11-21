@@ -1,7 +1,11 @@
 add_library(simpleLibrary
   hand.cpp
-  player.cpp
+  deck.cpp
+  poker.cpp
+  pokerScoreKey.cpp
   balance.cpp
+  player.cpp
+  login.cpp
 )
 
 find_library(M_LIB m)

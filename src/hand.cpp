@@ -1,6 +1,4 @@
 #include "../header/hand.hpp"
-#include <vector>
-#include <unordered_map>
 
 using namespace std;
 
@@ -9,11 +7,7 @@ Hand::Hand() {
 }
 
 Hand::~Hand() {
-    for (Card* item : hand) {
-        if (item != nullptr) {
-            delete item;
-        }
-    }
+    Hand::clearHand();
     hand.clear();
 }
 
@@ -45,24 +39,32 @@ Card* Hand::distributeCard(CardValue v, CardSuit s) {
     for (int i = 0; i < hand.size(); i++) {
         if (hand.at(i)->value == v && hand.at(i)->suit == s) {
             temp = hand.at(i);
-            hand.at(i) = nullptr;
+            hand.erase(hand.begin() + i);
+            break;
         }
     }
-
-    //Hand::sortHand();
-
     return temp;
 }
 
 void Hand::sortHand() {
     if (hand.size() > 1){
-        int i, j, temp;
+        int i, j, tempValue, tempSuit;
 
-        for (i=1; i<hand.size(); i++){
-            temp = hand.at(i)->value;
+        for (i = 1; i < hand.size(); i++){
+            tempValue = hand.at(i)->value;
+            tempSuit = hand.at(i)->suit;
             j = i - 1;
-            while(j>=0 && hand.at(j)->value > temp){
-                swap(hand.at(j+1), hand.at(j));
+
+            while(j >= 0 && hand.at(j)->value >= tempValue){
+
+                if (hand.at(j)->value > tempValue) {
+                    swap(hand.at(j+1), hand.at(j));
+                }
+
+                else if (hand.at(j)->value == tempValue && hand.at(j)->suit > tempSuit) {
+                    swap(hand.at(j+1), hand.at(j));
+                }
+
                 j--;
             }
         }
@@ -136,3 +138,16 @@ string Hand::viewHand() const {
     return ss.str();
 }
 
+void Hand::clearHand() {
+    if (hand.empty()) {
+        return;
+    }
+
+    for (Card* item : hand) {
+        if (item != nullptr) {
+            delete item;
+        }
+    }
+
+    hand.clear();
+}

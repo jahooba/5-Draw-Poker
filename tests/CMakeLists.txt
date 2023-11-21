@@ -8,13 +8,37 @@ add_executable(handTests
   handTests.cpp
 )
 
+target_link_libraries(handTests gmock gtest gtest_main)
+target_link_libraries(handTests simpleLibrary)
+
 add_executable(playerTests
   playerTests.cpp
 )
 
-target_link_libraries(handTests gmock gtest gtest_main)
-target_link_libraries(handTests simpleLibrary)
-
 target_link_libraries(playerTests gmock gtest gtest_main)
 target_link_libraries(playerTests simpleLibrary)
 
+
+
+add_executable(deckTests
+  deckTests.cpp
+)
+
+target_link_libraries(deckTests gmock gtest gtest_main)
+target_link_libraries(deckTests simpleLibrary)
+
+
+add_executable(loginTests
+ loginTests.cpp
+)
+
+target_link_libraries(loginTests gmock gtest gtest_main)
+target_link_libraries(loginTests simpleLibrary)
+
+
+add_executable(pokerScoreKeyTests
+ pokerScoreKeyTests.cpp
+)
+
+target_link_libraries(pokerScoreKeyTests gmock gtest gtest_main)
+target_link_libraries(pokerScoreKeyTests simpleLibrary)

@@ -14,10 +14,6 @@ enum CardSuit {
 };
 
 enum CardValue {
-    J = 11,
-    Q = 12,
-    K = 13,
-    A = 14,
     Two = 2,
     Three = 3,
     Four = 4,
@@ -27,6 +23,10 @@ enum CardValue {
     Eight = 8,
     Nine = 9,
     Ten = 10,
+    J = 11,
+    Q = 12,
+    K = 13,
+    A = 14
 };
 
 struct Card {
@@ -38,15 +38,13 @@ struct Card {
     }
 };
 
-
 class Hand {
     private:
-        //sorts the hand from lowest to highest
-        void sortHand();
         const int MAX_SIZE = 5;
     
     protected:
         vector<Card*> hand;
+        void sortHand();
 
     public:
 
@@ -63,7 +61,7 @@ class Hand {
         Appends a card to hand.
         input: card to add
         */
-        void obtainCard(Card*);
+        virtual void obtainCard(Card*);
 
         /*
         Discards a Card
@@ -78,6 +76,8 @@ class Hand {
         //clears out the hand
         void clearHand();
 
+        //returns the entire hand.
         vector<Card*> getHand() const;
 
 };
+

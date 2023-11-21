@@ -4,23 +4,19 @@ using namespace std;
 
 Player::Player(string name){
     this->name = name;
-    balance = new Balance();
+    balance = Balance();
 }
 
 
 Player::Player(string name, double balance){
     this->name = name;
-    this->balance = new Balance(balance);
-}
-
-Player::~Player(){
-    delete balance;
+    this->balance = Balance(balance);
 }
 
 string Player::getName(){
     return name;
 }
 
-Balance* Player::getBalance(){
-    return balance;
+double Player::getBalance(){
+    return balance.getBalance();
 }

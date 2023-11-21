@@ -19,6 +19,6 @@ void Balance::appendBalance(double add){
 }
 
 
-void Balance::setBalanceDouble(double newBalance){
+void Balance::setBalance(double newBalance){
     balance = newBalance;
 }
