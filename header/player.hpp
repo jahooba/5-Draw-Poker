@@ -1,9 +1,10 @@
 #pragma once
-#include <string>
+
+#include <iostream>
 #include "../header/hand.hpp"
 #include "../header/balance.hpp"
 
-class Player{
+class Player {
 	protected:
 		string name;
 		Hand hand;

@@ -1,6 +1,7 @@
-#include "../header/player.hpp"
+#pragma once
+using namespace std;
 
-class Balance: public Player{
+class Balance {
     private:
         double balance;
         void setBalance(double);

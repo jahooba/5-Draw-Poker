@@ -48,13 +48,23 @@ Card* Hand::distributeCard(CardValue v, CardSuit s) {
 
 void Hand::sortHand() {
     if (hand.size() > 1){
-        int i, j, temp;
+        int i, j, tempValue, tempSuit;
 
-        for (i=1; i < hand.size(); i++){
-            temp = hand.at(i)->value;
+        for (i = 1; i < hand.size(); i++){
+            tempValue = hand.at(i)->value;
+            tempSuit = hand.at(i)->suit;
             j = i - 1;
-            while(j>=0 && hand.at(j)->value > temp){
-                swap(hand.at(j+1), hand.at(j));
+
+            while(j >= 0 && hand.at(j)->value >= tempValue){
+
+                if (hand.at(j)->value > tempValue) {
+                    swap(hand.at(j+1), hand.at(j));
+                }
+
+                else if (hand.at(j)->value == tempValue && hand.at(j)->suit > tempSuit) {
+                    swap(hand.at(j+1), hand.at(j));
+                }
+
                 j--;
             }
         }
@@ -129,9 +139,15 @@ string Hand::viewHand() const {
 }
 
 void Hand::clearHand() {
+    if (hand.empty()) {
+        return;
+    }
+
     for (Card* item : hand) {
         if (item != nullptr) {
             delete item;
         }
     }
+
+    hand.clear();
 }
