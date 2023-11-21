@@ -7,6 +7,10 @@ PokerScoreKey::PokerScoreKey() {
     PokerScoreKey::generateScoreKey();
 }
 
+PokerScoreKey::~PokerScoreKey() {
+    PokerScoreKey::clear();
+}
+
 int PokerScoreKey::at(const string& handStr) const {
     return scoreKey.at(handStr);
 }
@@ -74,7 +78,7 @@ void PokerScoreKey::generateScoreKey() {
                                             //only score hand if its not found
                                             if (scoreKey.count(strHand) == 0) {
                                                 
-                                                //score hand
+                                                //score hand and add to scoreKey
                                                 int handScore = PokerScoreKey::scoreHand(temporaryHand);
                                                 scoreKey[strHand] = handScore;   
                                             }
@@ -98,42 +102,169 @@ void PokerScoreKey::generateScoreKey() {
 
 int PokerScoreKey::scoreHand(const Hand& h) {
     string handStr = h.viewHand();
+    int handScore = 0;
 
-    return 1;
+    //add points based on what the hand is here
+
+    /*
+    SCORING CRITERIA:
+    HAND_SCORE = HIGHEST_CONDITION_SCORE + HIGH_CARD_SCORE 
+
+    CONDITION_ORDER FROM HIGHEST -> LOWEST:
+    - straight flush
+    - 4 of a kind
+    - full house
+    - flush
+    - straight
+    - 3 of a kind
+    - 2 pair
+    - pair
+    - high card
+    */
+
+
+
+    // INSERT CODE HERE!!!
+    // ...
+    // ...
+    // etc.
+
+    return handScore;
 }
 
-bool PokerScoreKey::isStraight(const Hand& h) {
-    return false;
-}
 
-bool PokerScoreKey::isFlush(const Hand& h) {
-    return true;
-}
+bool PokerScoreKey::isPair(const Hand& h) {
 
-bool PokerScoreKey::isFullHouse(const Hand& h) {
-    return false;
-}
-
-bool PokerScoreKey::isFourofaKind(const Hand& h) {
-    int count = 0;
-
-
-    for (const Card* item : h.getHand()) {
-        for (int i = 0; i < 5; i++) {
-            if (item->value == h.getHand().at(i)->value) {
-                count++;
-            }
-        }
-
-        if (count == 4) {
+    for (int i = 0; i < h.getHand().size() - 1; i++) {
+        if (h.getHand().at(i)->value == h.getHand().at(i+1)->value) {
             return true;
         }
     }
-    
+
     return false;
 }
 
-bool PokerScoreKey::isStraightFlush(const Hand& h) {
+bool PokerScoreKey::isTwoPair(const Hand& h) {
 
+    if (PokerScoreKey::isPair(h)) {
+        /* 
+        two pair means either 
+        - " 'a a b b' c " (valid)
+        - " a 'b b c c' " (valid)
+        - " a a b c c " (valid) 
+        since hand is sorted!!!!
+        */
+
+        //we already checked leftmost pair when checking for isPair(), therefore only need to check rightmost pair
+
+        // " 'a a b b' c " (valid)
+        bool conditionOne = h.getHand().at(2)->value == h.getHand().at(3)->value;
+
+        // " a 'b b c c' " (valid) | " a a b c c " (valid)
+        bool conditionTwo = h.getHand().at(3)->value == h.getHand().at(4)->value;
+
+       return (conditionOne || conditionTwo);
+    }
+
+    return false;
+}  
+
+
+bool PokerScoreKey::isThreeofaKind(const Hand& h) {
+    
+    if (PokerScoreKey::isPair(h)) {
+        /* 
+        three of a kind means either 
+        - "a a a b c" (valid)
+        - "a b b b c" (valid)
+        - "a b c c c" (valid) 
+        since hand is sorted!!!!
+        */
+
+       //therefore,  
+
+        // "a a a b c" (valid)
+        bool conditionOne = h.getHand().at(0)->value == h.getHand().at(1)->value && h.getHand().at(1)->value == h.getHand().at(2)->value;
+
+        // "a b b b c" (valid)
+        bool conditionTwo = h.getHand().at(1)->value == h.getHand().at(2)->value && h.getHand().at(2)->value == h.getHand().at(3)->value;
+
+        //"a b c c c" (valid) 
+        bool conditionThree = h.getHand().at(2)->value == h.getHand().at(3)->value && h.getHand().at(3)->value == h.getHand().at(4)->value;
+
+
+       return ((conditionOne || conditionTwo) || conditionThree);
+    }
+
+    //if theres no pair, it can't be three of a kind
+    return false;
+}
+
+
+bool PokerScoreKey::isStraight(const Hand& h) {
+    for (int i = 0; i < h.getHand().size() - 1; i++) {
+        if (h.getHand().at(i)->value + 1 != h.getHand().at(i+1)->value) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool PokerScoreKey::isFlush(const Hand& h) {
+    CardSuit constant = h.getHand().at(0)->suit;
+
+    for (int i = 1; i < h.getHand().size(); i++) {
+        if (h.getHand().at(i)->suit != constant) {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+bool PokerScoreKey::isFullHouse(const Hand& h) {
+
+    if (PokerScoreKey::isThreeofaKind(h)) {
+        /* 
+        full house means either 
+        - "a a a b b" (valid)
+        - "a a b b b" (valid) 
+        - "a b b b c" (three of a kind, but invalid full house)
+        since hand is sorted!!!!
+        */
+
+        //therefore, only need to check endpoints to check if its full house
+        bool conditionOne = h.getHand().at(0)->value == h.getHand().at(1)->value;
+        bool conditionTwo = h.getHand().at(3)->value == h.getHand().at(4)->value;
+
+        return (conditionOne && conditionTwo);
+    }
+
+    //if theres no three of a kind, then it can't be full house
+    return false; 
+}
+
+bool PokerScoreKey::isFourofaKind(const Hand& h) {
+
+    /* 
+    four of a kind means either 
+    - "a a a a b" (valid)
+    - "a b b b b" (valid) 
+    since hand is sorted!!!!
+    */
+    
+    //cards 0-3 have equal value
+    bool conditionOne = h.getHand().at(0)->value == h.getHand().at(1)->value && h.getHand().at(1)->value == h.getHand().at(2)->value && h.getHand().at(2)->value == h.getHand().at(3)->value;
+
+    //cards 1-4 have equal value
+    bool conditionTwo = h.getHand().at(1)->value == h.getHand().at(2)->value && h.getHand().at(2)->value == h.getHand().at(3)->value && h.getHand().at(3)->value == h.getHand().at(4)->value;
+
+
+    return (conditionOne || conditionTwo);
+}
+
+bool PokerScoreKey::isStraightFlush(const Hand& h) {
     return (PokerScoreKey::isFlush(h) && PokerScoreKey::isStraight(h));
 }
