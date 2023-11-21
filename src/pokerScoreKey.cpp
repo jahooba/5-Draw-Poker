@@ -103,6 +103,17 @@ void PokerScoreKey::generateScoreKey() {
 int PokerScoreKey::scoreHand(const Hand& h) {
     string handStr = h.viewHand();
     int handScore = 0;
+    // Rank values 
+    const int SFR = 1000,     
+              FOUR = 900;     
+              FHR = 800;
+              FR = 700;
+              SR = 600;
+              THREE = 500;
+              TWO = 400;
+              PAIR = 200;
+              HIGH = 100;
+
 
     //add points based on what the hand is here
 
@@ -125,8 +136,31 @@ int PokerScoreKey::scoreHand(const Hand& h) {
 
 
     // INSERT CODE HERE!!!
-    // ...
-    // ...
+    if (isStraightFlush(h) == true){    //deuce-to-seven low rules (A is always highest)
+        int high_card_value = h.getHand().at(4)->value;
+        handScore = SFR + high_card_value;
+
+        /*
+        --Sums up values of cards
+        for (int i = 0; i < h.getHand().size() - 1; i++){
+            handScore += h.getHand().at(i)->value;
+        }
+        handScore += SFR;
+        */
+    }
+    else if (isFourofaKind(h) == true){
+        for (int i = 0; i < h.getHand().size() - 1; i++){
+            handScore += h.getHand().at(i)->value;
+        }
+        handScore += FOUR;
+        
+        /*
+        --In the event two hands have the same score, the sum of values would need to be compared
+        int high_card_value = h.getHand().at(4)->value;
+        int low_card_value = h.getHand().at(0)->value;
+        handScore = FOUR + high_card_value + low_card_value;
+        */
+    }
     // etc.
 
     return handScore;
