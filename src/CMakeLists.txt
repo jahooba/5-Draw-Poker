@@ -6,6 +6,7 @@ add_library(simpleLibrary
   balance.cpp
   player.cpp
   login.cpp
+  statistics.cpp
 )
 
 find_library(M_LIB m)

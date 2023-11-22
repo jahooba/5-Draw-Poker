@@ -1,6 +1,13 @@
-#include "../header/statistics.cpp"
+#include "../header/statistics.hpp"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
 
-class Statistics{
+/*Statistics::Statistics(){
+    cout << "default";
+}
+*/
 
 Statistics::Statistics(string filename, string playername){
     fileName = filename;
@@ -8,17 +15,46 @@ Statistics::Statistics(string filename, string playername){
     wins = 0;
     gamesPlayed = 0;
 
-    ifstream file(filename);
+    fstream file(filename, ios::app | ios::in);
+
+    bool flag = false;
 
     if (file.is_open()) {
-        file << playername << " ";
-        file << "wins " << wins << " " ;
-        file << "games played " << gamesPlayed << endl;
-        file.close();
+        string name;
+        while(file >> name){
+            if(name == playerName){
+                flag = true;
+            }
+        }
+
+        if(flag == false){
+            file << playername << " ";
+            file << wins << " " ;
+            file  << gamesPlayed << endl;
+        }
+
+        if(flag){
+            load();
+        }
     }
-    
+
     file.close();
+
+    fstream file2(filename, ios::app);
+
+    if (file2.is_open()) {
+
+        if(!flag){
+            cout << "adding" << endl;
+            file2 << playername << " ";
+            file2 << wins << " " ;
+            file2  << gamesPlayed << endl;
+        }
+
+    }
+    file2.close();
 }
+
 
 Statistics::Statistics(int wins, int gamesPlayed){
     this->wins = wins;
@@ -27,34 +63,64 @@ Statistics::Statistics(int wins, int gamesPlayed){
 
 
 void Statistics::print(){
-    ofstream file(filename);
-    if (file.is_open()) {
-        string name;
-        while(file >> name){
-            if(name == playerName){
-                cout << "Stats - " << playerName << endl;
-            }
-        }
-    }
+    load();
+    cout << "Stats - " << playerName << endl;
+    cout << "Games Won Total - " << wins << endl;
+    cout << "Games Played Total - " << gamesPlayed << endl;
 }
 
 void Statistics::update(int wins, int gamesPlayed){
     this->wins = wins;
     this->gamesPlayed = gamesPlayed;
+    save();
 }
 
-void Statistics::load();
-
-void Statistics::save(){
-    if (file.is_open()) {
+void Statistics::load(){
+    fstream file(fileName);
+    if(file){
         string name;
         while(file >> name){
             if(name == playerName){
-
+                file >> wins;
+                file >> gamesPlayed;
             }
         }
     }
 }
 
+void Statistics::save(){
+    ifstream file;
+    file.open(fileName, ios::in);
+    ofstream temp;
+    temp.open("temp.txt");
+
+    string line;
+    while (getline(file,line)){
+        if ((line.substr(0, playerName.length())) != playerName){
+            temp << line << endl;
+        }
+        else {
+            temp << playerName << " " << wins << " " << gamesPlayed << endl;
+        }
+    }
+
+    
+    const char* fN = fileName.c_str();
+    int num = remove(fN);
+    rename("temp.txt","userStats.txt");
+
+    temp.close();
+    file.close();
 }
+
+
+int Statistics::getWins(){
+    return wins;
+}
+
+int Statistics::getGamesPlayed(){
+    return gamesPlayed;
+}
+
+
 

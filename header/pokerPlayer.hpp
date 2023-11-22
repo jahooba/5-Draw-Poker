@@ -8,6 +8,8 @@ private:
     Statistics pokerStats;
 
 public: 
+    PokerPlayer(string);
+    PokerPlayer(string name, double balance);
     void updateStatistics(int, int);
     void viewStatistics();
     //PokerAction pokerMove(int);

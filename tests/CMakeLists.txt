@@ -42,3 +42,10 @@ add_executable(pokerScoreKeyTests
 
 target_link_libraries(pokerScoreKeyTests gmock gtest gtest_main)
 target_link_libraries(pokerScoreKeyTests simpleLibrary)
+
+add_executable(statisticsTests
+  statisticsTests.cpp
+)
+
+target_link_libraries(statisticsTests gmock gtest gtest_main)
+target_link_libraries(statisticsTests simpleLibrary)

@@ -13,11 +13,15 @@ private:
     string playerName;
 
 public:
+    //Statistics();
     Statistics(string, string);
     Statistics(int, int);
     void print();
     void update(int, int);
     void load();
     void save();
+    int getWins();
+    int getGamesPlayed();
+
 
 };
