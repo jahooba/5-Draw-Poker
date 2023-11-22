@@ -15,7 +15,9 @@ public:
 
     bool registerUser(const string& username, const string& password);
 
-    bool authenticateUser( string& username, string& password);
+    int authenticateUser( string& username, string& password); //1 - success, 2 - Wrong Password, 3 - UserName DNE
+
+    
 
 private:
 
