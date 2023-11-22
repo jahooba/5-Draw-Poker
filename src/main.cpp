@@ -31,6 +31,34 @@ void createAccount(Login &login)
     }
 }
 
+void userLogin(Login &login)
+{
+    string userName = "";
+    string Pasword = "";
+
+    cout << GREEN << "Please Enter your credentials below to login" << RESET << endl << endl << endl;
+
+    cout << GREEN << "Enter a username" << RESET << endl;
+    cin >> userName;
+    cout << GREEN << "Enter a password" << RESET << endl;
+    cin >> Pasword;
+
+    int logSuccess = login.authenticateUser(userName, Pasword);
+    if(logSuccess == 1)
+    {
+        cout << GREEN << "Successfully logged in, welcome " << BLUE << userName << RESET << endl;
+    }
+    else if(logSuccess == 2)
+    {
+        cout << RED << "Incorrect password, please try again " << BLUE << userName << RESET << endl;
+        userLogin(login);
+    }
+    else if(logSuccess == 3)
+    {
+        cout << RED << "UserName does not exist, please try again" << RESET << endl;
+        userLogin(login);
+    }
+}
 
 int main() {
     Login login("userdata.txt");
@@ -52,7 +80,11 @@ int main() {
     {
         cout << RED << "NOTE: We value your privacy at Casino Game and will not store your password" << RESET << endl;
         createAccount(login);
+        cout << BLUE << "You can now login with your new credentials!!" << RESET << endl << endl << endl;
     }
+
+    userLogin(login);
+    
 
 
     // login.registerUser("user1", "password1");

@@ -1,6 +1,7 @@
 #include "../header/login.hpp"
 using namespace std;
 
+
 Login::Login(const string& filename) : filename(filename) {
     loadUserData();
     isLoggedIn = false;
@@ -34,24 +35,22 @@ bool Login::registerUser(const string& username, const string& password)
     }
 }
 
-bool Login::authenticateUser(string& username,  string& password) {
+int Login::authenticateUser(string& username,  string& password) {
     // Check if the username exists
     if (userMap.find(username) != userMap.end()) { // find(key) returns an interator pointing to the found element or .end() if not exist
         if (userMap[username] == password) {
-            cout << "Login successful!\n";
-            return true;
+            return 1;// success
         } 
         else 
         {
-            cout << "Incorrect password. Please try again.\n";
+            return 2; // wrong pwd
         }
     } 
     else
     {
-        cout << "Username not found. Please register or check your username.\n";
+        return 3; //DNE username
     }
 
-    return false;
 }
 
 
