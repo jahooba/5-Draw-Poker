@@ -45,7 +45,6 @@ Statistics::Statistics(string filename, string playername){
     if (file2.is_open()) {
 
         if(!flag){
-            cout << "adding" << endl;
             file2 << playername << " ";
             file2 << wins << " " ;
             file2  << gamesPlayed << endl;
