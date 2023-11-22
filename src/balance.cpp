@@ -2,14 +2,23 @@
 
 using namespace std;
 
-void Balance::setBalance(double balance){
+Balance::Balance(){
+    balance = 0;
+}
+
+Balance::Balance(double balance){
     this->balance = balance;
 }
 
 double Balance::getBalance(){
-    return this->balance;
+    return balance;
 }
 
-void Balance::appendBalance(double balance){
-    this->balance += balance;
+void Balance::appendBalance(double add){
+    balance = balance + add;
+}
+
+
+void Balance::setBalance(double newBalance){
+    balance = newBalance;
 }
