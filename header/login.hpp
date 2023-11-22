@@ -17,6 +17,8 @@ public:
 
     bool authenticateUser( string& username, string& password);
 
+    
+
 private:
 
     string filename;
