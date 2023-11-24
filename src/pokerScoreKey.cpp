@@ -1,7 +1,7 @@
 #include "../header/pokerScoreKey.hpp"
+#include <fstream>
 
 using namespace std;
-
 
 PokerScoreKey::PokerScoreKey() {
     PokerScoreKey::generateScoreKey();
@@ -20,8 +20,9 @@ void PokerScoreKey::clear() {
 }
 
 void PokerScoreKey::generateScoreKey() {
-
+    /*
     Hand temporaryHand;
+    ofstream MyFile("AllHandScores.txt");
 
     //card one
     for (int valueOne = Two; valueOne <= A; valueOne++) {
@@ -80,7 +81,8 @@ void PokerScoreKey::generateScoreKey() {
                                                 
                                                 //score hand and add to scoreKey
                                                 int handScore = PokerScoreKey::scoreHand(temporaryHand);
-                                                scoreKey[strHand] = handScore;   
+                                                scoreKey[strHand] = handScore;
+                                                MyFile << strHand << "=" << handScore << endl;
                                             }
 
                                             temporaryHand.clearHand(); //clear hand after every generation
@@ -95,12 +97,13 @@ void PokerScoreKey::generateScoreKey() {
         }
     }
 
-
+    MyFile.close();
     temporaryHand.clearHand(); //just to be safe haha
+    */
 }
 
 
-int PokerScoreKey::scoreHand(const Hand& h) {
+int PokerScoreKey::scoreHand(Hand& h) {
     string handStr = h.viewHand();
     int handScore = 0;
     // Rank values 
@@ -139,27 +142,24 @@ int PokerScoreKey::scoreHand(const Hand& h) {
     if (isStraightFlush(h) == true){    //deuce-to-seven low rules (A is always highest)
         int high_card_value = h.getHand().at(4)->value;
         handScore = SFR + high_card_value;
-
-        /*
-        --Sums up values of cards
-        for (int i = 0; i < h.getHand().size() - 1; i++){
-            handScore += h.getHand().at(i)->value;
-        }
-        handScore += SFR;
-        */
     }
     else if (isFourofaKind(h) == true){
-        for (int i = 0; i < h.getHand().size() - 1; i++){
+        for (int i = 0; i < h.getHand().size(); i++){
             handScore += h.getHand().at(i)->value;
         }
         handScore += FOUR;
-        
-        /*
-        --In the event two hands have the same score, the sum of values would need to be compared
-        int high_card_value = h.getHand().at(4)->value;
-        int low_card_value = h.getHand().at(0)->value;
-        handScore = FOUR + high_card_value + low_card_value;
-        */
+    }
+    else if (isFullHouse(h) == true){
+        for (int i = 0; i < h.getHand().size(); i++){
+            handScore += h.getHand().at(i)->value;
+        }
+        handScore += FHR;
+    }
+    else if (isFlush(h) == true){
+        for (int i = 0; i < h.getHand().size(); i++){
+            handScore += h.getHand().at(i)->value;
+        }
+        handScore += FR;
     }
     // etc.
 

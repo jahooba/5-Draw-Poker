@@ -8,7 +8,6 @@ class PokerScoreKey {
         unordered_map<string, int> scoreKey;
 
         void generateScoreKey();
-        int scoreHand(const Hand&);
 
         bool isHighCard(const Hand&);
         bool isPair(const Hand&);
@@ -25,4 +24,6 @@ class PokerScoreKey {
         ~PokerScoreKey();
         int at(const string&) const;
         void clear();
+
+        int scoreHand(Hand&);
 };
