@@ -1,14 +1,12 @@
 #pragma once
 
-#include <unordered_map>
+//#include <unordered_map>
 #include "../header/hand.hpp"
 
 class PokerScoreKey {
     private:
-        unordered_map<string, int> scoreKey;
-
-        void generateScoreKey();
-
+        //unordered_map<string, int> scoreKey;
+        //void generateScoreKey();
         bool isHighCard(const Hand&);
         bool isPair(const Hand&);
         bool isTwoPair(const Hand&);
@@ -22,8 +20,8 @@ class PokerScoreKey {
     public:
         PokerScoreKey();
         ~PokerScoreKey();
-        int at(const string&) const;
-        void clear();
+        //int at(const string&) const;
+        //void clear();
 
         int scoreHand(Hand&);
 };

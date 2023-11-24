@@ -7,7 +7,7 @@ using namespace std;
 
 //Straight Flush Tests
 // Royal Flush Test
-TEST(ScoreHandTests, RoyalFlush){
+TEST(ScoreHandTests, RoyalFlushTest){
     Hand hand;
     PokerScoreKey key;
 
@@ -69,7 +69,7 @@ TEST(ScoreHandTests, SF_vs_SF){
 
 //Four-of-a-Kind Tests
 // Quad-Aces-and-King Test
-TEST(ScoreHandTests, QuadAcesAndKing){
+TEST(ScoreHandTests, QuadAcesAndKingTest){
     Hand hand;
     PokerScoreKey key;
 
@@ -131,7 +131,7 @@ TEST(ScoreHandTests, SF_vs_FOUR){
 
 //Full House Tests
 // Aces-full-of-Kings Test
-TEST(ScoreHandTests, AcesFullKings){
+TEST(ScoreHandTests, AcesFullKingsTest){
     Hand hand;
     PokerScoreKey key;
     
@@ -193,7 +193,7 @@ TEST(ScoreHandTests, FOUR_vs_FH){
 
 
 //Flush Tests
-TEST(ScoreHandTests, Flush){
+TEST(ScoreHandTests, FlushTest){
     Hand hand;
     PokerScoreKey key;
 
@@ -213,8 +213,8 @@ TEST(ScoreHandTests, Flush){
 
     EXPECT_EQ(hand_score, 736);
 }
-// Flush vs Flush
-TEST(ScoreHandTests, FR_vs_FR){
+// Flush vs Flush Test
+TEST(ScoreHandTests, F_vs_F){
     PokerScoreKey key;
 
     Hand handOne;
@@ -251,8 +251,8 @@ TEST(ScoreHandTests, FR_vs_FR){
 
     EXPECT_GT(handOne_score, handTwo_score);
 }
-// Flush vs Flush - same values, different suit
-TEST(ScoreHandTests, FR_EQ_FR_sameValues){
+// Flush vs Flush Test - same values, different suit
+TEST(ScoreHandTests, F_EQ_F_sameValues){
     PokerScoreKey key;
 
     Hand handOne;
@@ -290,8 +290,8 @@ TEST(ScoreHandTests, FR_EQ_FR_sameValues){
     EXPECT_EQ(handOne_score, handTwo_score);
     cout << "Pot split between tied hands!" << endl;
 }
-// Flush vs Flush - same score, different suit
-TEST(ScoreHandTests, FR_EQ_FR_sameScores){
+// Flush vs Flush Test - same score, different suit
+TEST(ScoreHandTests, F_EQ_F_sameScores){
     PokerScoreKey key;
 
     Hand handOne;
@@ -334,6 +334,107 @@ TEST(ScoreHandTests, FR_EQ_FR_sameScores){
     EXPECT_LT(handOne_highest, handTwo_highest);
     cout << handOne_highest << " < " << handTwo_highest << "-->handTwo would win" << endl;
 }
+
+//Straight Tests
+// Ace-High-Straight Test
+TEST(ScoreHandTests, AceHighStraightTest){
+    Hand hand;
+    PokerScoreKey key;
+
+    Card* cardOne = new Card(A, Spades);
+    hand.obtainCard(cardOne);
+    Card* cardTwo = new Card(K, Hearts);
+    hand.obtainCard(cardTwo);
+    Card* cardThree = new Card(Q, Clubs);
+    hand.obtainCard(cardThree);
+    Card* cardFour = new Card(J, Diamonds);
+    hand.obtainCard(cardFour);
+    Card* cardFive = new Card(Ten, Spades);
+    hand.obtainCard(cardFive);
+    
+    const int hand_score = key.scoreHand(hand);
+    cout << hand.viewHand() << "= " << hand_score << endl;
+
+    EXPECT_EQ(hand_score, 614);
+}
+// Straight vs Straight Test
+TEST(ScoreHandTests, S_vs_S){
+    PokerScoreKey key;
+
+    Hand handOne;
+    Card* cardOne = new Card(Ten, Spades);
+    handOne.obtainCard(cardOne);
+    Card* cardTwo = new Card(Nine, Clubs);
+    handOne.obtainCard(cardTwo);
+    Card* cardThree = new Card(Eight, Hearts);
+    handOne.obtainCard(cardThree);
+    Card* cardFour = new Card(Six, Diamonds);
+    handOne.obtainCard(cardFour);
+    Card* cardFive = new Card(Seven, Spades);
+    handOne.obtainCard(cardFive);
+
+    const int handOne_score = key.scoreHand(handOne);
+    cout << handOne.viewHand() << "= " << handOne_score << endl;
+
+
+    Hand handTwo;
+    Card* cardSix = new Card(Nine, Hearts);
+    handTwo.obtainCard(cardSix);
+    Card* cardSeven = new Card(Eight, Diamonds);
+    handTwo.obtainCard(cardSeven);
+    Card* cardEight = new Card(Seven, Clubs);
+    handTwo.obtainCard(cardEight);
+    Card* cardNine = new Card(Five, Hearts);
+    handTwo.obtainCard(cardNine);
+    Card* cardTen = new Card(Six, Hearts);
+    handTwo.obtainCard(cardTen);
+
+    const int handTwo_score = key.scoreHand(handTwo);
+    cout << handTwo.viewHand() << "= " << handTwo_score << endl;
+
+    cout << handOne_score << " > " << handTwo_score << endl;
+    EXPECT_GT(handOne_score, handTwo_score);
+}
+// Flush vs Straight
+TEST(ScoreHandTests, F_vs_S){
+    PokerScoreKey key;
+
+    Hand handOne;
+    Card* cardOne = new Card(Ten, Spades);
+    handOne.obtainCard(cardOne);
+    Card* cardTwo = new Card(Two, Spades);
+    handOne.obtainCard(cardTwo);
+    Card* cardThree = new Card(Eight, Spades);
+    handOne.obtainCard(cardThree);
+    Card* cardFour = new Card(A, Spades);
+    handOne.obtainCard(cardFour);
+    Card* cardFive = new Card(Seven, Spades);
+    handOne.obtainCard(cardFive);
+
+    const int handOne_score = key.scoreHand(handOne);
+    cout << handOne.viewHand() << "= " << handOne_score << endl;
+
+
+    Hand handTwo;
+    Card* cardSix = new Card(Nine, Hearts);
+    handTwo.obtainCard(cardSix);
+    Card* cardSeven = new Card(Eight, Diamonds);
+    handTwo.obtainCard(cardSeven);
+    Card* cardEight = new Card(Seven, Spades);
+    handTwo.obtainCard(cardEight);
+    Card* cardNine = new Card(Five, Hearts);
+    handTwo.obtainCard(cardNine);
+    Card* cardTen = new Card(Six, Clubs);
+    handTwo.obtainCard(cardTen);
+
+    const int handTwo_score = key.scoreHand(handTwo);
+    cout << handTwo.viewHand() << "= " << handTwo_score << endl;
+
+    cout << handOne_score << " > " << handTwo_score << endl;
+    EXPECT_GT(handOne_score, handTwo_score);
+}
+
+
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

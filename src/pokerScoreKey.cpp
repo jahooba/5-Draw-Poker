@@ -4,23 +4,23 @@
 using namespace std;
 
 PokerScoreKey::PokerScoreKey() {
-    PokerScoreKey::generateScoreKey();
+    //PokerScoreKey::generateScoreKey();
 }
 
 PokerScoreKey::~PokerScoreKey() {
-    PokerScoreKey::clear();
+    //PokerScoreKey::clear();
 }
 
-int PokerScoreKey::at(const string& handStr) const {
+/*int PokerScoreKey::at(const string& handStr) const {
     return scoreKey.at(handStr);
-}
+}*/
 
-void PokerScoreKey::clear() {
+/*void PokerScoreKey::clear() {
     scoreKey.clear();
-}
+}*/
 
-void PokerScoreKey::generateScoreKey() {
-    /*
+/*void PokerScoreKey::generateScoreKey() {
+    
     Hand temporaryHand;
     ofstream MyFile("AllHandScores.txt");
 
@@ -99,8 +99,8 @@ void PokerScoreKey::generateScoreKey() {
 
     MyFile.close();
     temporaryHand.clearHand(); //just to be safe haha
-    */
-}
+    
+}*/
 
 
 int PokerScoreKey::scoreHand(Hand& h) {
@@ -117,13 +117,7 @@ int PokerScoreKey::scoreHand(Hand& h) {
               PAIR = 200,
               HIGH = 100;
 
-
-    //add points based on what the hand is here
-
     /*
-    SCORING CRITERIA:
-    HAND_SCORE = HIGHEST_CONDITION_SCORE + HIGH_CARD_SCORE 
-
     CONDITION_ORDER FROM HIGHEST -> LOWEST:
     - straight flush
     - 4 of a kind
@@ -136,9 +130,6 @@ int PokerScoreKey::scoreHand(Hand& h) {
     - high card
     */
 
-
-
-    // INSERT CODE HERE!!!
     if (isStraightFlush(h) == true){    //deuce-to-seven low rules (A is always highest)
         int high_card_value = h.getHand().at(4)->value;
         handScore = SFR + high_card_value;
@@ -161,7 +152,10 @@ int PokerScoreKey::scoreHand(Hand& h) {
         }
         handScore += FR;
     }
-    // etc.
+    else if (isStraight(h) == true){
+        int high_card_value = h.getHand().at(4)->value;
+        handScore = SR + high_card_value;
+    }
 
     return handScore;
 }
