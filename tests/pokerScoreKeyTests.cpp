@@ -835,7 +835,7 @@ TEST(ScoreHandTests, HIGH_vs_HIGH){
     handTwo.obtainCard(cardEight);
     Card* cardNine = new Card(J, Hearts);
     handTwo.obtainCard(cardNine);
-    Card* cardTen = new Card(Q, Clubs);
+    Card* cardTen = new Card(K, Clubs);
     handTwo.obtainCard(cardTen);
 
 

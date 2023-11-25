@@ -69,20 +69,16 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
         }
         // Compare straight hands
         else if (handOne_rank == 5){
-            // Find high card in each hand 
-            /*int i=4;
-            while (i >= 0 && handOne.getHand().at(i)->value == handTwo.getHand().at(i)->value){
-                i--;
-            }*/
             // No high cards means the hands are the same and no need for comparing
             if (handOne.getHand().at(4)->value == handTwo.getHand().at(4)->value){
                 cout << "Pot is split equally among straight hands." << endl;
                 return;
             }
+
+            // Compare each hand's high card
             int handOneHigh = handOne.getHand().at(4)->value;
             int handTwoHigh = handTwo.getHand().at(4)->value;
-            
-            // Compare each hand's high card
+
             if (handOneHigh > handTwoHigh){
                 cout << "Player 1 wins!" << endl;
             }
@@ -211,11 +207,21 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
         }
         // Compare high card hands
         else{
-            if(handOne.getHand().at(4)->value > handTwo.getHand().at(4)->value)
-                cout << "Player 1 wins!" << endl;
-            else if (handOne.getHand().at(4)->value < handTwo.getHand().at(4)->value)
-                cout << "Player 2 wins!" << endl;
-            else
+            // Find the highest card in hands
+            int i=4;
+            while (i>=0){
+                if(handOne.getHand().at(i)->value > handTwo.getHand().at(i)->value){
+                    cout << "Player 1 wins!" << endl;
+                    break;
+                }
+                else if (handOne.getHand().at(i)->value < handTwo.getHand().at(i)->value){
+                    cout << "Player 2 wins!" << endl;
+                    break;
+                }
+                i--;
+            }
+            // No high card means same values
+            if (i==-1)
                 cout << "Pot is split equally among high card hands." << endl;
         }
     }
