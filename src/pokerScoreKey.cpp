@@ -338,7 +338,6 @@ bool PokerScoreKey::isTwoPair(const Hand& h) {
     return false;
 }  
 
-
 bool PokerScoreKey::isThreeofaKind(const Hand& h) {
     
     if (PokerScoreKey::isPair(h)) {
@@ -368,7 +367,6 @@ bool PokerScoreKey::isThreeofaKind(const Hand& h) {
     //if theres no pair, it can't be three of a kind
     return false;
 }
-
 
 bool PokerScoreKey::isStraight(const Hand& h) {
     for (int i = 0; i < h.getHand().size() - 1; i++) {
