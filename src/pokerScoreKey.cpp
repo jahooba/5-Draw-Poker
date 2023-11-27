@@ -5,7 +5,7 @@ using namespace std;
 PokerScoreKey::PokerScoreKey() {}
 
 PokerScoreKey::~PokerScoreKey() {}
-
+/*
 void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
     // Get rank for each hand
     int handOne_rank = rankHand(handOne);
@@ -225,10 +225,9 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
                 cout << "Pot is split equally among high card hands." << endl;
         }
     }
-}
+}*/
 
 int PokerScoreKey::rankHand(Hand& h) {
-    string handStr = h.viewHand();
     int handRank = 0;
     // Rank values 
     const int SFR = 9,     

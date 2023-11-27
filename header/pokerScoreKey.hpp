@@ -4,8 +4,6 @@
 
 class PokerScoreKey {
     private:
-        int rankHand(Hand&);
-
         bool isHighCard(const Hand&);
         bool isPair(const Hand&);
         bool isTwoPair(const Hand&);
@@ -19,6 +17,7 @@ class PokerScoreKey {
     public:
         PokerScoreKey();
         ~PokerScoreKey();
-        void revealHands(Hand&, Hand&);
+        int rankHand(Hand&);
+        //void revealHands(Hand&, Hand&);
 
 };
