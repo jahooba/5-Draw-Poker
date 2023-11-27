@@ -11,6 +11,11 @@ Player::Player(string name){
     balance = new Balance();
 }
 
+Player::Player(string name, Hand& hand){
+    this->name = name;
+    this->hand = hand;
+    balance = new Balance();
+}
 
 Player::Player(string name, double balance){
     this->name = name;
@@ -19,6 +24,10 @@ Player::Player(string name, double balance){
 
 string Player::getName(){
     return name;
+}
+
+Hand& Player::getPlayerHand(){
+    return hand;
 }
 
 Balance* Player::getBalance(){

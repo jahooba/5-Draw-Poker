@@ -57,6 +57,8 @@ class Hand {
         //assignment operator overload
         bool operator==(const Hand& rhs) const;
 
+        void operator=(const Hand& rhs) const;
+
         /*
         Appends a card to hand.
         input: card to add
