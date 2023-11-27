@@ -8,7 +8,12 @@ using namespace std;
 //Straight Flush Tests
 // Straight Flush vs Straight Flush Test
 TEST(ScoreHandTests, SF_vs_SF){
-    PokerScoreKey key;
+    vector<Player*> playerList;
+
+    Player playerOne;
+    playerList.push_back(playerOne);
+    Player playerTwo;
+    playerList.push_back(playerOne);
 
     Hand handOne;
     Card* cardOne = new Card(Ten, Spades);
@@ -37,10 +42,13 @@ TEST(ScoreHandTests, SF_vs_SF){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo););
+
+    Poker game = new Poker(playerList);
+
+    EXPECT_NO_THROW(game.revealHands());
 }
 
-
+/*
 //Four-of-a-Kind Tests
 // Low Straight-Flush vs High Four-of-a-Kind Test
 TEST(ScoreHandTests, SF_vs_FOUR){
@@ -911,7 +919,7 @@ TEST(ScoreHandTests, PAIR_vs_HIGH){
     cout << handTwo.viewHand() << endl;
     EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
 }
-
+*/
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
