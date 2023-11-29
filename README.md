@@ -127,19 +127,31 @@ On the top of the screen, the user is told that they are in poker action, and th
 
 ### Poker
 This is a typical game of 5-card Draw poker. The class contains a map for win conditions, a vector of all participating players, a Deck to distribute cards out of, and a Hand to keep track of cards drawn. It can also score Hands according to its own algorithm, to see who wins the game.
+
+#### PokerScoreKey\*
+This keeps track of all possible Hand types and their scores, so the Poker game can reference them on an as-needed basis. 
+<br>
+
+Solid Principles Incorporated: To avoid violation of the **Single-Responsibility Principle**, we have defined PokerScoreKey as its own independent interface. We moved all the private functions that were only related to the scoreKey into this class, as the Poker Game itself didn't need it. The Poker Game is responsible for managing the Poker Game. PokerScoreKey is responsible for scoring Hands according to 5-card Draw Poker standards. This change helped us write better code as it reduced clutter within the Poker game, and allowed for easy testing due to the seperation of responsibilities.
 <br>
 <br>
 
 ### Hand
 The hand stores a vector of Cards, and has functionality relating to adding to / dealing from the hand. In addition, the hand can sort itself automatically.
 
-#### Deck
+#### Deck\*
 A Deck is a special type of hand, that has all the same functionality, but also automatically generates a 52-card deck, and can distribute a random card from that deck. 
+<br>
+
+Solid Principles Incorporated: To avoid violation of the **Liskov-Substitution Principle**, we changed the Deck and Hand interfaces to be more similar to each other in functionality. We made sortHand() protected, as the Deck can be sorted similarly to a Hand. In addition, we added a virtual method to obtainCard(Card*) that the Deck class overrides, since the Deck has a larger MAX_SIZE than the hand. This makes it so that any tests that involve the Hand can also involve the Deck, and makes coding easier since we don't have to think twice about member functions only working on one or the other, especially when dealing with the Hand interface.  
 
 #### Cards
 Cards are a struct that hold both a suit, and a value. Both of which can hold values similar to a standard 52-card deck, respectively.
 <br>
 <br>
+
+### Login
+Login deals with all the login functionality. User statistics are saved to files, and Login accesses those files and loads the game with the user's data. 
 
 ### Player
 Player is an abstract class that all players are based off of. All Players have a name, a Hand to hold cards, and a Balance (money to gamble). 
@@ -165,27 +177,7 @@ A Poker Action is a struct that has a field for the type of the action as well a
 * Bet
 * Fold
 
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
- 
- > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
- > * Perform a new sprint plan like you did in Phase II.
- > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
 
- 
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
  > Before the demo, you should do the following:
