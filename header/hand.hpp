@@ -43,7 +43,7 @@ class Hand {
         const int MAX_SIZE = 5;
     
     protected:
-        vector<Card*> hand;
+        vector<Card*> hand(MAX_SIZE, nullptr);
         void sortHand();
 
     public:
@@ -57,7 +57,7 @@ class Hand {
         //assignment operator overload
         bool operator==(const Hand& rhs) const;
 
-        void operator=(const Hand& rhs) const;
+        //Hand& operator=(Hand& rhs) const;
 
         /*
         Appends a card to hand.
