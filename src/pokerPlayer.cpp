@@ -6,18 +6,15 @@
 
 //PokerPlayer::PokerPlayer() = default;
 
-PokerPlayer::PokerPlayer(string name):Player(name){
-    Player::Player(name);
+PokerPlayer::PokerPlayer(string name) : Player(name){
     pokerStats = Statistics("usernameStats.txt", name);
 }
 
-PokerPlayer::PokerPlayer(string name, double balance):Player(name, balance){
-    Player::Player(name, balance);
+PokerPlayer::PokerPlayer(string name, double balance) : Player(name, balance) {
     pokerStats = Statistics("usernameStats.txt", name);
 }
 
 PokerPlayer::~PokerPlayer() {
-    Player::~Player();
 
     if (currAction == nullptr) {
         currAction = new PokerAction(Fold, 0);

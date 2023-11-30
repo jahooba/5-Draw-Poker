@@ -25,6 +25,7 @@ class PokerPlayer: public Player{
 private: 
     Statistics pokerStats = Statistics("usernameStatistics.txt", name);
     PokerAction* currAction = nullptr;
+    
 public: 
     PokerPlayer(string name);
     PokerPlayer(string name, double balance);
