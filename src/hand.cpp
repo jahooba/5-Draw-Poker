@@ -22,10 +22,10 @@ bool Hand::operator==(const Hand& rhs) const {
     return Hand::viewHand() == rhs.viewHand();
 }
 
-void Hand::operator=(const Hand& rhs) const{
+Hand& Hand::operator=(Hand& rhs) const{
     Hand lhs;
     for(int i=0; i<rhs.getHand().size(); i++){
-        lhs.at(i) = rhs.at(i);
+        lhs.getHand().at(i) = rhs.getHand().at(i);
     }
 }
 

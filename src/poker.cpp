@@ -14,9 +14,12 @@ Poker::~Poker() {
 void Poker::Game_Start(){}
 
 void Poker::revealHands(){
+    Hand* handOne_ptr, handTwo_ptr;
+    handOne_ptr = playerList.at(0)->getPlayerHand();
+    handTwo_ptr = playerList.at(1)->getPlayerHand();
     // Get rank for each hand
-    int handOne_rank = KEY.rankHand(playerList.at(0)->getPlayerHand());
-    int handTwo_rank = KEY.rankHand(playerList.at(1)->getPlayerHand());
+    int handOne_rank = KEY.rankHand(handOne_ptr);
+    int handTwo_rank = KEY.rankHand(handTwo_ptr);
 
     // Compare each hand's rank
     if (handOne_rank > handTwo_rank)
@@ -26,7 +29,7 @@ void Poker::revealHands(){
     else{
         // Compare straight-flush hands
         if (handOne_rank == 9){
-            if (playerList.at(0)->getPlayerHand().getHand().at(4)->value > playerList.at(1)->getPlayerHand().getHand().at(4)->value){
+            if (handOne_ptr->getHand().at(4)->value > handTwo_ptr.getHand().at(4)->value){
                 cout << "Player 1 wins!" << endl;
             }
             else{
