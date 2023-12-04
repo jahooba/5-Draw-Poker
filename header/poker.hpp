@@ -6,6 +6,7 @@
 #include "../header/pokerScoreKey.hpp"
 
 #include <vector>
+#include <limits>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class Poker{
 		Poker(vector<Player*> playerList);
 		~Poker();
 		void Game_Start();
-		const int getHandScore(const Hand& ) const;
+		void discardRound();
 		void payout(Player*);
 };
 
