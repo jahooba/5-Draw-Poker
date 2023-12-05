@@ -1,15 +1,26 @@
-#include <string>
-#include "../header/player.hpp"
+#include "../header/hand.hpp"
 #include "../header/balance.hpp"
+#include "../header/player.hpp"
+
+using namespace std;
+
+Player::Player(){}
 
 Player::Player(string name){
     this->name = name;
+    balance = new Balance();
 }
 
-Player::Player(string, int){
 
+Player::Player(string name, double balance){
+    this->name = name;
+    this->balance = new Balance(balance);
 }
 
 string Player::getName(){
-    return this->name;
+    return name;
+}
+
+Balance* Player::getBalance(){
+    return balance;
 }
