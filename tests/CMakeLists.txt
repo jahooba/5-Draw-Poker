@@ -41,6 +41,14 @@ target_link_libraries(loginTests gmock gtest gtest_main)
 target_link_libraries(loginTests simpleLibrary)
 
 
+add_executable(pokerActionTests
+  pokerActionTests.cpp tests.cpp
+)
+
+target_link_libraries(pokerActionTests gmock gtest gtest_main)
+target_link_libraries(pokerActionTests simpleLibrary)
+
+
 add_executable(pokerScoreKeyTests
   tests.cpp pokerScoreKeyTests.cpp
 )
@@ -48,12 +56,6 @@ add_executable(pokerScoreKeyTests
 target_link_libraries(pokerScoreKeyTests gmock gtest gtest_main)
 target_link_libraries(pokerScoreKeyTests simpleLibrary)
 
-add_executable(statisticsTests
-  statisticsTests.cpp tests.cpp
-)
-
-target_link_libraries(statisticsTests gmock gtest gtest_main)
-target_link_libraries(statisticsTests simpleLibrary)
 
 add_executable(pokerPlayerTests
   pokerPlayerTests.cpp tests.cpp
@@ -61,3 +63,11 @@ add_executable(pokerPlayerTests
 
 target_link_libraries(pokerPlayerTests gmock gtest gtest_main)
 target_link_libraries(pokerPlayerTests simpleLibrary)
+
+
+add_executable(statisticsTests
+  statisticsTests.cpp tests.cpp
+)
+
+target_link_libraries(statisticsTests gmock gtest gtest_main)
+target_link_libraries(statisticsTests simpleLibrary)

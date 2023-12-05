@@ -18,7 +18,7 @@ class PokerScoreKey {
     public:
         PokerScoreKey();
         ~PokerScoreKey();
-        int rankHand(Hand&);
+        int rankHand(const Hand&);
         void revealHands(Hand&, Hand&);
 
 };

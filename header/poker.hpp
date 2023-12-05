@@ -17,10 +17,11 @@ class Poker {
 		double pot;
 		Player* winner;
 	public:
+		Poker();
 		Poker(vector<PokerPlayer*> playerList);
 		~Poker();
 		void Game_Start();
-		const int getHandScore(const Hand& ) const;
+		const int getHandScore(const Hand&);
 		void payout();
 		Player* getWinner() { return winner; }
 };

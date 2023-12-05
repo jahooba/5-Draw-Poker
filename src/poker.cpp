@@ -2,7 +2,7 @@
 using namespace std;
 
 Poker::Poker() {
-    
+
 }
 
 
@@ -14,7 +14,7 @@ Poker::~Poker() {
 
 void Poker::Game_Start() {}
 
-const int Poker::getHandScore(const Hand& h) const {
+const int Poker::getHandScore(const Hand& h) {
     return POKER_SCORE_KEY.rankHand(h);
 }
 

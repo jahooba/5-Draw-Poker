@@ -227,7 +227,7 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
     }
 }
 
-int PokerScoreKey::rankHand(Hand& h) {
+int PokerScoreKey::rankHand(const Hand& h) {
     string handStr = h.viewHand();
     int handRank = 0;
     // Rank values 

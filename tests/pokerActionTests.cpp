@@ -5,15 +5,16 @@
 using namespace std;
 
 class PokerMock : public Poker {
-    PokerMock(vector<PokerPlayer*> playerList) : playerList(playerList) {};
+public:
+    PokerMock() {};
     void setWinner(Player* newWinner) { winner = newWinner; }
     void setPlayerList(vector<PokerPlayer*> playerlist) { playerList = playerlist; }
-}
+};
 
-TEST(PokerAction, payout) {
+TEST(PokerAction, BetPayout) {
     PokerPlayer* player1 = new PokerPlayer("Jeff", 200);
     PokerPlayer* player2 = new PokerPlayer("Alex", 200);
-    vector<Player*> players;
+    vector<PokerPlayer*> players;
     players.push_back(player1);
     players.push_back(player2);
 

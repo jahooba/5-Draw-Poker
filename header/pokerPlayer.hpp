@@ -3,7 +3,6 @@
 #include "../header/hand.hpp"
 #include "../header/balance.hpp"
 #include "../header/statistics.hpp"
-#include "../header/poker.hpp"
 
 using namespace std;
 
@@ -14,7 +13,7 @@ enum PokerActionType {
 	Fold
 };
 
-struct PokerAction : public Action {
+struct PokerAction {
 	PokerActionType type;
 	double bet;
 	PokerAction(PokerActionType t, double b) : type(t), bet(b) {}
