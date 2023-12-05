@@ -9,12 +9,20 @@ using namespace std;
 Player::Player(string name){
     this->name = name;
     balance = new Balance();
+    hand = new Hand();
 }
 
 
 Player::Player(string name, double balance){
     this->name = name;
     this->balance = new Balance(balance);
+    hand = new Hand();
+}
+
+Player::Player(string name, double balance, Hand* hand){
+    this->name = name;
+    this->balance = new Balance(balance);
+    this->hand = hand;
 }
 
 string Player::getName(){
@@ -23,4 +31,8 @@ string Player::getName(){
 
 Balance* Player::getPlayerBalance(){
     return balance;
+}
+
+Hand* Player::getPlayerHand(){
+    return hand;
 }
