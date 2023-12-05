@@ -9,16 +9,17 @@
 
 using namespace std;
 
-class Poker{
+class Poker {
 	private:
 		Deck deck;
 		PokerScoreKey POKER_SCORE_KEY;
-		vector<Player*> playerList;
+		vector<PokerPlayer*> playerList;
 		double pot;
+		Player* winner;
 	public:
-		Poker(vector<Player*> playerList);
+		Poker(vector<PokerPlayer*> playerList);
 		~Poker();
 		void Game_Start();
 		const int getHandScore(const Hand& ) const;
-		void payout(Player*);
+		void payout();
 };

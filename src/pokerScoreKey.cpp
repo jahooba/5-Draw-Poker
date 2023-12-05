@@ -16,7 +16,7 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
         cout << "Player 1 wins." << endl;
     else if (handOne_rank < handTwo_rank)
         cout << "Player 2 wins." << endl;
-    else{
+    else {
         // Compare straight-flush hands
         if (handOne_rank == 9){
             if (handOne.getHand().at(4)->value > handTwo.getHand().at(4)->value){

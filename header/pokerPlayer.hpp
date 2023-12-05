@@ -14,7 +14,7 @@ enum PokerActionType {
 	Fold
 };
 
-struct PokerAction {
+struct PokerAction : public Action {
 	PokerActionType type;
 	double bet;
 	PokerAction(PokerActionType t, double b) : type(t), bet(b) {}
@@ -22,7 +22,8 @@ struct PokerAction {
 
 
 class PokerPlayer: public Player{
-private: 
+
+protected: 
     Statistics pokerStats;
     PokerAction* currAction = nullptr;
     

@@ -1,7 +1,7 @@
 #include "../header/poker.hpp"
 using namespace std;
 
-Poker::Poker(vector<Player*> playerList){
+Poker::Poker(vector<PokerPlayer*> playerList){
     
 }
 
@@ -13,10 +13,15 @@ Poker::~Poker() {
 
 void Poker::Game_Start(){}
 
-/*const int Poker::getHandScore(const Hand& h) const {
-    string handStr = h.viewHand();
+const int Poker::getHandScore(const Hand& h) const {
+    return POKER_SCORE_KEY.rankHand(h);
+}
 
-    return POKER_SCORE_KEY.at(handStr);
-}*/
+void Poker::payout() {
+    
+    for (PokerPlayer* currPlayer : playerList) {
+        pot += currPlayer->getRecentMove()->bet;
+    }
 
-void Poker::payout(Player* player){}
+    winner->getBalance()->appendBalance(pot); 
+}

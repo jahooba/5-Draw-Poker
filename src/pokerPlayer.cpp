@@ -27,21 +27,19 @@ void PokerPlayer::updateStatistics(int gamesWon, int gamesPlayed){
     pokerStats.update(gamesWon, gamesPlayed);
 }
 
-void PokerPlayer::viewStatistics(){
+void PokerPlayer::viewStatistics() {
     pokerStats.print();
 }
 
 PokerAction* PokerPlayer::pokerMove() {
-    PokerAction* newAction = new PokerAction(Fold, 0);
-    currAction = newAction;
-
-    return currAction;
+    return pokerMove(Fold, 0);
 }
 
 PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
     PokerAction* newAction = new PokerAction(action, bet);
-    currAction = newAction;
+    balance->appendBalance(bet * -1);
 
+    currAction = newAction;
     return currAction;
 }
 
