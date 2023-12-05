@@ -6,12 +6,12 @@
 
 //PokerPlayer::PokerPlayer() = default;
 
-PokerPlayer::PokerPlayer(string name) : Player(name){
-    pokerStats = Statistics("usernameStats.txt", name);
+PokerPlayer::PokerPlayer(string name) : Player(name) {
+    pokerStats = Statistics(name);
 }
 
 PokerPlayer::PokerPlayer(string name, double balance) : Player(name, balance) {
-    pokerStats = Statistics("usernameStats.txt", name);
+    pokerStats = Statistics(name);
 }
 
 PokerPlayer::~PokerPlayer() {

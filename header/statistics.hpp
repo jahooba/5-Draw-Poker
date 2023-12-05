@@ -12,16 +12,19 @@ private:
     string fileName;
     string playerName;
 
+    void clearFile();
+
 public:
-    //Statistics();
-    Statistics(string, string);
-    Statistics(int, int);
+    Statistics();
+    Statistics(string);
+    // Statistics(int, int);
     void print();
     void update(int, int);
     void load();
     void save();
     int getWins();
     int getGamesPlayed();
+    string getFileName();
 
 
 };
