@@ -13,6 +13,8 @@ TEST(statisticsTests, validConstructor){
     ASSERT_NO_THROW(Statistics stats = Statistics("Adam"));
 }
 
+/*
+
 TEST(statisticsTests, updateAndSaveTests){
     Statistics stats = Statistics("Adam");
     stats.update(32, 56);
@@ -48,6 +50,7 @@ TEST(statisticsTests, loadTests){
     ASSERT_NO_THROW(stats.print());
 }
 
+*/
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

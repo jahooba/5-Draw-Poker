@@ -8,6 +8,7 @@ protected:
     string name;
     Hand *hand;
     Balance *balance;
+    string fileName; 
 public:
     Player();
     Player(string name);
@@ -17,4 +18,10 @@ public:
     string getName();
     Balance* getPlayerBalance();
     Hand* getPlayerHand();
+    /*
+    void load();
+    void save();
+    string getFileName();
+    void clearFile();
+    */
 };

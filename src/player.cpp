@@ -1,10 +1,12 @@
 #include "../header/hand.hpp"
 #include "../header/balance.hpp"
 #include "../header/player.hpp"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
 
 using namespace std;
-
-//Player::Player(){}
 
 Player::Player(string name){
     this->name = name;
@@ -49,3 +51,42 @@ Balance* Player::getPlayerBalance(){
 Hand* Player::getPlayerHand(){
     return hand;
 }
+
+/*
+void Player::save(){
+    fstream file;
+    file.open(fileName);
+    Player::clearFile();
+
+    if (file.is_open()) {
+        file << name << " " << balance->getBalance() << endl;
+    }
+
+    file.close();
+}
+
+void Player::load(){
+    fstream file(fileName);
+    if(file){
+        string playerName;
+        while(file >> name){
+            if(playerName == name){
+                double temp;
+                file >> temp;
+                balance->setBalance(temp);
+            }
+        }
+    }
+}
+
+string Player::getFileName(){
+    fileName = "userdata/" + name + "Stats.txt";
+}
+
+void Player::clearFile() {
+    std::ofstream ofs;
+    ofs.open(fileName, std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+}
+
+*/
