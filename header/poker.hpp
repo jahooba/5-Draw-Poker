@@ -22,4 +22,3 @@ class Poker{
 		const int getHandScore(const Hand& ) const;
 		void payout(Player*);
 };
-

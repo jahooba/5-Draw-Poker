@@ -12,7 +12,6 @@ Player::Player(string name){
     hand = new Hand();
 }
 
-
 Player::Player(string name, double balance){
     this->name = name;
     this->balance = new Balance(balance);
@@ -25,7 +24,15 @@ Player::Player(string name, double balance, Hand* hand){
     this->hand = hand;
 }
 
-string Player::getName(){
+Player::~Player() {
+    if (balance == nullptr) {
+        balance = new Balance(0);
+    }
+
+    delete balance;
+}
+
+string Player::getName() {
     return name;
 }
 
