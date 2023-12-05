@@ -11,13 +11,20 @@ Player::Player(string name){
     balance = new Balance();
 }
 
-
 Player::Player(string name, double balance){
     this->name = name;
     this->balance = new Balance(balance);
 }
 
-string Player::getName(){
+Player::~Player() {
+    if (balance == nullptr) {
+        balance = new Balance(0);
+    }
+
+    delete balance;
+}
+
+string Player::getName() {
     return name;
 }
 
