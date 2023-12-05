@@ -911,9 +911,3 @@ TEST(ScoreHandTests, PAIR_vs_HIGH){
     cout << handTwo.viewHand() << endl;
     EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
 }
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

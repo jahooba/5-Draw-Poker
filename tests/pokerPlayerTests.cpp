@@ -38,9 +38,3 @@ TEST(pokerPlayerTests, printStats){
   EXPECT_NO_THROW(temp.viewStatistics());
 }
 
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

@@ -32,10 +32,3 @@ TEST(LoginTests, AuthenticateUserFail)
 
     EXPECT_FALSE(login.authenticateUser(failUser, wrongPassword));
 }
-
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

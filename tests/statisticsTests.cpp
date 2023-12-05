@@ -51,9 +51,3 @@ TEST(statisticsTests, loadTests){
     EXPECT_EQ(stats.getGamesPlayed(), 56);
     ASSERT_NO_THROW(stats.print());
 }
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
