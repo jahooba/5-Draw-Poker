@@ -9,9 +9,9 @@ TEST(playerTests, validPlayer2){
     EXPECT_NO_THROW(Player* play = new Player("Adam", 300));
 }
 
-TEST(playerTests, getBalancePlayer1){
+TEST(playerTests, getPlayerBalance){
     Player* player1 = new Player("Adam");
-    EXPECT_NO_THROW(player1->getBalance());
+    EXPECT_NO_THROW(player1->getPlayerBalance());
 }
 
 TEST(playerTests, getNamePlayer1){

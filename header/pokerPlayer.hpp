@@ -5,6 +5,22 @@
 #include "../header/statistics.hpp"
 using namespace std;
 
+
+/*
+enum PokerActionType{
+    Check = 1,
+    Call = 2,
+    Bet = 3,
+    Fold = 4
+};
+
+struct PokerActions{
+    double bet;
+};
+
+*/
+
+
 class PokerPlayer: public Player{
 private: 
     Statistics pokerStats = Statistics("usernameStatistics.txt", name);
