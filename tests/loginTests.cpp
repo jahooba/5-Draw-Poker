@@ -7,7 +7,7 @@ using namespace std;
 
 TEST(LoginTests, RegisterUser)
 {
-    Login login = Login("testUserdata.txt");
+    Login login = Login("userdata/testUserdata.txt");
 
     string testUser = "testUser";
     string testPassword = "testPassword";
@@ -20,7 +20,7 @@ TEST(LoginTests, RegisterUser)
 
 TEST(LoginTests, AuthenticateUserFail) 
 {
-    Login login = Login("testUserdata.txt");
+    Login login = Login("userdata/testUserdata.txt");
     
     string testUser = "testUser";
     string testPassword = "testPassword";
