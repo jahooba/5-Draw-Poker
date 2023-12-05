@@ -4,23 +4,44 @@
 #include "../header/pokerPlayer.hpp"   
 
 
-    //PokerPlayer::PokerPlayer() = default;
+//PokerPlayer::PokerPlayer() = default;
 
-    PokerPlayer::PokerPlayer(string name):Player(name){
-        pokerStats = Statistics("usernameStats.txt", name);
+PokerPlayer::PokerPlayer(string name) : Player(name) {
+    pokerStats = Statistics(name);
+}
+
+PokerPlayer::PokerPlayer(string name, double balance) : Player(name, balance) {
+    pokerStats = Statistics(name);
+}
+
+PokerPlayer::~PokerPlayer() {
+
+    if (currAction == nullptr) {
+        currAction = new PokerAction(Fold, 0);
     }
 
-    PokerPlayer::PokerPlayer(string name, double balance):Player(name, balance){
-        pokerStats = Statistics("usernameStats.txt", name);
-    }
+    delete currAction;
+}
 
-    void PokerPlayer::updateStatistics(int gamesWon, int gamesPlayed){
-        pokerStats.update(gamesWon, gamesPlayed);
-    }
+void PokerPlayer::updateStatistics(int gamesWon, int gamesPlayed){
+    pokerStats.update(gamesWon, gamesPlayed);
+}
 
-    void PokerPlayer::viewStatistics(){
-        pokerStats.print();
-    }
+void PokerPlayer::viewStatistics(){
+    pokerStats.print();
+}
 
+PokerAction* PokerPlayer::pokerMove() {
+    PokerAction* newAction = new PokerAction(Fold, 0);
+    currAction = newAction;
 
+    return currAction;
+}
+
+PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
+    PokerAction* newAction = new PokerAction(action, bet);
+    currAction = newAction;
+
+    return currAction;
+}
 
