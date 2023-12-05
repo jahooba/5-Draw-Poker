@@ -29,6 +29,12 @@ Player::~Player() {
         balance = new Balance(0);
     }
 
+    if (hand == nullptr) {
+        hand = new Hand();
+    }
+
+    delete hand;
+
     delete balance;
 }
 
