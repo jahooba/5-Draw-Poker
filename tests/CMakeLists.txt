@@ -56,7 +56,7 @@ target_link_libraries(statisticsTests gmock gtest gtest_main)
 target_link_libraries(statisticsTests simpleLibrary)
 
 add_executable(pokerPlayerTests
-  pokerPlayerLoadTests.cpp tests.cpp
+  pokerPlayerTests.cpp tests.cpp
 )
 
 target_link_libraries(pokerPlayerTests gmock gtest gtest_main)
