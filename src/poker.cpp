@@ -1,17 +1,18 @@
 #include "../header/poker.hpp"
 using namespace std;
 
-Poker::Poker(vector<PokerPlayer*> playerList){
+Poker::Poker() {
     
 }
 
+
 Poker::~Poker() {
-    //POKER_SCORE_KEY.clear();
+    winner = nullptr;
+    playerList.clear();
 }
 
 
-
-void Poker::Game_Start(){}
+void Poker::Game_Start() {}
 
 const int Poker::getHandScore(const Hand& h) const {
     return POKER_SCORE_KEY.rankHand(h);
@@ -23,5 +24,5 @@ void Poker::payout() {
         pot += currPlayer->getRecentMove()->bet;
     }
 
-    winner->getBalance()->appendBalance(pot); 
+    winner->getBalance()->appendBalance(pot);
 }
