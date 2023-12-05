@@ -25,9 +25,11 @@ private:
 
     bool isLoggedIn;
 
-    map<string, string> userMap; //key value pair (unhashed for now)
+    map<string, int> userMap; //key value pair (hashed)
 
     void loadUserData();
 
     void saveUserData();
+
+    int hashPassword(const string& password);
 };

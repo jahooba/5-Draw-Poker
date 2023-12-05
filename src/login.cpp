@@ -67,3 +67,14 @@ void Login::saveUserData() {
         file.close();
     }
 }
+
+int Login::hashPassword(const string& password)
+{
+    int result = 0;
+    for (int i = 0; i < password.length(); ++i) 
+    {
+        char c = password[i];
+        result += c*(i+1);
+    }
+    return result;
+}
