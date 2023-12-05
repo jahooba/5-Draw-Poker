@@ -23,7 +23,7 @@ struct PokerAction {
 
 class PokerPlayer: public Player{
 private: 
-    Statistics pokerStats = Statistics("usernameStatistics.txt", name);
+    Statistics pokerStats;
     PokerAction* currAction = nullptr;
     
 public: 
