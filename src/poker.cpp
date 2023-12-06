@@ -24,5 +24,5 @@ void Poker::payout() {
         pot += currPlayer->getRecentMove()->bet;
     }
 
-    winner->getBalance()->appendBalance(pot);
+    winner->getPlayerBalance()->appendBalance(pot);
 }

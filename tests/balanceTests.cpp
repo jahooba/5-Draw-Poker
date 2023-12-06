@@ -11,9 +11,9 @@ TEST(balanceTests, validConstructor){
 
 
 TEST(balanceTests, loadAndSave){
-    Balance *temp = new Balance("Alexa");
-    temp->setBalance(52);
-    temp->save();
+    Balance temp = Balance("Alexa");
+    temp.setBalance(52);
+    temp.save();
 
     string temp1;
     int temp2;
@@ -31,11 +31,13 @@ TEST(balanceTests, loadAndSave){
 
     tempFile.close();
 
-    delete temp;
 }
 
+TEST(balanceTests, loadTests){
+    Balance bal = Balance("Alexa");
+    string temp1;
+    int temp2;
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+    bal.load();
+    EXPECT_EQ(bal.getBalance(), 52);
 }

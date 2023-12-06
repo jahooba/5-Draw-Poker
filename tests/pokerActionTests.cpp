@@ -27,6 +27,6 @@ TEST(PokerAction, BetPayout) {
     game.setWinner(player1);
     game.payout();
 
-    EXPECT_EQ(player1->getBalance()->getBalance(), 300);
-    EXPECT_EQ(player2->getBalance()->getBalance(), 100);
+    EXPECT_EQ(player1->getPlayerBalance()->getBalance(), 300);
+    EXPECT_EQ(player2->getPlayerBalance()->getBalance(), 100);
 }
