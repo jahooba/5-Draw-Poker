@@ -4,13 +4,19 @@
 #include "../header/pokerPlayer.hpp"   
 
 
-//PokerPlayer::PokerPlayer() = default;
+PokerPlayer::PokerPlayer() : Player() {
+    pokerStats = Statistics(name);
+}
 
 PokerPlayer::PokerPlayer(string name) : Player(name) {
     pokerStats = Statistics(name);
 }
 
 PokerPlayer::PokerPlayer(string name, double balance) : Player(name, balance) {
+    pokerStats = Statistics(name);
+}
+
+PokerPlayer::PokerPlayer(string name, double balance, Hand* hand) : Player(name, balance, hand) {
     pokerStats = Statistics(name);
 }
 
