@@ -119,4 +119,3 @@ string Statistics::getFileName() {
     return fileName;
 }
 
-

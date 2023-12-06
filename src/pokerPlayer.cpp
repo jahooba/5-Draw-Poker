@@ -50,4 +50,3 @@ PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
 
     return currAction;
 }
-
