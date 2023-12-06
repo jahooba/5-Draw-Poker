@@ -29,4 +29,7 @@ TEST(PokerAction, BetPayout) {
 
     EXPECT_EQ(player1->getPlayerBalance()->getBalance(), 300);
     EXPECT_EQ(player2->getPlayerBalance()->getBalance(), 100);
+
+    delete player1;
+    delete player2;
 }

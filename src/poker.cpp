@@ -1,7 +1,11 @@
 #include "../header/poker.hpp"
 using namespace std;
 
-Poker::Poker(vector<Player*> playerList){
+Poker::Poker() {
+    //default
+}
+
+Poker::Poker(vector<PokerPlayer*> playerList){
     this->playerList = playerList;
 }
 
@@ -12,7 +16,7 @@ Poker::~Poker() {
 
 void Poker::Game_Start(){
     bool playAgain = true;
-    double balance = playerList.at(0)->getBalance()->getBalance();
+    double balance = playerList.at(0)->getPlayerBalance()->getBalance();
 
     if(balance<=0){
         cout << "Sorry, you don't have enough credits to play :(" << endl;

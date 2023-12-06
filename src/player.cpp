@@ -8,6 +8,9 @@
 
 using namespace std;
 
+Player::Player() : Player("DEFAULT") {}
+
+
 Player::Player(string name){
     this->name = name;
     balance = new Balance(name);
@@ -36,7 +39,6 @@ Player::~Player() {
     }
 
     delete hand;
-
     delete balance;
 }
 

@@ -6,8 +6,8 @@ using namespace std;
 class Player {
 protected:
     string name;
-    Hand *hand;
-    Balance *balance;
+    Hand* hand;
+    Balance* balance;
 public:
     Player();
     Player(string name);

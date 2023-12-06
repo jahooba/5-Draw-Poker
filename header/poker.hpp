@@ -4,7 +4,7 @@
 #include "../header/deck.hpp"
 #include "../header/pokerPlayer.hpp"
 #include "../header/pokerScoreKey.hpp"
-
+#include <limits>
 #include <vector>
 
 using namespace std;
@@ -24,4 +24,5 @@ class Poker {
 		const int getHandScore(const Hand&);
 		void payout();
 		Player* getWinner() { return winner; }
+		void discardRound();
 };
