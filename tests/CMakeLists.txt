@@ -40,6 +40,13 @@ add_executable(loginTests
 target_link_libraries(loginTests gmock gtest gtest_main)
 target_link_libraries(loginTests simpleLibrary)
 
+add_executable(pokerTests
+  pokerTests.cpp tests.cpp
+)
+
+target_link_libraries(pokerTests gmock gtest gtest_main)
+target_link_libraries(pokerTests simpleLibrary)
+
 
 add_executable(pokerActionTests
   pokerActionTests.cpp tests.cpp

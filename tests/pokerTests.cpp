@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TEST(PokerGameTests, GameTest){
+TEST(PokerGameTests, GameTest) {
     vector<PokerPlayer*> playerList;
     Hand* handOne = new Hand();
     playerList.push_back(new PokerPlayer("PlayerOne", 1.5 , handOne));
