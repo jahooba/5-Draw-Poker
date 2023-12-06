@@ -31,16 +31,11 @@ TEST(pokerPlayerTests, getBalance2){
 
 TEST(pokerPlayerTests, updateStats){
   PokerPlayer temp = PokerPlayer("Alex");
-  EXPECT_NO_THROW(temp.updateStatistics(300, 20));
+  EXPECT_NO_THROW(temp.updateStatistics(20, 300));
 }
 
 TEST(pokerPlayerTests, printStats){
   PokerPlayer temp = PokerPlayer("Alex");
-  temp.updateStatistics(300, 20);
   EXPECT_NO_THROW(temp.viewStatistics());
 }
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

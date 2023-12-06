@@ -45,16 +45,10 @@ TEST(playerTests, getPlayerHand){
     Card *card_five = new Card(K, Hearts);
     tempHand->obtainCard(card_five);
 
-    cout << player1->getPlayerHand()->viewHand() << endl;
+    //cout << player1->getPlayerHand()->viewHand() << endl;
 
     EXPECT_EQ("| ♡ 4 | ♡ 10 | ♡ Q | ♡ K | ♡ A | ", player1->getPlayerHand()->viewHand());
     delete player1;
-}
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }
 
 

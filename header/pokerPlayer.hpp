@@ -3,7 +3,6 @@
 #include "../header/hand.hpp"
 #include "../header/balance.hpp"
 #include "../header/statistics.hpp"
-#include "../header/poker.hpp"
 
 using namespace std;
 
@@ -22,7 +21,8 @@ struct PokerAction {
 
 
 class PokerPlayer: public Player{
-private: 
+
+protected: 
     Statistics pokerStats;
     PokerAction* currAction = nullptr;
     
