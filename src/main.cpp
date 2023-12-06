@@ -1,5 +1,7 @@
 #include<iostream>
 #include "../header/login.hpp"
+#include "../header/player.hpp"
+
 
 using namespace std;
 
@@ -31,7 +33,7 @@ void createAccount(Login &login)
     }
 }
 
-void userLogin(Login &login)
+std::string userLogin(Login &login)
 {
     string userName = "";
     string Pasword = "";
@@ -47,6 +49,7 @@ void userLogin(Login &login)
     if(logSuccess == 1)
     {
         cout << GREEN << "Successfully logged in, welcome " << BLUE << userName << RESET << endl;
+        return userName;
     }
     else if(logSuccess == 2)
     {
@@ -58,10 +61,11 @@ void userLogin(Login &login)
         cout << RED << "UserName does not exist, please try again" << RESET << endl;
         userLogin(login);
     }
+    return "";
 }
 
 int main() {
-    Login login("userdata/userdata.txt");
+    Login login("../userdata/userdata.txt");
     
     cout << GREEN <<"Welcome to Casino Game! Please Register or Sign in" << RESET << endl;
     cout << endl;
@@ -83,8 +87,26 @@ int main() {
         cout << BLUE << "You can now login with your new credentials!!" << RESET << endl << endl << endl;
     }
 
-    userLogin(login);
-    
+    string res = userLogin(login);
+    //------------------------------------LOGIN COMPLETE---------
+    Player player(res);
+    if(player.loadPlayer())
+    {
+        cout << "Successfully found a save file! Loading player now" << endl << endl << endl;
+    }
+    else
+    {
+        cout << "Unable to find a save file! Creating player now" << endl << endl << endl;
+    }
+        
+    if(player.savePlayer())
+    {
+        cout << "Successfully saved player" << endl << endl << endl;
+    }
+    else
+    {
+        cout << "Unable to save player" << endl << endl << endl;
+    }
 
 
     // login.registerUser("user1", "password1");

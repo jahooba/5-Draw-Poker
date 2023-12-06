@@ -9,7 +9,7 @@ Login::Login(const string& filename) : filename(filename) {
 
 
 void Login::loadUserData() {
-    ifstream file(filename);
+    ifstream file(filename, ios::app | ios::in);
 
     if (file.is_open()) {
         string username;
@@ -56,7 +56,7 @@ int Login::authenticateUser(string& username,  string& password) {
 
 
 void Login::saveUserData() {
-    ofstream file(filename);
+    ofstream file(filename, ios::app | ios::in);
 
     if (file.is_open()) 
     {

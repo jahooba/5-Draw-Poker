@@ -55,3 +55,39 @@ Hand* Player::getPlayerHand(){
 }
 
 
+bool Player::loadPlayer() 
+{
+    string fileName = "../userdata/" + name + "Player.txt";
+    ifstream file(fileName);
+
+    if (file.is_open()) {
+        
+        string playerName;
+        double playerBalance;
+
+        file >> playerName >> playerBalance;
+
+        name = playerName;
+
+        balance->setBalance(playerBalance);
+
+        return true;
+    }
+     
+    file.close();
+    return false;
+}
+
+bool Player::savePlayer() {
+    string fileName = "../userdata/" + name + "Player.txt";
+    ofstream file(fileName, ios::app);
+
+    if (file.is_open()) 
+    {
+        file << getName() << " " << balance->getBalance() << endl;
+        return true;
+    } 
+
+    file.close();
+    return false;
+}
