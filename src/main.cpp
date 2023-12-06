@@ -1,7 +1,7 @@
 #include<iostream>
 #include "../header/login.hpp"
 #include "../header/player.hpp"
-
+#include "../header/pokerPlayer.hpp"  
 
 using namespace std;
 
@@ -54,11 +54,21 @@ std::string userLogin(Login &login)
     else if(logSuccess == 2)
     {
         cout << RED << "Incorrect password, please try again " << BLUE << userName << RESET << endl;
+        cout << RED << "Press q to quit, or anything else to try again" << RESET <<endl;
+        string inp;
+        cin >> inp;
+        if(inp == "q")
+            exit(0);
         userLogin(login);
     }
     else if(logSuccess == 3)
     {
         cout << RED << "UserName does not exist, please try again" << RESET << endl;
+        cout << RED << "Press q to quit, or anything else to try again" << RESET <<endl;
+        string inp;
+        cin >> inp;
+        if(inp == "q")
+            exit(0);
         userLogin(login);
     }
     return "";
@@ -89,7 +99,7 @@ int main() {
 
     string res = userLogin(login);
     //------------------------------------LOGIN COMPLETE---------
-    Player player(res);
+    PokerPlayer player(res);
     if(player.loadPlayer())
     {
         cout << "Successfully found a save file! Loading player now" << endl << endl << endl;
@@ -98,6 +108,8 @@ int main() {
     {
         cout << "Unable to find a save file! Creating player now" << endl << endl << endl;
     }
+        
+
         
     if(player.savePlayer())
     {
