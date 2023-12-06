@@ -22,7 +22,7 @@ Poker::~Poker() {
 
 void Poker::Game_Start(){
     bool playAgain = true;
-    double balance = playerList.at(0)->getBalance()->getBalance();
+    double balance = playerList.at(0)->getBalance()->getPlayerBalance();
 
     if(balance<=0){
         cout << "Sorry, you don't have enough credits to play :(" << endl;
