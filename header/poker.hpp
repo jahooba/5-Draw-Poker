@@ -2,25 +2,26 @@
 
 #include "../header/hand.hpp"
 #include "../header/deck.hpp"
-#include "../header/player.hpp"
+#include "../header/pokerPlayer.hpp"
 #include "../header/pokerScoreKey.hpp"
 
 #include <vector>
-#include <limits>
 
 using namespace std;
 
-class Poker{
-	private:
+class Poker {
+	protected:
 		Deck deck;
 		PokerScoreKey POKER_SCORE_KEY;
-		vector<Player*> playerList;
+		vector<PokerPlayer*> playerList;
 		double pot;
+		Player* winner;
 	public:
-		Poker(vector<Player*> playerList);
+		Poker();
+		Poker(vector<PokerPlayer*> playerList);
 		~Poker();
 		void Game_Start();
-		void discardRound();
-		void payout(Player*);
+		const int getHandScore(const Hand&);
+		void payout();
+		Player* getWinner() { return winner; }
 };
-

@@ -6,19 +6,9 @@ Poker::Poker(vector<Player*> playerList){
 }
 
 Poker::~Poker() {
-    if (playerList.empty()) {
-        return;
-    }
-
-    for (Player* item : playerList) {
-        if (item != nullptr) {
-            delete item;
-        }
-    }
+    winner = nullptr;
     playerList.clear();
 }
-
-
 
 void Poker::Game_Start(){
     bool playAgain = true;
@@ -37,14 +27,10 @@ void Poker::Game_Start(){
             playerList.at(1)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         }
         cout << playerList.at(0)->getPlayerHand()->viewHand() << endl;
-
         //Present Poker actions for each player
-
         //Discard and draw for each player
         discardRound();
-
         //Present Poker actions for each player
-
         //Reveal hands for each player and decide winner
         cout << endl << playerList.at(0)->getPlayerHand()->viewHand() << endl;
         cout << playerList.at(1)->getPlayerHand()->viewHand() << endl;
@@ -65,7 +51,6 @@ void Poker::Game_Start(){
         
     }
 }
-
 void Poker::discardRound(){
     //Prompt player for amount of cards to discard
     cout << "\n\tDISCARD ROUND\nHow many cards will you discard? (0-3)> ";
@@ -106,7 +91,6 @@ void Poker::discardRound(){
             cout << "Enter valid integer amount (1-5)> ";
         }
         Card* firstCardToDiscard = playerList.at(0)->getPlayerHand()->getHand().at(firstDiscardPlace-1);
-
         cout << "Select the second card to discard (1-5)> ";
         int secondDiscardPlace=0;
         while (!(cin >> secondDiscardPlace) || secondDiscardPlace<1 || secondDiscardPlace>5 || secondDiscardPlace==firstDiscardPlace){
@@ -115,10 +99,8 @@ void Poker::discardRound(){
             cout << "Enter valid integer amount (1-5)> ";
         }
         Card* secondCardToDiscard = playerList.at(0)->getPlayerHand()->getHand().at(secondDiscardPlace-1);
-
         deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
         deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
-
         playerList.at(0)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         playerList.at(0)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
     }
@@ -132,7 +114,6 @@ void Poker::discardRound(){
             cout << "Enter valid integer amount (1-5)> ";
         }
         Card* firstCardToDiscard = playerList.at(0)->getPlayerHand()->getHand().at(firstDiscardPlace-1);
-
         cout << "Select the second card to discard (1-5)> ";
         int secondDiscardPlace=0;
         while (!(cin >> secondDiscardPlace) || secondDiscardPlace<1 || secondDiscardPlace>5 || secondDiscardPlace==firstDiscardPlace){
@@ -141,7 +122,6 @@ void Poker::discardRound(){
             cout << "Enter valid integer amount (1-5)> ";
         }
         Card* secondCardToDiscard = playerList.at(0)->getPlayerHand()->getHand().at(secondDiscardPlace-1);
-
         cout << "Select the third card to discard (1-5)> ";
         int thirdDiscardPlace=0;
         while (!(cin >> thirdDiscardPlace) || thirdDiscardPlace<1 || thirdDiscardPlace>5 || thirdDiscardPlace==secondDiscardPlace || thirdDiscardPlace==firstDiscardPlace){
@@ -150,15 +130,24 @@ void Poker::discardRound(){
             cout << "Enter valid integer amount (1-5)> ";
         }
         Card* thirdCardToDiscard = playerList.at(0)->getPlayerHand()->getHand().at(thirdDiscardPlace-1);
-
         deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
         deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
         deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(thirdCardToDiscard->value, thirdCardToDiscard->suit));
-
         playerList.at(0)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         playerList.at(0)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         playerList.at(0)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
     }
 }
 
-void Poker::payout(Player* player){}
+const int Poker::getHandScore(const Hand& h) {
+    return POKER_SCORE_KEY.rankHand(h);
+}
+
+void Poker::payout() {
+    
+    for (PokerPlayer* currPlayer : playerList) {
+        pot += currPlayer->getRecentMove()->bet;
+    }
+
+    winner->getPlayerBalance()->appendBalance(pot);
+}

@@ -4,18 +4,20 @@
 #include <fstream>
 #include <cstring>
 
-/*Statistics::Statistics(){
-    cout << "default";
+Statistics::Statistics() {
+    fileName = "EMPTY";
+    playerName = "DEFAULT";
+    wins = -1;
+    gamesPlayed = -1;
 }
-*/
 
-Statistics::Statistics(string filename, string playername){
-    fileName = filename;
+Statistics::Statistics(string playername){
+    fileName = "userdata/" + playername + "Stats.txt";
     playerName = playername;
     wins = 0;
     gamesPlayed = 0;
 
-    fstream file(filename, ios::app | ios::in);
+    fstream file(fileName, ios::app | ios::in);
 
     bool flag = false;
 
@@ -40,7 +42,7 @@ Statistics::Statistics(string filename, string playername){
 
     file.close();
 
-    fstream file2(filename, ios::app);
+    fstream file2(fileName, ios::app);
 
     if (file2.is_open()) {
 
@@ -55,11 +57,16 @@ Statistics::Statistics(string filename, string playername){
 }
 
 
-Statistics::Statistics(int wins, int gamesPlayed){
-    this->wins = wins;
-    this->gamesPlayed = gamesPlayed;
-}
+// Statistics::Statistics(int wins, int gamesPlayed){
+//     this->wins = wins;
+//     this->gamesPlayed = gamesPlayed;
+// }
 
+void Statistics::clearFile() {
+    std::ofstream ofs;
+    ofs.open(fileName, std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+}
 
 void Statistics::print(){
     load();
@@ -88,27 +95,14 @@ void Statistics::load(){
 }
 
 void Statistics::save(){
-    ifstream file;
-    file.open(fileName, ios::in);
-    ofstream temp;
-    temp.open("temp.txt");
+    fstream file;
+    file.open(fileName);
+    Statistics::clearFile();
 
-    string line;
-    while (getline(file,line)){
-        if ((line.substr(0, playerName.length())) != playerName){
-            temp << line << endl;
-        }
-        else {
-            temp << playerName << " " << wins << " " << gamesPlayed << endl;
-        }
+    if (file.is_open()) {
+        file << playerName << " " << wins << " " << gamesPlayed << endl;
     }
 
-    
-    const char* fN = fileName.c_str();
-    int num = remove(fN);
-    rename("temp.txt","userStats.txt");
-
-    temp.close();
     file.close();
 }
 
@@ -121,5 +115,7 @@ int Statistics::getGamesPlayed(){
     return gamesPlayed;
 }
 
-
+string Statistics::getFileName() {
+    return fileName;
+}
 
