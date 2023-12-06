@@ -12,11 +12,10 @@ Statistics::Statistics() {
 }
 
 Statistics::Statistics(string playername){
-    //fileName = "userdata/" + playername + "Stats.txt";
+    fileName = "userdata/" + playername + "Stats.txt";
     playerName = playername;
     wins = 0;
     gamesPlayed = 0;
-
 
     fstream file(fileName, ios::app | ios::in);
 
@@ -55,8 +54,6 @@ Statistics::Statistics(string playername){
 
     }
     file2.close();
-
-    
 }
 
 
@@ -65,15 +62,14 @@ Statistics::Statistics(string playername){
 //     this->gamesPlayed = gamesPlayed;
 // }
 
-
 void Statistics::clearFile() {
     std::ofstream ofs;
     ofs.open(fileName, std::ofstream::out | std::ofstream::trunc);
     ofs.close();
 }
 
-
 void Statistics::print(){
+    load();
     cout << "Stats - " << playerName << endl;
     cout << "Games Won Total - " << wins << endl;
     cout << "Games Played Total - " << gamesPlayed << endl;
@@ -82,8 +78,8 @@ void Statistics::print(){
 void Statistics::update(int wins, int gamesPlayed){
     this->wins = wins;
     this->gamesPlayed = gamesPlayed;
+    save();
 }
-
 
 void Statistics::load(){
     fstream file(fileName);
@@ -110,10 +106,6 @@ void Statistics::save(){
     file.close();
 }
 
-string Statistics::getFileName() {
-    return fileName;
-}
-
 
 int Statistics::getWins(){
     return wins;
@@ -123,5 +115,7 @@ int Statistics::getGamesPlayed(){
     return gamesPlayed;
 }
 
-
+string Statistics::getFileName() {
+    return fileName;
+}
 

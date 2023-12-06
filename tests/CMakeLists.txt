@@ -56,3 +56,12 @@ add_executable(pokerPlayerTests
 
 target_link_libraries(pokerPlayerTests gmock gtest gtest_main)
 target_link_libraries(pokerPlayerTests simpleLibrary)
+
+add_executable(balanceTests
+  balanceTests.cpp
+)
+
+target_link_libraries(balanceTests gmock gtest gtest_main)
+target_link_libraries(balanceTests simpleLibrary)
+
+

@@ -35,8 +35,4 @@ public:
     PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double);
     PokerAction* getRecentMove() { return currAction; }
-    void load();
-    void save();
-    string getFileName();
-    void clearFile();
 };
