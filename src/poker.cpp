@@ -77,24 +77,21 @@ void Poker::discardRound(){
         cout << "Enter valid integer amount (0-3)> ";
     }
 
-
+    // low priority - for loop instead of if statements
     if (discardAmount==1){
         //Display guide for choosing card
         cout << "\n| 1st card = 1 | 2nd card = 2 | 3rd card= 3 | 4th card = 4 | 5th card = 5 |\n\n";
         cout << "Select the card to discard (1-5)> ";
-        int firstDiscardPlace=0;
+        int discardPlace=0;
         //Validate user input is an int between 1 and 5
-        while (!(cin >> firstDiscardPlace) || firstDiscardPlace<1 || firstDiscardPlace>5){
+        while (!(cin >> discardPlace) || discardPlace<1 || discardPlace>5){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Enter valid integer amount (1-5)> ";
         }
 
-        //Assigns the card to discard
-        Card* cardToDiscard = playerList.at(0)->getPlayerHand()->getHand().at(firstDiscardPlace-1);
-
         //Deck obtains the discarded card
-        deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(cardToDiscard->value, cardToDiscard->suit));
+        deck.obtainCard(playerList.at(0)->getPlayerHand()->distributeCard(discardPlace-1));
 
         //Player receives random card from deck
         playerList.at(0)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
