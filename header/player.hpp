@@ -7,7 +7,7 @@ class Player {
     protected:
         string name;
         Hand hand;
-        Balance *balance;
+        Balance* balance;
     public:
         Player();
         Player(string name);
