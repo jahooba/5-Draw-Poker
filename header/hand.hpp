@@ -69,7 +69,7 @@ class Hand {
         output: The discarded card
         */
         Card* distributeCard(CardValue, CardSuit);
-
+        Card* distributeCard(int);
         //returns string of hand
         string viewHand() const;
         

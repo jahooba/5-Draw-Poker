@@ -7,7 +7,7 @@ using namespace std;
 
 TEST(LoginTests, RegisterUser)
 {
-    Login login = Login("testUserdata.txt");
+    Login login = Login("userdata/testUserdata.txt");
 
     string testUser = "testUser";
     string testPassword = "testPassword";
@@ -20,7 +20,7 @@ TEST(LoginTests, RegisterUser)
 
 TEST(LoginTests, AuthenticateUserFail) 
 {
-    Login login = Login("testUserdata.txt");
+    Login login = Login("userdata/testUserdata.txt");
     
     string testUser = "testUser";
     string testPassword = "testPassword";
@@ -31,11 +31,4 @@ TEST(LoginTests, AuthenticateUserFail)
     login.registerUser(testUser, testUser);
 
     EXPECT_FALSE(login.authenticateUser(failUser, wrongPassword));
-}
-
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }

@@ -46,6 +46,12 @@ Card* Hand::distributeCard(CardValue v, CardSuit s) {
     return temp;
 }
 
+Card* Hand::distributeCard(int index) {
+    Card* cardToDistribute = hand.at(index);
+    return Hand::distributeCard(cardToDistribute->value, cardToDistribute->suit);
+}
+
+
 void Hand::sortHand() {
     if (hand.size() > 1){
         int i, j, tempValue, tempSuit;

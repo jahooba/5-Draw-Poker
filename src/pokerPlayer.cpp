@@ -4,13 +4,19 @@
 #include "../header/pokerPlayer.hpp"   
 
 
-//PokerPlayer::PokerPlayer() = default;
+PokerPlayer::PokerPlayer() : Player() {
+    pokerStats = Statistics(name);
+}
 
 PokerPlayer::PokerPlayer(string name) : Player(name) {
     pokerStats = Statistics(name);
 }
 
 PokerPlayer::PokerPlayer(string name, double balance) : Player(name, balance) {
+    pokerStats = Statistics(name);
+}
+
+PokerPlayer::PokerPlayer(string name, double balance, Hand* hand) : Player(name, balance, hand) {
     pokerStats = Statistics(name);
 }
 
@@ -27,21 +33,26 @@ void PokerPlayer::updateStatistics(int gamesWon, int gamesPlayed){
     pokerStats.update(gamesWon, gamesPlayed);
 }
 
-void PokerPlayer::viewStatistics(){
+void PokerPlayer::viewStatistics() {
     pokerStats.print();
 }
 
 PokerAction* PokerPlayer::pokerMove() {
-    PokerAction* newAction = new PokerAction(Fold, 0);
-    currAction = newAction;
-
-    return currAction;
+    return pokerMove(Fold, 0);
 }
 
 PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
-    PokerAction* newAction = new PokerAction(action, bet);
-    currAction = newAction;
+    if (currAction == nullptr) {
+        PokerAction* newAction = new PokerAction(action, bet);
+        currAction = newAction;
+    }
+
+    else {
+        this->currAction->type = action;
+        this->currAction->bet += bet;
+    }
+
+    balance->appendBalance(bet * -1);
 
     return currAction;
 }
-
