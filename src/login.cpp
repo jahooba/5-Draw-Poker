@@ -12,9 +12,10 @@ void Login::loadUserData() {
     ifstream file(filename);
 
     if (file.is_open()) {
-        string username, password;
-        while (file >> username >> password) {
-            userMap[username] = password;
+        string username;
+        int  hashed_password;
+        while (file >> username >> hashed_password) {
+            userMap[username] = hashed_password;
         }
 
         file.close();
@@ -25,7 +26,7 @@ bool Login::registerUser(const string& username, const string& password)
 {
     if (userMap.find(username) == userMap.end())
     {
-        userMap[username] = password;
+        userMap[username] = hashPassword(password);
         saveUserData();
         return true;
     } 
@@ -38,7 +39,7 @@ bool Login::registerUser(const string& username, const string& password)
 int Login::authenticateUser(string& username,  string& password) {
     // Check if the username exists
     if (userMap.find(username) != userMap.end()) { // find(key) returns an interator pointing to the found element or .end() if not exist
-        if (userMap[username] == password) {
+        if (userMap[username] == hashPassword(password)) {
             return 1;// success
         } 
         else 
@@ -66,4 +67,15 @@ void Login::saveUserData() {
 
         file.close();
     }
+}
+
+int Login::hashPassword(const string& password)
+{
+    int result = 0;
+    for (int i = 0; i < password.length(); ++i) 
+    {
+        char c = password[i];
+        result += c*(i+1);
+    }
+    return result;
 }
