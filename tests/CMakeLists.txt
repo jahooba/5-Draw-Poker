@@ -5,7 +5,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 add_subdirectory(googletest)
 
 add_executable(runAllTests
-  tests.cpp deckTests.cpp handTests.cpp loginTests.cpp playerTests.cpp pokerPlayerTests.cpp pokerScoreKeyTests.cpp pokerTests.cpp statisticsTests.cpp balanceTests.cpp
+  tests.cpp deckTests.cpp handTests.cpp loginTests.cpp playerTests.cpp pokerPlayerTests.cpp pokerScoreKeyTests.cpp pokerTests.cpp pokerComputerTests.cpp statisticsTests.cpp balanceTests.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
@@ -41,7 +41,7 @@ target_link_libraries(loginTests gmock gtest gtest_main)
 target_link_libraries(loginTests simpleLibrary)
 
 add_executable(pokerTests
-  pokerTests.cpp tests.cpp
+  tests.cpp pokerTests.cpp
 )
 
 target_link_libraries(pokerTests gmock gtest gtest_main)
@@ -49,7 +49,7 @@ target_link_libraries(pokerTests simpleLibrary)
 
 
 add_executable(pokerActionTests
-  pokerActionTests.cpp tests.cpp
+  tests.cpp pokerActionTests.cpp
 )
 
 target_link_libraries(pokerActionTests gmock gtest gtest_main)
@@ -65,15 +65,22 @@ target_link_libraries(pokerScoreKeyTests simpleLibrary)
 
 
 add_executable(pokerPlayerTests
-  pokerPlayerTests.cpp tests.cpp
+  tests.cpp pokerPlayerTests.cpp
 )
 
 target_link_libraries(pokerPlayerTests gmock gtest gtest_main)
 target_link_libraries(pokerPlayerTests simpleLibrary)
 
+add_executable(pokerComputerTests
+  tests.cpp pokerComputerTests.cpp
+)
+
+target_link_libraries(pokerComputerTests gmock gtest gtest_main)
+target_link_libraries(pokerComputerTests simpleLibrary)
+
 
 add_executable(statisticsTests
-  statisticsTests.cpp tests.cpp
+  tests.cpp statisticsTests.cpp
 )
 
 target_link_libraries(statisticsTests gmock gtest gtest_main)
@@ -81,7 +88,7 @@ target_link_libraries(statisticsTests simpleLibrary)
 
 
 add_executable(balanceTests
-  balanceTests.cpp
+  tests.cpp balanceTests.cpp
 )
 
 

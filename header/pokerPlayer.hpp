@@ -34,7 +34,7 @@ public:
     ~PokerPlayer();
     void updateStatistics(int, int);
     void viewStatistics();
-    PokerAction* pokerMove();
+    virtual PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double);
     PokerAction* getRecentMove() { return currAction; }
 };

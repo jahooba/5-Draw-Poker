@@ -42,6 +42,8 @@ PokerAction* PokerPlayer::pokerMove() {
 }
 
 PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
+    balance->appendBalance(bet * -1);
+    
     if (currAction == nullptr) {
         PokerAction* newAction = new PokerAction(action, bet);
         currAction = newAction;
@@ -51,8 +53,6 @@ PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
         this->currAction->type = action;
         this->currAction->bet += bet;
     }
-
-    balance->appendBalance(bet * -1);
 
     return currAction;
 }

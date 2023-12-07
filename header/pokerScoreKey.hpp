@@ -4,7 +4,6 @@
 
 class PokerScoreKey {
     private:
-
         bool isHighCard(const Hand&);
         bool isPair(const Hand&);
         bool isTwoPair(const Hand&);
