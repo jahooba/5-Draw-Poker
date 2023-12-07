@@ -37,7 +37,7 @@ TEST(ScoreHandTests, SF_vs_SF){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo););
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo););
 }
 
 
@@ -74,7 +74,7 @@ TEST(ScoreHandTests, SF_vs_FOUR){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Four-of-a-Kind vs Four-of-a-Kind Test
 TEST(ScoreHandTests, FOUR_vs_FOUR){
@@ -108,7 +108,7 @@ TEST(ScoreHandTests, FOUR_vs_FOUR){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 
 
@@ -145,7 +145,7 @@ TEST(ScoreHandTests, FOUR_vs_FH){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Full House vs Full House
 TEST(ScoreHandTests, FH_vs_FH){
@@ -178,7 +178,7 @@ TEST(ScoreHandTests, FH_vs_FH){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 
 
@@ -215,7 +215,7 @@ TEST(ScoreHandTests, F_vs_F){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Flush vs Flush Test - same values, different suit
 TEST(ScoreHandTests, F_vs_F_sameValues){
@@ -249,7 +249,7 @@ TEST(ScoreHandTests, F_vs_F_sameValues){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Full House vs Flush Test
 TEST(ScoreHandTests, FH_vs_F){
@@ -283,7 +283,7 @@ TEST(ScoreHandTests, FH_vs_F){
 
     cout << handTwo.viewHand() << endl;
     cout << handOne.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handTwo, handOne));
+    EXPECT_NO_THROW(key.winningHand(handTwo, handOne));
 }
 
 
@@ -320,7 +320,7 @@ TEST(ScoreHandTests, S_vs_S){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Straight vs Straight Test - same values
 TEST(ScoreHandTests, S_vs_S_sameValues){
@@ -354,7 +354,7 @@ TEST(ScoreHandTests, S_vs_S_sameValues){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Flush vs Straight Test
 TEST(ScoreHandTests, F_vs_S){
@@ -387,7 +387,7 @@ TEST(ScoreHandTests, F_vs_S){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 
 
@@ -424,7 +424,7 @@ TEST(ScoreHandTests, THREE_vs_THREE){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Straight vs Three-of-a-Kind Test
 TEST(ScoreHandTests, S_vs_THREE){
@@ -458,7 +458,7 @@ TEST(ScoreHandTests, S_vs_THREE){
 
     cout << handTwo.viewHand() << endl;
     cout << handOne.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handTwo, handOne));
+    EXPECT_NO_THROW(key.winningHand(handTwo, handOne));
 }
 
 
@@ -495,7 +495,7 @@ TEST(ScoreHandTests, TWO_vs_TWO_diffKickersAtOneAndThree){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Two-Pair vs Two-Pair Test - different kickers at position one and five
 TEST(ScoreHandTests, TWO_vs_TWO_diffKickersAtOneAndFive){
@@ -529,7 +529,7 @@ TEST(ScoreHandTests, TWO_vs_TWO_diffKickersAtOneAndFive){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Two-Pair vs Two-Pair Test - different kickers at position three and five
 TEST(ScoreHandTests, TWO_vs_TWO_diffKickersAtThreeAndFive){
@@ -563,7 +563,7 @@ TEST(ScoreHandTests, TWO_vs_TWO_diffKickersAtThreeAndFive){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Two-Pair vs Two-Pair Test - same values
 TEST(ScoreHandTests, TWO_vs_TWO_sameValues){
@@ -597,7 +597,7 @@ TEST(ScoreHandTests, TWO_vs_TWO_sameValues){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Two-Pair vs Two-Pair Test - same kicker position
 TEST(ScoreHandTests, TWO_vs_TWO_sameKickerPosition){
@@ -631,7 +631,7 @@ TEST(ScoreHandTests, TWO_vs_TWO_sameKickerPosition){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Three-of-a-Kind vs Two-Pair Test
 TEST(ScoreHandTests, THREE_vs_TWO){
@@ -665,7 +665,7 @@ TEST(ScoreHandTests, THREE_vs_TWO){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 
 
@@ -702,7 +702,7 @@ TEST(ScoreHandTests, PAIR_vs_PAIR){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Pair vs Pair Test - same pair, different kicker
 TEST(ScoreHandTests, PAIR_vs_PAIR_samePairDiffKicker){
@@ -736,7 +736,7 @@ TEST(ScoreHandTests, PAIR_vs_PAIR_samePairDiffKicker){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Pair vs Pair Test - same values
 TEST(ScoreHandTests, PAIR_vs_PAIR_sameValues){
@@ -770,7 +770,7 @@ TEST(ScoreHandTests, PAIR_vs_PAIR_sameValues){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Two-Pair vs Pair Test
 TEST(ScoreHandTests, TWO_vs_PAIR){
@@ -804,7 +804,7 @@ TEST(ScoreHandTests, TWO_vs_PAIR){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 
 
@@ -841,7 +841,7 @@ TEST(ScoreHandTests, HIGH_vs_HIGH){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // High card vs High card - same values
 TEST(ScoreHandTests, HIGH_vs_HIGH_sameValues){
@@ -875,7 +875,7 @@ TEST(ScoreHandTests, HIGH_vs_HIGH_sameValues){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
 // Pair vs High card Test
 TEST(ScoreHandTests, PAIR_vs_HIGH){
@@ -909,5 +909,5 @@ TEST(ScoreHandTests, PAIR_vs_HIGH){
 
     cout << handOne.viewHand() << endl;
     cout << handTwo.viewHand() << endl;
-    EXPECT_NO_THROW(key.revealHands(handOne, handTwo));
+    EXPECT_NO_THROW(key.winningHand(handOne, handTwo));
 }
