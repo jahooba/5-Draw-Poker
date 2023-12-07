@@ -23,7 +23,7 @@ PokerPlayer::PokerPlayer(string name, double balance, Hand* hand) : Player(name,
 PokerPlayer::~PokerPlayer() {
 
     if (currAction == nullptr) {
-        currAction = new PokerAction(Fold, 0);
+        currAction = new PokerAction(Bet, 0);
     }
 
     delete currAction;
@@ -38,7 +38,7 @@ void PokerPlayer::viewStatistics() {
 }
 
 PokerAction* PokerPlayer::pokerMove() {
-    PokerActionType action = Fold;
+    PokerActionType action = Bet;
     double bet = 0;
 
     if (currAction == nullptr) {
