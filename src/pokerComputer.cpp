@@ -47,6 +47,8 @@ PokerAction* PokerComputer::pokerMove() {
     int betAmountAdded = 0;
     PokerActionType todoAction = Fold;
     
+    //gameplay code
+
     if (rand() % 100 == 69) {
         betAmountAdded = balance->getBalance();
         todoAction = Bet;
@@ -97,6 +99,8 @@ PokerAction* PokerComputer::pokerMove() {
         }
 
     }
+
+    //financial code
 
     if (currAction->bet + betAmountAdded > absoluteMaxBet) {
         betAmountAdded = absoluteMaxBet - currAction->bet;
