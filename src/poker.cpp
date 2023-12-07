@@ -38,6 +38,20 @@ void Poker::Game_Start(){
 
         //Present Poker actions for each player
         pokerActionRound(playerOneIndex);
+        if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
+            revealHands();
+            cout << "1. Play again\n2. Return to Menu\n>";
+            int choice=0;
+            while (!(cin >> choice) || choice<0 || choice>2){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Enter valid integer (1,2)> ";
+            }
+            if (choice==2)
+                break;
+            else
+                continue;
+        }
         pokerActionRound(playerTwoIndex);
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
@@ -60,6 +74,20 @@ void Poker::Game_Start(){
 
         //Present Poker actions for each player
         pokerActionRound(playerOneIndex);
+        if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
+            revealHands();
+            cout << "1. Play again\n2. Return to Menu\n>";
+            int choice=0;
+            while (!(cin >> choice) || choice<0 || choice>2){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Enter valid integer (1,2)> ";
+            }
+            if (choice==2)
+                break;
+            else
+                continue;
+        }
         pokerActionRound(playerTwoIndex);
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
