@@ -228,7 +228,6 @@ int PokerScoreKey::winningHand(Hand& handOne, Hand& handTwo){
 }
 
 int PokerScoreKey::rankHand(const Hand& h) {
-    string handStr = h.viewHand();
     int handRank = 0;
     // Rank values 
     const int SFR = 9,     
@@ -255,6 +254,10 @@ int PokerScoreKey::rankHand(const Hand& h) {
     
     **Deuce-to-seven low rules (A is the highest)
     */
+
+   if(h.getHand().size()<5){
+        return handRank;
+   }
    
     if (isStraightFlush(h) == true){    
         handRank = SFR;
@@ -280,6 +283,8 @@ int PokerScoreKey::rankHand(const Hand& h) {
     else if (isPair(h)== true){
         handRank = PAIR;
     }
+    else
+        handRank=HIGH;
 
     return handRank;
 }
