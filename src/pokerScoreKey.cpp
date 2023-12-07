@@ -286,6 +286,10 @@ int PokerScoreKey::rankHand(const Hand& h) {
         handRank = PAIR;
     }
 
+    else {
+        handRank = HIGH;
+    }
+
     return handRank;
 }
 
