@@ -38,8 +38,21 @@ void PokerPlayer::viewStatistics() {
 }
 
 PokerAction* PokerPlayer::pokerMove() {
-    return pokerMove(Fold, 0);
+    PokerActionType action = Fold;
+    double bet = 0;
+
+    if (currAction == nullptr) {
+        currAction = new PokerAction(action, bet);
+    }
+
+    else {
+        this->currAction->type = action;
+        this->currAction->bet = bet;
+    }
+
+    return currAction;
 }
+
 
 PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
     balance->appendBalance(bet * -1);
