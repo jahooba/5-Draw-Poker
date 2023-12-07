@@ -55,7 +55,7 @@ PokerAction* PokerComputer::pokerMove() {
     else {
 
         if ((currAction->bet == currMaxBet && currMaxBet > 0) || handScore == 0) {
-            if (handScore > 7 || rand() % 100 == 1) {
+            if (handScore > 7 && rand() % 6 != 0|| rand() % 100 == 1) {
                 todoAction = Bet;
                 betAmountAdded = ((rand() % 3 + 1)* handScore << (rand() % 2 + 1)) / 4;
             }
@@ -102,12 +102,12 @@ PokerAction* PokerComputer::pokerMove() {
         betAmountAdded = absoluteMaxBet - currAction->bet;
     }
 
-    //should only run on lowest bank acc player, due to how currMaxBet works 
+    //should only run on lowest bank acc player, due to how absoluteMaxBet works 
     if (betAmountAdded > balance->getBalance()) {
         betAmountAdded = balance->getBalance();
     }
 
-    if (currMaxBet == currAction->bet + betAmountAdded && betAmountAdded > 0) {
+    if (currMaxBet == currAction->bet + betAmountAdded) {
         todoAction = Call;
     }
     
