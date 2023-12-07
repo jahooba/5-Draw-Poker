@@ -79,3 +79,14 @@ int Login::hashPassword(const string& password)
     }
     return result;
 }
+
+bool Login::changePassword(string& username, string& password)
+{
+    if (userMap.find(username) != userMap.end()) //username doesnt exist
+    {
+        return false;
+    }
+    userMap[username] == hashPassword(password);
+    saveUserData();
+    return true;
+}

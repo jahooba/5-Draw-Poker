@@ -74,6 +74,25 @@ std::string userLogin(Login &login)
     return "";
 }
 
+string menu()
+{
+    string input;
+    while(input != "1" && input != "2" && input != "3" && input != "4" && input != "5")
+    {
+        
+
+        cout << GREEN << "Welcome to the main menu! Enter what you want to do " << RESET << endl;
+        cout << GREEN << "Press 1 to start poker " << RESET << endl;
+        cout << GREEN << "Press 2 to view your stats " << RESET << endl;
+        cout << GREEN << "Press 3 to view your balance " << RESET << endl;
+        cout << GREEN << "Press 4 to change your password " << RESET << endl;
+        cout << GREEN << "Press 5 to EXIT " << RESET << endl << endl;
+
+        cin >> input;
+    }
+    return input;
+}
+
 int main() {
     Login login("../userdata/userdata.txt");
     
@@ -121,6 +140,30 @@ int main() {
     }
 
 
+    string menuInput = menu();
+    if(menuInput == "1")
+    {
+        cout << "TODO" << endl;
+    }
+    else if (menuInput == "2")
+    {
+        cout << "TODO" << endl;
+    }
+    else if (menuInput == "3")
+    {
+        cout << "TODO" << endl;
+    }
+    else if (menuInput == "4") // change password
+    {
+        string newPwd;
+        cout << "Enter your new password" << endl;
+    }
+    else if (menuInput == "5")
+    {
+        cout << "TODO" << endl;
+        exit(0);
+    }
+    
     // login.registerUser("user1", "password1");
     // login.registerUser("user2", "password2");
     // login.registerUser("user3", "password3");
