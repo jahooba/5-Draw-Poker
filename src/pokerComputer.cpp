@@ -98,6 +98,10 @@ PokerAction* PokerComputer::pokerMove() {
 
     }
 
+    if (betAmountAdded > absoluteMaxBet) {
+        betAmountAdded = absoluteMaxBet - currAction->bet;
+    }
+
     //should only run on lowest bank acc player, due to how currMaxBet works 
     if (betAmountAdded > balance->getBalance()) {
         betAmountAdded = balance->getBalance();

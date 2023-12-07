@@ -16,7 +16,7 @@ enum PokerActionType {
 struct PokerAction {
 	PokerActionType type;
 	double bet;
-	PokerAction(PokerActionType t, double b) : type(t), bet(b) {}
+	PokerAction(PokerctionType t, double b) : type(t), bet(b) {}
 };
 
 
@@ -26,6 +26,7 @@ protected:
     Statistics pokerStats;
     PokerAction* currAction = nullptr;
     double currMaxBet;
+    double absoluteMaxBet;
     
 public:
     PokerPlayer();
@@ -38,5 +39,6 @@ public:
     virtual PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double betAmountAdded);
     PokerAction* getRecentMove() { return currAction; }
-    void setCurrMaxBet(double newCurrMaxbet) { currMaxBet = newCurrMaxbet; }
+    void setCurrMaxBet(double newCurrMaxBet) { currMaxBet = newCurrMaxBet; }
+    void setAbsMaxBet(double newAbsMaxBet) { absoluteMaxBet = newAbsMaxBet; }
 };
