@@ -36,7 +36,7 @@ public:
     void updateStatistics(int, int);
     void viewStatistics();
     virtual PokerAction* pokerMove();
-    PokerAction* pokerMove(PokerActionType, double bet);
+    PokerAction* pokerMove(PokerActionType, double betAmountAdded);
     PokerAction* getRecentMove() { return currAction; }
     void setMaxBet(double newMaxbet) { currMaxBet = newMaxbet; }
 };
