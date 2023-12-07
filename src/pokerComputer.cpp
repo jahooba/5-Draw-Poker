@@ -98,7 +98,7 @@ PokerAction* PokerComputer::pokerMove() {
 
     }
 
-    if (betAmountAdded > absoluteMaxBet) {
+    if (currAction->bet + betAmountAdded > absoluteMaxBet) {
         betAmountAdded = absoluteMaxBet - currAction->bet;
     }
 

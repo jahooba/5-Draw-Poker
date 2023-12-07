@@ -16,7 +16,7 @@ enum PokerActionType {
 struct PokerAction {
 	PokerActionType type;
 	double bet;
-	PokerAction(PokerctionType t, double b) : type(t), bet(b) {}
+	PokerAction(PokerActionType t, double b) : type(t), bet(b) {}
 };
 
 
@@ -25,8 +25,8 @@ class PokerPlayer: public Player{
 protected: 
     Statistics pokerStats;
     PokerAction* currAction = nullptr;
-    double currMaxBet;
-    double absoluteMaxBet;
+    double currMaxBet = 0;
+    double absoluteMaxBet = 0;
     
 public:
     PokerPlayer();

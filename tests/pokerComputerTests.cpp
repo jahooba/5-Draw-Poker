@@ -67,6 +67,7 @@ TEST(PokerComputerActions, VeryGoodHand) {
   PokerComputer temp = PokerComputer(1000, handOne);
 
   temp.setCurrMaxBet(100);
+  temp.setAbsMaxBet(1000000000);
   PokerAction* completedMove = temp.pokerMove();
 
   cout << "Hand Score: " << temp.getHandScore() << endl;
@@ -94,6 +95,7 @@ TEST(PokerComputerActions, MediumHand) {
   PokerComputer temp = PokerComputer(1000, handOne);
 
   temp.setCurrMaxBet(100);
+  temp.setAbsMaxBet(1000000000);
   PokerAction* completedMove = temp.pokerMove();
 
   cout << "Hand Score: " << temp.getHandScore() << endl;
@@ -121,6 +123,7 @@ TEST(PokerComputerActions, VeryBadHand) {
   PokerComputer temp = PokerComputer(1000, handOne);
 
   temp.setCurrMaxBet(100);
+  temp.setAbsMaxBet(1000000000);
   PokerAction* completedMove = temp.pokerMove();
 
   cout << "Hand Score: " << temp.getHandScore() << endl;
@@ -132,7 +135,7 @@ TEST(PokerComputerActions, VeryBadHand) {
   EXPECT_DOUBLE_EQ(temp.getPlayerBalance()->getBalance(), 1000 - 100);
 }
 
-TEST(PokerComputerActions, Bankrupt) {
+TEST(PokerComputerActions, GoingBankrupt) {
   Hand* handOne = new Hand();
   Card* cardOne = new Card(Ten, Spades);
   handOne->obtainCard(cardOne);
@@ -147,6 +150,7 @@ TEST(PokerComputerActions, Bankrupt) {
 
   PokerComputer temp = PokerComputer(1500, handOne);
   temp.setCurrMaxBet(5);
+  temp.setAbsMaxBet(1000000000);
 
   PokerAction* completedMove = temp.pokerMove();
   cout << "Hand Score: " << temp.getHandScore() << endl;
@@ -185,3 +189,56 @@ TEST(PokerComputerActions, Bankrupt) {
   EXPECT_DOUBLE_EQ(temp.getPlayerBalance()->getBalance(), 0);
 
 }
+
+TEST(PokerComputerActions, MaxBetReachedWithoutBankrupt) {
+  Hand* handOne = new Hand();
+  Card* cardOne = new Card(Ten, Spades);
+  handOne->obtainCard(cardOne);
+  Card* cardTwo = new Card(Nine, Spades);
+  handOne->obtainCard(cardTwo);
+  Card* cardThree = new Card(Eight, Spades);
+  handOne->obtainCard(cardThree);
+  Card* cardFour = new Card(Six, Spades);
+  handOne->obtainCard(cardFour);
+  Card* cardFive = new Card(Seven, Spades);
+  handOne->obtainCard(cardFive);
+
+  PokerComputer temp = PokerComputer(1500, handOne);
+  temp.setCurrMaxBet(5);
+  temp.setAbsMaxBet(500);
+
+  PokerAction* completedMove = temp.pokerMove();
+  cout << "Hand Score: " << temp.getHandScore() << endl;
+  cout << "Bet Amount: " << completedMove->bet << endl;
+  cout << "Move Type: " << completedMove->type << endl;
+
+  completedMove = temp.pokerMove();
+  cout << "Hand Score: " << temp.getHandScore() << endl;
+  cout << "Bet Amount: " << completedMove->bet << endl;
+  cout << "Move Type: " << completedMove->type << endl;
+
+  completedMove = temp.pokerMove();
+  cout << "Hand Score: " << temp.getHandScore() << endl;
+  cout << "Bet Amount: " << completedMove->bet << endl;
+  cout << "Move Type: " << completedMove->type << endl;
+
+  completedMove = temp.pokerMove();
+  cout << "Hand Score: " << temp.getHandScore() << endl;
+  cout << "Bet Amount: " << completedMove->bet << endl;
+  cout << "Move Type: " << completedMove->type << endl;
+
+  completedMove = temp.pokerMove();
+  cout << "Hand Score: " << temp.getHandScore() << endl;
+  cout << "Bet Amount: " << completedMove->bet << endl;
+  cout << "Move Type: " << completedMove->type << endl;
+
+  completedMove = temp.pokerMove();
+  cout << "Hand Score: " << temp.getHandScore() << endl;
+  cout << "Bet Amount: " << completedMove->bet << endl;
+  cout << "Move Type: " << completedMove->type << endl;
+
+  EXPECT_TRUE(completedMove->bet == 500);
+  EXPECT_TRUE(completedMove->type == Check);
+  EXPECT_DOUBLE_EQ(temp.getPlayerBalance()->getBalance(), 1000);
+}
+
