@@ -179,19 +179,25 @@ A Poker Action is a struct that has a field for the type of the action as well a
 <br>
 
 ## Screenshots
-<img src="images/diagrams/LoginScreen.png" alt="LoginScreen">
-<img src="images/diagrams/ChangePassword.png" alt="ChangePassword">
-<img src="images/diagrams/Balance.png" alt="Balance">
-<img src="images/diagrams/Statistics.png" alt="Statistics">
-<img src="images/diagrams/PokerAction.png" alt="PokerAction">
+<img src="images/game/LoginScreen.png" alt="LoginScreen">
+<img src="images/game/ChangePassword.png" alt="ChangePassword">
+<img src="images/game/Balance.png" alt="Balance">
+<img src="images/game/Statistics.png" alt="Statistics">
+<img src="images/game/PokerAction.png" alt="PokerAction">
 <br>
 
 ## Installation/Usage
-**This Application is compiled in 16-bit Windows. This may require you to install an emulator to run this program successfully.**
 
-To install this application
-1. Download this repository.
-2. Run PokerGame.exe!
+**This Application is compiled in Linux, in 16-bits. Emulation may be required to run it.**
+
+### Prerequisites
+- CMake Version 3.2 or higher.
+- C++14 or higher.
+
+### To Run This Application:
+1. Clone this repository inside your IDE.
+2. Compile using ```cmake . && make```
+3. Run ```./bin/PokerGame```
 
 ## Testing
 Our project was tested using the Google C++ Testing Framework. We wrote our own extensive set of unit tests for all parts of our project, and made sure all of them passed before committing any changes.  
