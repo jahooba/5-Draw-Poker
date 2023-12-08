@@ -18,4 +18,5 @@ public:
     void load();
     void save();
     void clearFile();
+    void print();
 };

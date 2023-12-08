@@ -20,7 +20,6 @@ void Poker::Game_Start(){
     int playerOneIndex = 0, playerTwoIndex = 1;
     double balance = playerList.at(0)->getPlayerBalance()->getBalance();
 
-
     //While the player has enough money and wants to play or only one player left
     while (playAgain == true){
         if(balance<=5){
@@ -51,6 +50,7 @@ void Poker::Game_Start(){
 
         //Present Poker actions for each player
         pokerActionRound(playerOneIndex);
+
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5 ){
             revealHands();
             cout << "1. Play again\n2. Return to Menu\n>";
@@ -65,6 +65,7 @@ void Poker::Game_Start(){
             else
                 continue;
         }
+
         pokerActionRound(playerTwoIndex);
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
@@ -87,6 +88,7 @@ void Poker::Game_Start(){
 
         //Present Poker actions for each player
         pokerActionRound(playerOneIndex);
+      
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
             cout << "1. Play again\n2. Return to Menu\n>";
@@ -101,6 +103,7 @@ void Poker::Game_Start(){
             else
                 continue;
         }
+
         pokerActionRound(playerTwoIndex);
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
@@ -367,6 +370,7 @@ void Poker::pokerActionRound(int playerIndex){
         case 4:
         {
             //Fold by giving up hand
+
             cout << "Folding..." << endl;
             PokerAction* playerFold = playerList.at(playerIndex)->pokerMove();
             playerList.at(playerIndex)->getPlayerHand()->clearHand();

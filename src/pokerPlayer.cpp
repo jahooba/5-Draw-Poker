@@ -37,6 +37,10 @@ void PokerPlayer::viewStatistics() {
     pokerStats.print();
 }
 
+void PokerPlayer::viewBalance() {
+    balance->print();
+}
+
 PokerAction* PokerPlayer::pokerMove() {
     PokerActionType action = Bet;
     double bet = 0;
@@ -50,7 +54,6 @@ PokerAction* PokerPlayer::pokerMove() {
 
     return currAction;
 }
-
 
 PokerAction* PokerPlayer::pokerMove(PokerActionType action, double betAmountAdded) {
     PokerActionType todoAction = action;

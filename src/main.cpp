@@ -1,5 +1,7 @@
 #include<iostream>
 #include "../header/login.hpp"
+#include "../header/player.hpp"
+#include "../header/pokerPlayer.hpp"  
 
 using namespace std;
 
@@ -31,7 +33,7 @@ void createAccount(Login &login)
     }
 }
 
-void userLogin(Login &login)
+std::string userLogin(Login &login)
 {
     string userName = "";
     string Pasword = "";
@@ -47,17 +49,48 @@ void userLogin(Login &login)
     if(logSuccess == 1)
     {
         cout << GREEN << "Successfully logged in, welcome " << BLUE << userName << RESET << endl;
+        return userName;
     }
     else if(logSuccess == 2)
     {
         cout << RED << "Incorrect password, please try again " << BLUE << userName << RESET << endl;
+        cout << RED << "Press q to quit, or anything else to try again" << RESET <<endl;
+        string inp;
+        cin >> inp;
+        if(inp == "q")
+            exit(0);
         userLogin(login);
     }
     else if(logSuccess == 3)
     {
         cout << RED << "UserName does not exist, please try again" << RESET << endl;
+        cout << RED << "Press q to quit, or anything else to try again" << RESET <<endl;
+        string inp;
+        cin >> inp;
+        if(inp == "q")
+            exit(0);
         userLogin(login);
     }
+    return "";
+}
+
+string menu()
+{
+    string input;
+    while(input != "1" && input != "2" && input != "3" && input != "4" && input != "5")
+    {
+        
+
+        cout << GREEN << "Welcome to the main menu! Enter what you want to do " << RESET << endl;
+        cout << GREEN << "Press 1 to start poker " << RESET << endl;
+        cout << GREEN << "Press 2 to view your stats " << RESET << endl;
+        cout << GREEN << "Press 3 to view your balance " << RESET << endl;
+        cout << GREEN << "Press 4 to change your password " << RESET << endl;
+        cout << GREEN << "Press 5 to EXIT " << RESET << endl << endl;
+
+        cin >> input;
+    }
+    return input;
 }
 
 int main() {
@@ -83,10 +116,71 @@ int main() {
         cout << BLUE << "You can now login with your new credentials!!" << RESET << endl << endl << endl;
     }
 
-    userLogin(login);
+    string res = userLogin(login);
+    //------------------------------------LOGIN COMPLETE---------
+    PokerPlayer player(res);
+    if(player.loadPlayer())
+    {
+        cout << "Successfully found a save file! Loading player now" << endl << endl << endl;
+    }
+    else
+    {
+        cout << "Unable to find a save file! Creating player now" << endl << endl << endl;
+    }
+        
+
+        
+    if(player.savePlayer())
+    {
+        cout << "Successfully saved player" << endl << endl << endl;
+    }
+    else
+    {
+        cout << "Unable to save player" << endl << endl << endl;
+    }
+
+
+    string menuInput = menu();
+    while(menuInput != "5")
+    {
+
     
-
-
+    if(menuInput == "1") //poker
+    {
+        cout << "TODO" << endl;
+    }
+    else if (menuInput == "2") // stats
+    {
+        player.viewStatistics();
+        menuInput = menu();
+    }
+    else if (menuInput == "3") //view balance
+    {
+        player.viewBalance();
+        menuInput = menu();
+    }
+    else if (menuInput == "4") // change password
+    {
+        string newPwd;
+        cout << "Enter your new password" << endl;
+        cin >> newPwd;
+        if(login.changePassword(res, newPwd))
+        {
+            cout << GREEN << "Successfully changed password!!" << RESET << endl;
+        }
+        else
+        {
+            cout << RED << "Unable to change password..." << RESET << endl;
+        }
+        menuInput = menu();
+    }
+    else if (menuInput == "5")
+    {
+        cout << "TODO" << endl;
+        exit(0);
+    }
+    
+    }
     // login.registerUser("user1", "password1");
     // login.registerUser("user2", "password2");
     // login.registerUser("user3", "password3");

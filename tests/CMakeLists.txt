@@ -91,8 +91,5 @@ add_executable(balanceTests
   tests.cpp balanceTests.cpp
 )
 
-
 target_link_libraries(balanceTests gmock gtest gtest_main)
 target_link_libraries(balanceTests simpleLibrary)
-
-

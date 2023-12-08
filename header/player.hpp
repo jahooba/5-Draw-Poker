@@ -1,6 +1,7 @@
 #pragma once
 #include "../header/hand.hpp"
 #include "../header/balance.hpp"
+#include <fstream>
 using namespace std;
 
 class Player {
@@ -17,4 +18,6 @@ public:
     string getName();
     Balance* getPlayerBalance();
     Hand* getPlayerHand();
+    bool loadPlayer();
+    bool savePlayer();
 };

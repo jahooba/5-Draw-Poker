@@ -5,8 +5,10 @@ using namespace std;
 
 TEST(PokerGameTests, GameTest) {
     vector<PokerPlayer*> playerList;
+  
     Hand* handOne = new Hand();
     playerList.push_back(new PokerPlayer("PlayerOne", 100 , handOne));
+  
     Hand* handTwo = new Hand();
     playerList.push_back(new PokerPlayer("PlayerTwo", 200, handTwo));
 
