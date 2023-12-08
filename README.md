@@ -179,12 +179,7 @@ A Poker Action is a struct that has a field for the type of the action as well a
 <br>
 
 ## Screenshots
-
-<img src="images/screenshots/LoginScreen.png" alt="LoginScreen">
-<img src="images/screenshots/ChangePassword.png" alt="ChangePassword">
-<img src="images/screenshots/Balance.png" alt="Balance">
-<img src="images/screenshots/Statistics.png" alt="Statistics">
-<img src="images/screenshots/PokerAction.png" alt="PokerAction">
+ > Screenshots of the input/output after running your application
 <br>
 
 ## Installation/Usage
