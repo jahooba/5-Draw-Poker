@@ -85,7 +85,7 @@ void Statistics::print(){
     load();
     cout << "Stats - " << YELLOW << playerName << RESET << endl;
     cout << "Games Won Total - " << YELLOW << wins << RESET <<endl;
-    cout << "Games Played Total - " << YELLOW << gamesPlayed << RESET << endl;
+    cout << "Games Played Total - " << YELLOW << gamesPlayed << RESET << endl << endl;
 }
 
 void Statistics::update(int winsAdded, int gamesPlayedAdded){

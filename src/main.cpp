@@ -93,6 +93,7 @@ string menu()
         cout << GREEN << "Press 5 to EXIT " << RESET << endl << endl;
 
         cin >> input;
+        cout << endl;
     }
     return input;
 }
@@ -174,17 +175,17 @@ int main() {
             cin >> newPwd;
             if(login.changePassword(res, newPwd))
             {
-                cout << GREEN << "Successfully changed password!!" << RESET << endl;
+                cout << GREEN << "Successfully changed password!!" << RESET << endl << endl;
             }
             else
             {
-                cout << RED << "Unable to change password..." << RESET << endl;
+                cout << RED << "Unable to change password..." << RESET << endl << endl;
             }
         }
         else if (menuInput == "5")
         {   
-            cout << "Saving User Data..." << endl;
-            cout << "We hope to see you again!" << endl;
+            cout << BLUE << "Saving User Data..." << endl;
+            cout << "We hope to see you again!" << RESET << endl;
         }
     
     }
