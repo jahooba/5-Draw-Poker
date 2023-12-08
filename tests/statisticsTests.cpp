@@ -47,4 +47,6 @@ TEST(statisticsTests, loadTests){
     EXPECT_EQ(stats.getWins(), 32);
     EXPECT_EQ(stats.getGamesPlayed(), 56);
     ASSERT_NO_THROW(stats.print());
+
+    stats.update(-32, -56);
 }

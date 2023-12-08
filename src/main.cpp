@@ -156,7 +156,7 @@ int main() {
         if(menuInput == "1") //poker
         {
             PokerPlayer* playerOne = &player;
-            PokerPlayer* playerTwo = new PokerPlayer("Ram", 200);
+            PokerPlayer* playerTwo = new PokerComputer();
             vector<PokerPlayer*> playerVector;
             playerVector.push_back(playerOne);
             playerVector.push_back(playerTwo);

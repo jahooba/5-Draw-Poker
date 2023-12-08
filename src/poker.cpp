@@ -22,6 +22,7 @@ void Poker::Game_Start(){
 
     //While the player has enough money and wants to play or only one player left
     while (playAgain == true){
+        deck.reset();
         if(balance <= 5){
             cout << "Sorry, you don't have enough money to play :(" << endl;
             playAgain = false;
@@ -32,14 +33,20 @@ void Poker::Game_Start(){
             playerList.at(0)->clearAction();
             playerList.at(1)->getPlayerBalance()->appendBalance(-5);
             pot+=10;
-            vector<double> playerBalances;
-            playerBalances.push_back(playerList.at(0)->getPlayerBalance()->getBalance());
-            cout << "Player 1 balance " << playerList.at(0)->getPlayerBalance()->getBalance() << endl;
-            playerBalances.push_back(playerList.at(1)->getPlayerBalance()->getBalance());
-            cout << "Player 2 balance " << playerList.at(1)->getPlayerBalance()->getBalance() << endl;
-            double maxBetForGame = *min_element(playerBalances.begin(), playerBalances.end());
-            cout << "Max bet for game=" << maxBetForGame << endl;
-            playerList.at(0)->setAbsMaxBet(maxBetForGame);
+        }
+
+        vector<double> playerBalances;
+        playerBalances.push_back(playerList.at(0)->getPlayerBalance()->getBalance());
+        cout << "Player 1 balance: " << playerList.at(0)->getPlayerBalance()->getBalance() << endl;
+        playerBalances.push_back(playerList.at(1)->getPlayerBalance()->getBalance());
+        cout << "Player 2 balance: " << playerList.at(1)->getPlayerBalance()->getBalance() << endl;
+        double maxBetForGame = *min_element(playerBalances.begin(), playerBalances.end());
+        cout << "Max bet for game = " << maxBetForGame << endl;
+        
+        //initial player cleansing
+        for (PokerPlayer* player : playerList) {
+            player->getPlayerHand()->clearHand();
+            player->setAbsMaxBet(maxBetForGame);
         }
 
         //Distribute cards from deck to each player
@@ -49,7 +56,7 @@ void Poker::Game_Start(){
         }
 
         //Present Poker actions for each player
-        pokerActionRound(playerOneIndex);
+        playerActionRound(playerOneIndex);
 
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5 ){
             revealHands();
@@ -66,7 +73,7 @@ void Poker::Game_Start(){
                 continue;
         }
 
-        pokerActionRound(playerTwoIndex);
+        computerActionRound(playerList.at(1));
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
             cout << "1. Play again\n2. Return to Menu\n>";
@@ -83,11 +90,11 @@ void Poker::Game_Start(){
         }
         
         //Discard and draw for each player
-        discardRound(playerOneIndex);
-        discardRound(playerTwoIndex);
+        playerDiscardRound(playerList.at(0));
+        computerDiscardRound(playerList.at(1));
 
         //Present Poker actions for each player
-        pokerActionRound(playerOneIndex);
+        playerActionRound(playerOneIndex);
       
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
@@ -104,7 +111,7 @@ void Poker::Game_Start(){
                 continue;
         }
 
-        pokerActionRound(playerTwoIndex);
+        computerActionRound(playerList.at(1));
         if(playerList.at(0)->getPlayerHand()->getHand().size()<5 || playerList.at(1)->getPlayerHand()->getHand().size()<5){
             revealHands();
             cout << "1. Play again\n2. Return to Menu\n>";
@@ -140,45 +147,8 @@ void Poker::Game_Start(){
     }
 }
 
-void Poker::discardRound(int playerIndex){
-    cout << endl << playerList.at(playerIndex)->getPlayerHand()->viewHand() << endl;
-
-    if(playerIndex==1){
-        if(POKER_SCORE_KEY.rankHand(*playerList.at(playerIndex)->getPlayerHand()) > 5){
-            int discardPlace=-1;
-            while(discardPlace<0 || discardPlace>5)
-                discardPlace = rand() % 5;
-            cout << discardPlace << endl;
-            //Deck obtains the discarded card
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(discardPlace));
-
-            //Player receives random card from deck
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-            return;
-        }
-        else{
-            int firstDiscardPlace=-1, secondDiscardPlace=-1, thirdDiscardPlace=-1;
-            while(firstDiscardPlace<0 || firstDiscardPlace>5)
-                firstDiscardPlace = rand() % 5;
-            Card* firstCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(firstDiscardPlace);
-            while(secondDiscardPlace<0 || secondDiscardPlace>5 || secondDiscardPlace==firstDiscardPlace)
-                secondDiscardPlace = rand() % 5;
-            Card* secondCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(secondDiscardPlace);
-            while(thirdDiscardPlace<0 || thirdDiscardPlace>5 || thirdDiscardPlace==secondDiscardPlace || thirdDiscardPlace==firstDiscardPlace)
-                thirdDiscardPlace = rand() % 5;
-            Card* thirdCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(thirdDiscardPlace);
-            cout << firstDiscardPlace << " " << secondDiscardPlace << " " << thirdDiscardPlace << endl;
-
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(thirdCardToDiscard->value, thirdCardToDiscard->suit));
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-
-            return;
-        }
-    }
+void Poker::playerDiscardRound(PokerPlayer* player) {
+    cout << endl << player->getPlayerHand()->viewHand() << endl;
 
     //Prompt player for amount of cards to discard
     cout << "\n\tDISCARD ROUND\nHow many cards will you discard?> ";
@@ -205,10 +175,10 @@ void Poker::discardRound(int playerIndex){
             }
 
             //Deck obtains the discarded card
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(discardPlace-1));
+            deck.obtainCard(player->getPlayerHand()->distributeCard(discardPlace-1));
 
             //Player receives random card from deck
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+            player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         } 
             break;
         
@@ -222,7 +192,7 @@ void Poker::discardRound(int playerIndex){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Enter valid integer amount (1,2,3,4,5)> ";
             }
-            Card* firstCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(firstDiscardPlace-1);
+            Card* firstCardToDiscard = player->getPlayerHand()->getHand().at(firstDiscardPlace-1);
             cout << "Select the second card to discard> ";
             int secondDiscardPlace=0;
             while (!(cin >> secondDiscardPlace) || secondDiscardPlace<1 || secondDiscardPlace>5 || secondDiscardPlace==firstDiscardPlace){
@@ -230,11 +200,11 @@ void Poker::discardRound(int playerIndex){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Enter valid integer amount (1,2,3,4,5)> ";
             }
-            Card* secondCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(secondDiscardPlace-1);
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+            Card* secondCardToDiscard = player->getPlayerHand()->getHand().at(secondDiscardPlace-1);
+            deck.obtainCard(player->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
+            deck.obtainCard(player->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
+            player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+            player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         }
             break;
 
@@ -248,7 +218,7 @@ void Poker::discardRound(int playerIndex){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Enter valid integer amount (1,2,3,4,5)> ";
             }
-            Card* firstCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(firstDiscardPlace-1);
+            Card* firstCardToDiscard = player->getPlayerHand()->getHand().at(firstDiscardPlace-1);
             cout << "Select the second card to discard> ";
             int secondDiscardPlace=0;
             while (!(cin >> secondDiscardPlace) || secondDiscardPlace<1 || secondDiscardPlace>5 || secondDiscardPlace==firstDiscardPlace){
@@ -256,7 +226,7 @@ void Poker::discardRound(int playerIndex){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Enter valid integer amount (1,2,3,4,5)> ";
             }
-            Card* secondCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(secondDiscardPlace-1);
+            Card* secondCardToDiscard = player->getPlayerHand()->getHand().at(secondDiscardPlace-1);
             cout << "Select the third card to discard> ";
             int thirdDiscardPlace=0;
             while (!(cin >> thirdDiscardPlace) || thirdDiscardPlace<1 || thirdDiscardPlace>5 || thirdDiscardPlace==secondDiscardPlace || thirdDiscardPlace==firstDiscardPlace){
@@ -264,13 +234,13 @@ void Poker::discardRound(int playerIndex){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Enter valid integer amount (1,2,3,4,5)> ";
             }
-            Card* thirdCardToDiscard = playerList.at(playerIndex)->getPlayerHand()->getHand().at(thirdDiscardPlace-1);
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
-            deck.obtainCard(playerList.at(playerIndex)->getPlayerHand()->distributeCard(thirdCardToDiscard->value, thirdCardToDiscard->suit));
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
-            playerList.at(playerIndex)->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+            Card* thirdCardToDiscard = player->getPlayerHand()->getHand().at(thirdDiscardPlace-1);
+            deck.obtainCard(player->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
+            deck.obtainCard(player->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
+            deck.obtainCard(player->getPlayerHand()->distributeCard(thirdCardToDiscard->value, thirdCardToDiscard->suit));
+            player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+            player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+            player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         }
             break;
 
@@ -279,7 +249,7 @@ void Poker::discardRound(int playerIndex){
     }
 }
 
-void Poker::pokerActionRound(int playerIndex){
+void Poker::playerActionRound(int playerIndex){
     cout << endl << playerList.at(playerIndex)->getPlayerHand()->viewHand() << endl;
 
     PokerAction* previousPlayerMove;
@@ -382,7 +352,60 @@ void Poker::pokerActionRound(int playerIndex){
     }
 }
 
-void Poker::revealHands(){
+void Poker::computerDiscardRound(PokerPlayer* player) {
+    if (POKER_SCORE_KEY.rankHand(*player->getPlayerHand()) > 7) {
+        //do nothing yay
+    }
+    
+    else if (POKER_SCORE_KEY.rankHand(*player->getPlayerHand()) > 5) {
+        int discardPlace=-1;
+        while(discardPlace<0 || discardPlace>5)
+            discardPlace = rand() % 5;
+        cout << discardPlace << endl;
+        //Deck obtains the discarded card
+        deck.obtainCard(player->getPlayerHand()->distributeCard(discardPlace));
+
+        //Player receives random card from deck
+        player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+    }
+
+    else {
+        int firstDiscardPlace=-1, secondDiscardPlace=-1, thirdDiscardPlace=-1;
+        while(firstDiscardPlace<0 || firstDiscardPlace>5)
+            firstDiscardPlace = rand() % 5;
+        Card* firstCardToDiscard = player->getPlayerHand()->getHand().at(firstDiscardPlace);
+        while(secondDiscardPlace<0 || secondDiscardPlace>5 || secondDiscardPlace==firstDiscardPlace)
+            secondDiscardPlace = rand() % 5;
+        Card* secondCardToDiscard = player->getPlayerHand()->getHand().at(secondDiscardPlace);
+        while(thirdDiscardPlace<0 || thirdDiscardPlace>5 || thirdDiscardPlace==secondDiscardPlace || thirdDiscardPlace==firstDiscardPlace)
+            thirdDiscardPlace = rand() % 5;
+        Card* thirdCardToDiscard = player->getPlayerHand()->getHand().at(thirdDiscardPlace);
+        cout << firstDiscardPlace << " " << secondDiscardPlace << " " << thirdDiscardPlace << endl;
+
+        deck.obtainCard(player->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
+        deck.obtainCard(player->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
+        deck.obtainCard(player->getPlayerHand()->distributeCard(thirdCardToDiscard->value, thirdCardToDiscard->suit));
+        player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+        player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+        player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+    }
+    
+    return;
+}
+
+void Poker::computerActionRound(PokerPlayer* computer) {
+    vector<double> betAmounts;
+    for (PokerPlayer* player : playerList) {
+        betAmounts.push_back(player->getRecentMove()->bet);
+    }
+
+    double maxBetForRound = *max_element(betAmounts.begin(), betAmounts.end());
+    computer->setCurrMaxBet(maxBetForRound);
+
+    PokerAction* computerAction = computer->pokerMove();
+}
+
+void Poker::revealHands() {
     cout << "\nPlayer 1: " << playerList.at(0)->getPlayerHand()->viewHand() << endl;
     cout << "Player 2: " << playerList.at(1)->getPlayerHand()->viewHand() << endl;
         
