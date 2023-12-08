@@ -9,7 +9,7 @@ Login::Login(const string& filename) : filename(filename) {
 
 
 void Login::loadUserData() {
-    ifstream file(filename);
+    ifstream file(filename, ios::app | ios::in);
 
     if (file.is_open()) {
         string username;
@@ -56,7 +56,7 @@ int Login::authenticateUser(string& username,  string& password) {
 
 
 void Login::saveUserData() {
-    ofstream file(filename);
+    ofstream file(filename, ios::app | ios::in);
 
     if (file.is_open()) 
     {
@@ -78,4 +78,15 @@ int Login::hashPassword(const string& password)
         result += c*(i+1);
     }
     return result;
+}
+
+bool Login::changePassword(string& username, string& password)
+{
+    if (userMap.find(username) != userMap.end()) //username doesnt exist
+    {
+        return false;
+    }
+    userMap[username] == hashPassword(password);
+    saveUserData();
+    return true;
 }

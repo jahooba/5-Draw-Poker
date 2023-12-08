@@ -17,6 +17,8 @@ public:
 
     int authenticateUser( string& username, string& password); //1 - success, 2 - Wrong Password, 3 - UserName DNE
 
+    bool changePassword(string& username, string& password);
+
     
 
 private:
