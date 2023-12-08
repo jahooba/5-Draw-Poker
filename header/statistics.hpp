@@ -15,6 +15,7 @@ private:
 public:
     Statistics();
     Statistics(string);
+    ~Statistics();
     // Statistics(int, int);
     void print();
     void update(int winsAdded, int gamesPlayedAdded);

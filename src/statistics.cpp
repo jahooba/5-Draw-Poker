@@ -62,6 +62,9 @@ Statistics::Statistics(string playername){
     file2.close();
 }
 
+Statistics::~Statistics() {
+    save();
+}
 
 void Statistics::clearFile() {
     try {
@@ -102,6 +105,8 @@ void Statistics::load(){
             }
         }
     }
+
+    file.close();
 }
 
 void Statistics::save(){

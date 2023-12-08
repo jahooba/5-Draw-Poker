@@ -12,6 +12,7 @@ private:
 public:
     Balance(string name);
     Balance(string name, double balance);
+    ~Balance();
     double getBalance();
     void appendBalance(double);
     void setBalance(double);

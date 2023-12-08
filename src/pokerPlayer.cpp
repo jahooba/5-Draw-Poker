@@ -29,7 +29,7 @@ PokerPlayer::~PokerPlayer() {
     delete currAction;
 }
 
-PokerAction* getRecentMove() {
+PokerAction* PokerPlayer::getRecentMove() {
     if (currAction == nullptr) {
         currAction = new PokerAction(Bet, 0);
     }
