@@ -367,15 +367,14 @@ void Poker::computerDiscardRound(PokerPlayer* player) {
     }
     
     else if (POKER_SCORE_KEY.rankHand(*player->getPlayerHand()) > 5) {
-        int discardPlace=-1;
-        while(discardPlace<0 || discardPlace>5)
-            discardPlace = rand() % 5;
-        cout << discardPlace << endl;
+        int discardPlace = rand() % 5;
         //Deck obtains the discarded card
         deck.obtainCard(player->getPlayerHand()->distributeCard(discardPlace));
 
         //Player receives random card from deck
         player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+
+        cout << player->getName() << " has discarded a Card!" << endl << endl;
     }
 
     else {
@@ -389,7 +388,6 @@ void Poker::computerDiscardRound(PokerPlayer* player) {
         while(thirdDiscardPlace<0 || thirdDiscardPlace>5 || thirdDiscardPlace==secondDiscardPlace || thirdDiscardPlace==firstDiscardPlace)
             thirdDiscardPlace = rand() % 5;
         Card* thirdCardToDiscard = player->getPlayerHand()->getHand().at(thirdDiscardPlace);
-        cout << firstDiscardPlace << " " << secondDiscardPlace << " " << thirdDiscardPlace << endl;
 
         deck.obtainCard(player->getPlayerHand()->distributeCard(firstCardToDiscard->value, firstCardToDiscard->suit));
         deck.obtainCard(player->getPlayerHand()->distributeCard(secondCardToDiscard->value, secondCardToDiscard->suit));
@@ -397,6 +395,8 @@ void Poker::computerDiscardRound(PokerPlayer* player) {
         player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
         player->getPlayerHand()->obtainCard(deck.distributeRandomCard());
+
+        cout << player->getName() << " has discarded three Cards!" << endl << endl;
     }
     
     return;
