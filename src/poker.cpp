@@ -25,11 +25,9 @@ void Poker::Game_Start(){
         cout << "Sorry, you don't have enough money to play :(" << endl;
         return;
     }
-    else{
-        playerList.at(0)->getPlayerBalance()->appendBalance(-5);
-        playerList.at(0)->clearAction();
-        playerList.at(1)->getPlayerBalance()->appendBalance(-5);
-        pot+=10;
+    else {
+        playerList.at(0)->pokerMove(Call, 5);
+        playerList.at(1)->pokerMove(Call, 5);
     }
 
     vector<double> playerBalances;
@@ -44,6 +42,7 @@ void Poker::Game_Start(){
     for (PokerPlayer* player : playerList) {
         player->getPlayerHand()->clearHand();
         player->setAbsMaxBet(maxBetForGame);
+        player->setCurrMaxBet(5);
     }
 
     //Distribute cards from deck to each player
@@ -55,7 +54,7 @@ void Poker::Game_Start(){
     //Present Poker actions for each player
 
     double roundMaxBet = 5;
-    while (playerList.at(0)->getRecentMove()->bet - roundMaxBet <= 0 and playerList.at(1)->getRecentMove()->bet - roundMaxBet <= 0) {
+    while (playerList.at(1)->getRecentMove()->type != Check && playerList.at(0)->getRecentMove()->type != Check) {
         
         playerActionRound(playerOneIndex);
         if (playerList.at(0)->getPlayerHand()->viewHand() == "Empty!") {
@@ -88,7 +87,7 @@ void Poker::Game_Start(){
 
         }
     }
-    
+
     //Discard and draw for each player
     playerDiscardRound(playerList.at(0));
     computerDiscardRound(playerList.at(1));
@@ -216,31 +215,32 @@ void Poker::playerDiscardRound(PokerPlayer* player) {
 }
 
 void Poker::playerActionRound(int playerIndex){
-    cout << endl << playerList.at(playerIndex)->getPlayerHand()->viewHand() << endl;
+    double betAmount = 0;
+    PokerActionType todoAction = Call;
+
+    PokerPlayer* player = playerList.at(playerIndex);
+
+    cout << endl << player->getPlayerHand()->viewHand() << endl;
 
     PokerAction* previousPlayerMove;
-    if(playerIndex==0){
+    if (playerIndex==0) {
         previousPlayerMove = playerList.at(1)->getRecentMove();
-        if(previousPlayerMove==nullptr){
-        }
     }
-    else{
+    else {
         previousPlayerMove = playerList.at(0)->getRecentMove();
-        if(previousPlayerMove==nullptr){
-        }
     }
 
-    int actionChoice=0;
+    int actionChoice = 0;
     //Check if previous player's move was not a bet
     if (previousPlayerMove == nullptr || previousPlayerMove->type != Bet){
         cout << "\n\tPOKER ACTION ROUND\n1. Check\n2. Bet\n3. Fold\n > ";
-        while (!(cin >> actionChoice) || actionChoice<1 || actionChoice>4){
+        while (!(cin >> actionChoice) || actionChoice < 1 || actionChoice > 3){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Enter valid integer amount (1,2,3)> ";
         }
-        if(actionChoice>1)
-            actionChoice+=1;
+        if(actionChoice > 1)
+            actionChoice += 1;
     }
     else{
         if(playerList.at(playerIndex)->getPlayerBalance()->getBalance() <= 0){
@@ -249,7 +249,7 @@ void Poker::playerActionRound(int playerIndex){
         }
         else{
             cout << "\n\tPOKER ACTION ROUND\n1. Call\n2. Bet\n3. Fold\n > ";
-            while (!(cin >> actionChoice) || actionChoice<1 || actionChoice>3){
+            while (!(cin >> actionChoice) || actionChoice < 1 || actionChoice > 3){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Enter valid integer (1,2,3)> ";
@@ -258,64 +258,73 @@ void Poker::playerActionRound(int playerIndex){
         }       
     }
 
-    switch(actionChoice){
-        case 1:
-        {
-            //Check
-            cout << "Checking..." << endl;
-            PokerAction* playerCheck = playerList.at(playerIndex)->pokerMove(Check, 0);
-        }
-            break;
-        
-        case 2:
-        {
-            //Call if previous move was a bet
-            cout << "Calling..." << previousPlayerMove->bet << endl;
-            PokerAction* playerCall = playerList.at(playerIndex)->pokerMove(Call, previousPlayerMove->bet);
-        }
-            break;
-        
-        case 3:
-        {
-            cout << "Betting..." << endl;
-            //Bet an amount
-            double betAmount;
-            if (previousPlayerMove==nullptr){
-                //cout << previousPlayerMove->bet << endl;
-                cout << "How much would you like to bet? (Bet=0)> $";
-                while (!(cin >> betAmount) || betAmount < 0 || betAmount + playerList.at(playerIndex)->getPlayerBalance()->getBalance() > playerList.at(0)->getAbsMaxBet()){
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Enter valid amount> ";
-                }
-            }
-            else{
-                //cout << previousPlayerMove->bet << endl;
-                cout << "How much would you like to bet? (Bet=" << previousPlayerMove->bet << ")> $";
-                while (!(cin >> betAmount) || betAmount < 0 || betAmount + playerList.at(playerIndex)->getPlayerBalance()->getBalance() > playerList.at(0)->getAbsMaxBet()){
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Enter valid amount> ";
-                }
-            }
-            PokerAction* playerBet = playerList.at(playerIndex)->pokerMove(Bet, betAmount);
-            playerList.at(playerIndex)->setAbsMaxBet(betAmount);
-        }
-            break;
-        
-        case 4:
-        {
-            //Fold by giving up hand
-
-            cout << "Folding..." << endl;
-            PokerAction* playerFold = playerList.at(playerIndex)->pokerMove();
-            playerList.at(playerIndex)->getPlayerHand()->clearHand();
-        }
-            break;
-        
-        default:
-            break;
+    if (actionChoice == 1) {
+        cout << "Checking..." << endl;
+        todoAction = Check;
+        betAmount = 0;
     }
+
+    else if (actionChoice == 2) {
+        cout << "Calling..." << endl;
+        todoAction = Call;
+        betAmount = player->getCurrMaxBet() - player->getRecentMove()->bet;
+    }
+
+    else if (actionChoice == 3) {
+        
+        double userInputBet = 0;
+
+        cout << "Betting...";
+
+        cout << "Enter an amount to bet. Current Bet: $" << player->getCurrMaxBet() << "\n > " << endl;
+        while ( !(cin >> userInputBet) || userInputBet > player->getPlayerBalance()->getBalance() || userInputBet < 0) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            
+            if (userInputBet <= 0) {
+                cout << "Bet Amount is negative! Try again..." << endl;
+            }
+
+            else if (userInputBet > player->getPlayerBalance()->getBalance()) {
+                cout << "You cannot afford this bet! Try again..." << endl;
+            }
+
+            cout << "Enter valid integer (1,2,3)\n > ";
+        }
+
+        betAmount = userInputBet;
+    }
+
+    else {
+        cout << "Folding...Better luck next time!";
+        todoAction = Fold;
+        betAmount = 0;
+        player->pokerMove(Fold, 0);
+        player->getPlayerHand()->clearHand();
+    }
+
+    //edge cases
+    if (player->getRecentMove()->bet + betAmount > player->getAbsMaxBet()) {
+        betAmount = player->getAbsMaxBet() - player->getRecentMove()->bet;
+        cout << "Adjusted bet amount due to going over the limit for the game." << endl;
+        cout << "Your new betAmount is $" << player->getAbsMaxBet() << endl;
+    }
+
+    if (player->getCurrMaxBet() - (player->getRecentMove()->bet + betAmount) > 0.01 || player->getCurrMaxBet() - (player->getRecentMove()->bet + betAmount) < 0.01) {
+
+        if (player->getRecentMove()->type != Call) {
+            todoAction = Call;
+            cout << "Action meets the criteria for Call! Changing Action type..." << endl;
+        }
+    }
+
+    if (betAmount == 0) {
+        todoAction = Check;
+        cout << "Action meets the criteria for Check! Changing Action type..." << endl;
+    }
+
+    player->pokerMove(todoAction, betAmount);
+    
 }
 
 void Poker::computerDiscardRound(PokerPlayer* player) {

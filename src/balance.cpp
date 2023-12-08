@@ -59,7 +59,6 @@ Balance::Balance(string name, double balance){
 }
 
 Balance::~Balance() {
-
     save();
 }
 
@@ -75,6 +74,7 @@ void Balance::appendBalance(double add){
 
 void Balance::setBalance(double newBalance){
     balance = newBalance;
+    save();
 }
 
 void Balance::load(){
