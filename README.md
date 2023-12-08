@@ -179,7 +179,7 @@ A Poker Action is a struct that has a field for the type of the action as well a
 <br>
 
 ## Screenshots
- > Screenshots of the input/output after running your application
+
 <br>
 
 ## Installation/Usage

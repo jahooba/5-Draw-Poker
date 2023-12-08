@@ -1,3 +1,0 @@
-testHash 590
-testUser 3861
-testUser1 4302
