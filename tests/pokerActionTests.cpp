@@ -7,7 +7,7 @@ using namespace std;
 class PokerMock : public Poker {
 public:
     PokerMock() {};
-    void setWinner(Player* newWinner) { winner = newWinner; }
+    void setWinner(PokerPlayer* newWinner) { winner = newWinner; }
     void setPlayerList(vector<PokerPlayer*> playerlist) { playerList = playerlist; }
 };
 

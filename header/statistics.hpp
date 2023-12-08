@@ -17,7 +17,7 @@ public:
     Statistics(string);
     // Statistics(int, int);
     void print();
-    void update(int, int);
+    void update(int winsAdded, int gamesPlayedAdded);
     void load();
     void save();
     void clearFile();

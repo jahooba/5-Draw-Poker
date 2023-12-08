@@ -34,12 +34,12 @@ public:
     PokerPlayer(string name, double balance);
     PokerPlayer(string name, double balance, Hand* hand);
     ~PokerPlayer();
-    void updateStatistics(int, int);
+    void updateStatistics(int winsAdded, int gamesPlayedAdded);
     void viewStatistics();
     void viewBalance();
     virtual PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double betAmountAdded);
-    PokerAction* getRecentMove() { return currAction; }
+    PokerAction* getRecentMove();
     void clearAction();
     void setCurrMaxBet(double newCurrMaxBet) { currMaxBet = newCurrMaxBet; }
     void setAbsMaxBet(double newAbsMaxBet) { absoluteMaxBet = newAbsMaxBet; }

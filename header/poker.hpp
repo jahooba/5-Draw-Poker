@@ -15,7 +15,7 @@ class Poker {
 		PokerScoreKey POKER_SCORE_KEY;
 		vector<PokerPlayer*> playerList;
 		double pot=0;
-		Player* winner;
+		PokerPlayer* winner;
 	public:
 		Poker();
 		Poker(vector<PokerPlayer*> playerList);
