@@ -188,7 +188,6 @@ A Poker Action is a struct that has a field for the type of the action as well a
 To install this application
 1. Download this repository.
 2. Run PokerGame.exe!
-```
 
 ## Testing
 Our project was tested using the Google C++ Testing Framework. We wrote our own extensive set of unit tests for all parts of our project, and made sure all of them passed before committing any changes.  
