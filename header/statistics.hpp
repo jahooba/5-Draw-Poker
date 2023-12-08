@@ -12,8 +12,6 @@ private:
     string fileName;
     string playerName;
 
-    void clearFile();
-
 public:
     Statistics();
     Statistics(string);
@@ -22,6 +20,7 @@ public:
     void update(int, int);
     void load();
     void save();
+    void clearFile();
     int getWins();
     int getGamesPlayed();
     string getFileName();

@@ -103,7 +103,16 @@ void Balance::print(){
 }
 
 void Balance::clearFile() {
-    std::ofstream ofs;
-    ofs.open(fileName, std::ofstream::out | std::ofstream::trunc);
-    ofs.close();
+    try {
+        std::ofstream outputFile(fileName, std::ios::trunc);
+
+        if (!outputFile.is_open()) {
+            throw std::runtime_error("Unable to open file: " + fileName);
+        }
+
+        outputFile.close();
+
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
 }
