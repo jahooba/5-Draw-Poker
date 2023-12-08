@@ -141,6 +141,10 @@ int main() {
 
 
     string menuInput = menu();
+    while(menuInput != "5")
+    {
+
+    
     if(menuInput == "1") //poker
     {
         cout << "TODO" << endl;
@@ -148,10 +152,12 @@ int main() {
     else if (menuInput == "2") // stats
     {
         player.viewStatistics();
+        menuInput = menu();
     }
     else if (menuInput == "3") //view balance
     {
         player.viewBalance();
+        menuInput = menu();
     }
     else if (menuInput == "4") // change password
     {
@@ -166,6 +172,7 @@ int main() {
         {
             cout << RED << "Unable to change password..." << RESET << endl;
         }
+        menuInput = menu();
     }
     else if (menuInput == "5")
     {
@@ -173,6 +180,7 @@ int main() {
         exit(0);
     }
     
+    }
     // login.registerUser("user1", "password1");
     // login.registerUser("user2", "password2");
     // login.registerUser("user3", "password3");
