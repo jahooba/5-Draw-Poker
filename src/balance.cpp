@@ -106,7 +106,7 @@ void Balance::save(){
 void Balance::print(){
     load();
     cout << "Balance - " << YELLOW << name << RESET << endl;
-    cout << "You currently have a balance of " << YELLOW << balance << RESET << "." <<endl;
+    cout << "You currently have a balance of " << YELLOW << balance << RESET << "." <<endl << endl;
 }
 
 void Balance::clearFile() {

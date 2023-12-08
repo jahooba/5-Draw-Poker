@@ -2,6 +2,12 @@
 #include <algorithm>
 using namespace std;
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+
 Poker::Poker() {
     //default
 }
@@ -28,11 +34,11 @@ void Poker::Game_Start(){
 
     vector<double> playerBalances;
     playerBalances.push_back(playerList.at(0)->getPlayerBalance()->getBalance());
-    cout << "Player 1 balance: " << playerList.at(0)->getPlayerBalance()->getBalance() << endl;
+    cout << GREEN << "Player 1 " << RESET  << "balance: " << playerList.at(0)->getPlayerBalance()->getBalance() << endl;
     playerBalances.push_back(playerList.at(1)->getPlayerBalance()->getBalance());
-    cout << "Player 2 balance: " << playerList.at(1)->getPlayerBalance()->getBalance() << endl;
+    cout << BLUE << "Player 2" << RESET << " balance: " << playerList.at(1)->getPlayerBalance()->getBalance() << endl;
     double maxBetForGame = *min_element(playerBalances.begin(), playerBalances.end());
-    cout << "Max bet for game = " << maxBetForGame << endl;
+    cout << "Max bet for game = " << maxBetForGame << endl << endl;
     
     //initial player cleansing
     for (PokerPlayer* player : playerList) {
@@ -58,8 +64,8 @@ void Poker::Game_Start(){
     while ((playerList.at(1)->getRecentMove()->type != Check) || (playerList.at(0)->getRecentMove()->type != Check)) {
 
         cout << "Current Round:" << endl;
-        cout << playerList.at(0)->getName() << " is betting $" << playerList.at(0)->getRecentMove()->bet << endl;
-        cout << playerList.at(1)->getName() << " is betting $" << playerList.at(1)->getRecentMove()->bet << endl;
+        cout << GREEN << playerList.at(0)->getName()<< RESET << " is betting $" << playerList.at(0)->getRecentMove()->bet << endl;
+        cout << BLUE << playerList.at(1)->getName() << RESET << " is betting $" << playerList.at(1)->getRecentMove()->bet << endl;
         
         playerActionRound(playerOneIndex);
 
@@ -104,8 +110,8 @@ void Poker::Game_Start(){
     while ((playerList.at(1)->getRecentMove()->type != Check) || (playerList.at(0)->getRecentMove()->type != Check)) {
 
         cout << "Current Round:" << endl;
-        cout << playerList.at(0)->getName() << " is betting $" << playerList.at(0)->getRecentMove()->bet << endl;
-        cout << playerList.at(1)->getName() << " is betting $" << playerList.at(1)->getRecentMove()->bet << endl;
+        cout << GREEN << playerList.at(0)->getName() << RESET  <<  " is betting $" << playerList.at(0)->getRecentMove()->bet << endl ;
+        cout << BLUE << playerList.at(1)->getName() << RESET << " is betting $" << playerList.at(1)->getRecentMove()->bet << endl;
         
         playerActionRound(playerOneIndex);
 
@@ -149,7 +155,7 @@ void Poker::playerDiscardRound(PokerPlayer* player) {
     cout << endl << player->getPlayerHand()->viewHand() << endl;
 
     //Prompt player for amount of cards to discard
-    cout << "\n\tDISCARD ROUND\nHow many cards will you discard?> ";
+    cout << YELLOW << "\n\tDISCARD ROUND" << RESET << "\nHow many cards will you discard?> ";
     int discardAmount=-1;
     //Validate user input is an int between 0 and 3
     while (!(cin >> discardAmount) || discardAmount<0 || discardAmount>3){
@@ -267,7 +273,7 @@ void Poker::playerActionRound(int playerIndex){
 
     //Check if previous player's move was not a bet
     if (previousPlayerMove == nullptr || previousPlayerMove->type != Bet){
-        cout << "\n\tPOKER ACTION ROUND\n1. Check\n2. Bet\n3. Fold\n > ";
+        cout << YELLOW << "\n\tPOKER ACTION ROUND" << RESET << "\n1. Check\n2. Bet\n3. Fold\n > ";
         while (!(cin >> actionChoice) || actionChoice < 1 || actionChoice > 3){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -282,7 +288,7 @@ void Poker::playerActionRound(int playerIndex){
             actionChoice = 4;
         }
         else{
-            cout << "\n\tPOKER ACTION ROUND\n1. Call\n2. Bet\n3. Fold\n > ";
+            cout << YELLOW << "\n\tPOKER ACTION ROUND" << RESET << "\n1. Call\n2. Bet\n3. Fold\n > ";
             while (!(cin >> actionChoice) || actionChoice < 1 || actionChoice > 3){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -411,8 +417,8 @@ void Poker::computerActionRound(PokerPlayer* computer) {
 }
 
 void Poker::revealHands() {
-    cout << "\nPlayer 1: " << playerList.at(0)->getPlayerHand()->viewHand() << endl;
-    cout << "Player 2: " << playerList.at(1)->getPlayerHand()->viewHand() << endl;
+    cout << GREEN << "\nPlayer 1: " << RESET << playerList.at(0)->getPlayerHand()->viewHand() << endl;
+    cout << BLUE << "Player 2: " << RESET << playerList.at(1)->getPlayerHand()->viewHand()  << endl;
 
     for (PokerPlayer* player : playerList) {
         player->updateStatistics(0, 1);
@@ -422,17 +428,17 @@ void Poker::revealHands() {
     int playerOneWins = POKER_SCORE_KEY.winningHand(*playerList.at(0)->getPlayerHand(), *playerList.at(1)->getPlayerHand());
     switch(playerOneWins){
         case 0:
-            cout << "Player 2 wins!" << endl;
+            cout << BLUE << "Player 2 " << RESET << "wins!" << endl << endl;
             winner = playerList.at(1);
             payout();
             break;
         case 1:
-            cout << "Player 1 wins!" << endl;
+            cout << GREEN <<  "Player 1" << RESET << " wins!" << endl << endl;
             winner = playerList.at(0);
             payout();
             break;
         default:
-            cout << "Pot is coin-flipped." << endl;
+            cout << "Pot is coin-flipped." << endl << endl << endl;
             int coinFlip = rand() % 2;
             winner = playerList.at(coinFlip);
             payout();
@@ -451,10 +457,10 @@ void Poker::payout() {
     for (PokerPlayer* currPlayer : playerList) {
         if(currPlayer->getRecentMove()==nullptr)
             return;
-        cout << currPlayer->getName() << " bet $" << currPlayer->getRecentMove()->bet << endl;
+        cout << GREEN << currPlayer->getName() << RESET << " bet $" << currPlayer->getRecentMove()->bet << endl;
         pot += currPlayer->getRecentMove()->bet;
     }
 
     winner->getPlayerBalance()->appendBalance(pot);
-    cout << "The pot for the round was $" << pot << endl;
+    cout << "The pot for the round was $" << pot << endl << endl << endl;
 }

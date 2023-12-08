@@ -62,7 +62,7 @@ std::string userLogin(Login &login)
         string inp;
         cin >> inp;
         if(inp == "q")
-            exit(0);
+            return "notFound";
         userLogin(login);
     }
     else if(logSuccess == 3)
@@ -72,7 +72,7 @@ std::string userLogin(Login &login)
         string inp;
         cin >> inp;
         if(inp == "q")
-            exit(0);
+            return "notFound";
         userLogin(login);
     }
     return "";
@@ -93,6 +93,7 @@ string menu()
         cout << GREEN << "Press 5 to EXIT " << RESET << endl << endl;
 
         cin >> input;
+        cout << endl;
     }
     return input;
 }
@@ -121,6 +122,8 @@ int main() {
     }
 
     string res = userLogin(login);
+    if(res == "notFound")
+        return 0;
     //------------------------------------LOGIN COMPLETE---------
     PokerPlayer player(res);
 
@@ -172,20 +175,21 @@ int main() {
             cin >> newPwd;
             if(login.changePassword(res, newPwd))
             {
-                cout << GREEN << "Successfully changed password!!" << RESET << endl;
+                cout << GREEN << "Successfully changed password!!" << RESET << endl << endl;
             }
             else
             {
-                cout << RED << "Unable to change password..." << RESET << endl;
+                cout << RED << "Unable to change password..." << RESET << endl << endl;
             }
         }
         else if (menuInput == "5")
         {   
-            cout << "Saving User Data..." << endl;
-            cout << "We hope to see you again!" << endl;
-            exit(0);
+            cout << BLUE << "Saving User Data..." << endl;
+            cout << "We hope to see you again!" << RESET << endl;
         }
     
     }
+
+
     return 0;
 }
