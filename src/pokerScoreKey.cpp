@@ -23,7 +23,7 @@ int PokerScoreKey::winningHand(Hand& handOne, Hand& handTwo){
             if (handOne.getHand().at(4)->value > handTwo.getHand().at(4)->value){
                 playerOneWins = 1;
             }
-            else{
+            else {
                 playerOneWins = 0;
             }
         }
@@ -48,23 +48,26 @@ int PokerScoreKey::winningHand(Hand& handOne, Hand& handTwo){
         // Comapre flush hands
         else if (handOne_rank == 6){
             // Find high card in each hand
-            int i=4;
+            int i = 4;
             while (i >= 0 && handOne.getHand().at(i)->value == handTwo.getHand().at(i)->value){
                 i--;
             }
             // No high cards means the hands are the same
-            if (i==-1){
+            if (i < 0 ){
                 playerOneWins = -1;
             }
-            int handOneHigh = handOne.getHand().at(i)->value;
-            int handTwoHigh = handTwo.getHand().at(i)->value;
-            
-            // Compare each hand's high card
-            if (handOneHigh > handTwoHigh){
-                playerOneWins = 1;
-            }
-            else if (handOneHigh < handTwoHigh){
-                playerOneWins = 0;
+
+            else {
+                int handOneHigh = handOne.getHand().at(i)->value;
+                int handTwoHigh = handTwo.getHand().at(i)->value;
+                
+                // Compare each hand's high card
+                if (handOneHigh > handTwoHigh){
+                    playerOneWins = 1;
+                }
+                else if (handOneHigh < handTwoHigh){
+                    playerOneWins = 0;
+                }
             }
         }
         // Compare straight hands
