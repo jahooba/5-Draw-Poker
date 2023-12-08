@@ -1,7 +1,7 @@
 #include "../header/pokerComputer.hpp"
 
 PokerComputer::PokerComputer() : PokerPlayer("PokerAI", 10000) {
-    RANDOM_SEED = 0;
+    RANDOM_SEED = time(0);
     srand(RANDOM_SEED);
     currMaxBet = 0;
 
@@ -10,7 +10,7 @@ PokerComputer::PokerComputer() : PokerPlayer("PokerAI", 10000) {
 }
 
 PokerComputer::PokerComputer(double balance) : PokerPlayer("PokerAI", balance) {
-    RANDOM_SEED = 0;
+    RANDOM_SEED = time(0);
     srand(RANDOM_SEED);
     currMaxBet = 0;
 
@@ -18,7 +18,7 @@ PokerComputer::PokerComputer(double balance) : PokerPlayer("PokerAI", balance) {
 }
 
 PokerComputer::PokerComputer(Hand* hand) : PokerPlayer("PokerAI", 10000, hand) {
-    RANDOM_SEED = 0;
+    RANDOM_SEED = time(0);
     srand(RANDOM_SEED);
     currMaxBet = 0;
 
@@ -26,7 +26,7 @@ PokerComputer::PokerComputer(Hand* hand) : PokerPlayer("PokerAI", 10000, hand) {
 }
 
 PokerComputer::PokerComputer(double balance, Hand* hand) : PokerPlayer("PokerAI", balance, hand) {
-    RANDOM_SEED = 0;
+    RANDOM_SEED = time(0);
     srand(RANDOM_SEED);
     currMaxBet = 0;
 
@@ -104,8 +104,9 @@ PokerAction* PokerComputer::pokerMove() {
     }
 
     //financial code
-    if ((todoAction != Fold) && (currAction->bet + betAmountAdded < currMaxBet)) {
+    if ((todoAction != Fold) && ((currAction->bet + betAmountAdded - currMaxBet) < 0.1)) {
         betAmountAdded = currMaxBet - currAction->bet;
+        todoAction = Bet;
     }
 
     if (currAction->bet + betAmountAdded > absoluteMaxBet) {
@@ -117,22 +118,19 @@ PokerAction* PokerComputer::pokerMove() {
         betAmountAdded = balance->getBalance();
     }
 
-    if (currMaxBet - (currAction->bet + betAmountAdded) > 0.01 || currMaxBet - (currAction->bet + betAmountAdded) < 0.01) {
+    if (abs(currMaxBet - (currAction->bet + betAmountAdded)) < 0.01) {
         todoAction = Call;
     }
     
-    if (betAmountAdded == 0) {
+    if (betAmountAdded == 0 && todoAction != Fold) {
         todoAction = Check;
     }
-
-
 
     balance->appendBalance(betAmountAdded * -1);
     
     this->currAction->type = todoAction;
     this->currAction->bet += betAmountAdded;
 
-    
     return currAction;
 }
 
