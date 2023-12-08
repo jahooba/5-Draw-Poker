@@ -117,11 +117,11 @@ PokerAction* PokerComputer::pokerMove() {
         betAmountAdded = balance->getBalance();
     }
 
-    if (currMaxBet - (currAction->bet + betAmountAdded) > 0.01 || currMaxBet - (currAction->bet + betAmountAdded) < 0.01) {
+    if (abs(currMaxBet - (currAction->bet + betAmountAdded)) < 0.01) {
         todoAction = Call;
     }
     
-    if (betAmountAdded == 0) {
+    if (betAmountAdded == 0 || todoAction != Fold) {
         todoAction = Check;
     }
 

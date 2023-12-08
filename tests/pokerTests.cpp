@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "../header/poker.hpp"
+#include "../header/pokerComputer.hpp"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ TEST(PokerGameTests, GameTest) {
     playerList.push_back(new PokerPlayer("PlayerOne", 100 , handOne));
   
     Hand* handTwo = new Hand();
-    playerList.push_back(new PokerPlayer("PlayerTwo", 200, handTwo));
+    playerList.push_back(new PokerComputer(200, handTwo));
 
     Poker game(playerList);
     EXPECT_NO_THROW(game.Game_Start());
