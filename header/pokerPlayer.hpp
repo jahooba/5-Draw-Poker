@@ -44,4 +44,5 @@ public:
     void setCurrMaxBet(double newCurrMaxBet) { currMaxBet = newCurrMaxBet; }
     void setAbsMaxBet(double newAbsMaxBet) { absoluteMaxBet = newAbsMaxBet; }
     double getAbsMaxBet() { return absoluteMaxBet; }
+    double getCurrMaxBet() { return currMaxBet; }
 };
