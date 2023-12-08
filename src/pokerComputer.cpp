@@ -118,7 +118,7 @@ PokerAction* PokerComputer::pokerMove() {
         todoAction = Call;
     }
     
-    if (betAmountAdded == 0) {
+    if (betAmountAdded == 0 || todoAction != Fold) {
         todoAction = Check;
     }
 
