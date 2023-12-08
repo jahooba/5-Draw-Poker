@@ -233,6 +233,7 @@ int PokerScoreKey::rankHand(const Hand& h) {
     if (handStr == "Empty!") {
         return 0;
     }
+
     int handRank = 0;
     // Rank values 
     const int SFR = 9,     

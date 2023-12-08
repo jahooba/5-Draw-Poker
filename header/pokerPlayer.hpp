@@ -40,6 +40,8 @@ public:
     virtual PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double betAmountAdded);
     PokerAction* getRecentMove() { return currAction; }
+    void clearAction();
     void setCurrMaxBet(double newCurrMaxBet) { currMaxBet = newCurrMaxBet; }
     void setAbsMaxBet(double newAbsMaxBet) { absoluteMaxBet = newAbsMaxBet; }
+    double getAbsMaxBet() { return absoluteMaxBet; }
 };
