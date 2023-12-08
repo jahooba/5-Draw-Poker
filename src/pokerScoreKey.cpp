@@ -6,42 +6,43 @@ PokerScoreKey::PokerScoreKey() {}
 
 PokerScoreKey::~PokerScoreKey() {}
 
-void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
+int PokerScoreKey::winningHand(Hand& handOne, Hand& handTwo){
+    int playerOneWins;
     // Get rank for each hand
     int handOne_rank = rankHand(handOne);
     int handTwo_rank = rankHand(handTwo);
 
     // Compare each hand's rank
     if (handOne_rank > handTwo_rank)
-        cout << "Player 1 wins." << endl;
+        playerOneWins = 1;
     else if (handOne_rank < handTwo_rank)
-        cout << "Player 2 wins." << endl;
+        playerOneWins = 0;
     else {
         // Compare straight-flush hands
         if (handOne_rank == 9){
             if (handOne.getHand().at(4)->value > handTwo.getHand().at(4)->value){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else{
-                 cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
         }
         // Comapre four-of-a-kind hands
         else if (handOne_rank == 8){
             if (handOne.getHand().at(2)->value > handTwo.getHand().at(2)->value){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else{
-                 cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
         }
         // Compare full-house hands
         else if (handOne_rank == 7){
             if (handOne.getHand().at(2)->value > handTwo.getHand().at(2)->value){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else{
-                 cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
         }
         // Comapre flush hands
@@ -53,26 +54,24 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
             }
             // No high cards means the hands are the same
             if (i==-1){
-                cout << "Pot is split equally among flush hands." << endl;
-                return;
+                playerOneWins = -1;
             }
             int handOneHigh = handOne.getHand().at(i)->value;
             int handTwoHigh = handTwo.getHand().at(i)->value;
             
             // Compare each hand's high card
             if (handOneHigh > handTwoHigh){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else if (handOneHigh < handTwoHigh){
-                cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
         }
         // Compare straight hands
         else if (handOne_rank == 5){
             // No high cards means the hands are the same and no need for comparing
             if (handOne.getHand().at(4)->value == handTwo.getHand().at(4)->value){
-                cout << "Pot is split equally among straight hands." << endl;
-                return;
+                playerOneWins = -1;
             }
 
             // Compare each hand's high card
@@ -80,38 +79,38 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
             int handTwoHigh = handTwo.getHand().at(4)->value;
 
             if (handOneHigh > handTwoHigh){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else if (handOneHigh < handTwoHigh){
-                cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
         }
         // Compare three-of-a-kind hands
         else if(handOne_rank == 4){
             // Compare middle cards
             if (handOne.getHand().at(2)->value > handTwo.getHand().at(2)->value){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else{
-                 cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
         }
         // Compare two-pair hands
         else if (handOne_rank == 3){
             // Compare largest pair
             if (handOne.getHand().at(3)->value > handTwo.getHand().at(3)->value){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else if (handOne.getHand().at(3)->value < handTwo.getHand().at(3)->value){
-                cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
             else{
                 // Compare the next pair
                 if (handOne.getHand().at(1)->value > handTwo.getHand().at(1)->value){
-                    cout << "Player 1 wins!!" << endl;
+                    playerOneWins = 1;
                 }
                 else if (handOne.getHand().at(1)->value < handTwo.getHand().at(1)->value){
-                    cout << "Player 2 wins!!" << endl;
+                    playerOneWins = 0;
                 }
                 else{
                     // Compare kickers
@@ -141,13 +140,13 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
 
                     // Compare handOne and handTwo kickers
                     if (handOne_kicker > handTwo_kicker){
-                        cout << "Player 1 wins!!!" << endl;
+                        playerOneWins = 1;
                     }
                     else if (handOne_kicker < handTwo_kicker){
-                        cout << "Player 2 wins!!!" << endl;
+                        playerOneWins = 0;
                     }
                     else{
-                        cout << "Pot is split equally among two-pairs!" << endl;
+                        playerOneWins = -1;
                     }
                 }
             }
@@ -172,10 +171,10 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
 
             // Compare pairs
             if (handOne_pair > handTwo_pair){
-                cout << "Player 1 wins!" << endl;
+                playerOneWins = 1;
             }
             else if (handOne_pair < handTwo_pair){
-                cout << "Player 2 wins!" << endl;
+                playerOneWins = 0;
             }
             else{
                 // Compare kickers
@@ -189,11 +188,11 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
                         continue;
                     }
                     else if (handOne.getHand().at(i)->value > handTwo.getHand().at(i)->value){
-                        cout << "Player 1 wins!!" << endl;
+                        playerOneWins = 1;
                         break;
                     }
                     else if (handOne.getHand().at(i)->value > handTwo.getHand().at(i)->value){
-                        cout << "Player 2 wins!!" << endl;
+                        playerOneWins = 0;
                         break;
                     }
                     i--;
@@ -201,7 +200,7 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
 
                 // Hands have same values
                 if (i==-1){
-                    cout << "Pot is split equally among pair hands!" << endl;
+                    playerOneWins = -1;
                 }
             }
         }
@@ -211,20 +210,21 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
             int i=4;
             while (i>=0){
                 if(handOne.getHand().at(i)->value > handTwo.getHand().at(i)->value){
-                    cout << "Player 1 wins!" << endl;
+                    playerOneWins = 1;
                     break;
                 }
                 else if (handOne.getHand().at(i)->value < handTwo.getHand().at(i)->value){
-                    cout << "Player 2 wins!" << endl;
+                    playerOneWins = 0;
                     break;
                 }
                 i--;
             }
             // No high card means same values
             if (i==-1)
-                cout << "Pot is split equally among high card hands." << endl;
+                playerOneWins = -1;
         }
     }
+    return playerOneWins;
 }
 
 int PokerScoreKey::rankHand(const Hand& h) {
@@ -233,7 +233,6 @@ int PokerScoreKey::rankHand(const Hand& h) {
     if (handStr == "Empty!") {
         return 0;
     }
-
     int handRank = 0;
     // Rank values 
     const int SFR = 9,     
@@ -260,6 +259,10 @@ int PokerScoreKey::rankHand(const Hand& h) {
     
     **Deuce-to-seven low rules (A is the highest)
     */
+
+   if(h.getHand().size()<5){
+        return handRank;
+   }
    
     if (isStraightFlush(h) == true){    
         handRank = SFR;
@@ -285,7 +288,6 @@ int PokerScoreKey::rankHand(const Hand& h) {
     else if (isPair(h)== true){
         handRank = PAIR;
     }
-
     else {
         handRank = HIGH;
     }

@@ -36,6 +36,7 @@ public:
     ~PokerPlayer();
     void updateStatistics(int, int);
     void viewStatistics();
+    void viewBalance();
     virtual PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double betAmountAdded);
     PokerAction* getRecentMove() { return currAction; }
