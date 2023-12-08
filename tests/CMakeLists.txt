@@ -88,4 +88,9 @@ add_executable(balanceTests
 target_link_libraries(balanceTests gmock gtest gtest_main)
 target_link_libraries(balanceTests simpleLibrary)
 
+add_executable(actual
+  ../src/main.cpp
+)
 
+target_link_libraries(actual gmock gtest gtest_main)
+target_link_libraries(actual simpleLibrary)

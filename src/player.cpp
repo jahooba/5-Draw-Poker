@@ -57,7 +57,7 @@ Hand* Player::getPlayerHand(){
 
 bool Player::loadPlayer() 
 {
-    string fileName = "../userdata/" + name + "Player.txt";
+    string fileName = "userdata/" + name + "Player.txt";
     ifstream file(fileName);
 
     if (file.is_open()) {
@@ -79,7 +79,7 @@ bool Player::loadPlayer()
 }
 
 bool Player::savePlayer() {
-    string fileName = "../userdata/" + name + "Player.txt";
+    string fileName = "userdata/" + name + "Player.txt";
     ofstream file(fileName, ios::app);
 
     if (file.is_open()) 

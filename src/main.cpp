@@ -94,7 +94,7 @@ string menu()
 }
 
 int main() {
-    Login login("../userdata/userdata.txt");
+    Login login("userdata/userdata.txt");
     
     cout << GREEN <<"Welcome to Casino Game! Please Register or Sign in" << RESET << endl;
     cout << endl;
