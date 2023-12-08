@@ -15,6 +15,7 @@ TEST(statisticsTests, validConstructor){
 
 TEST(statisticsTests, updateAndSaveTests){
     Statistics stats = Statistics("Adam");
+    stats.clearFile();
     stats.update(32, 56);
     int temp1;
     int temp2;
