@@ -11,3 +11,4 @@ settings.json
 tests/test.exe
 a.out
 userdata.txt
+userdata/

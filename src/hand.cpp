@@ -1,4 +1,5 @@
 #include "../header/hand.hpp"
+#include<iostream>
 
 using namespace std;
 
@@ -102,12 +103,12 @@ string Hand::viewHand() const {
 
             else if (hand.at(i)->suit == Diamonds) {
                 suit = "\u2662";
-                ss << suit << " ";
+                ss  << suit << " ";
             }
             
             else if (hand.at(i)->suit == Hearts) {
                 suit = "\u2661";
-                ss << suit << " ";
+                ss  << suit << " ";
             }
 
             else if (hand.at(i)->suit == Spades) {
@@ -136,7 +137,7 @@ string Hand::viewHand() const {
                 ss << hand.at(i)->value << " ";
             }
 
-            ss << "| ";
+            ss << "| " ;
         }
     }
     
