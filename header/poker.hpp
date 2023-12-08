@@ -15,7 +15,7 @@ class Poker {
 		PokerScoreKey POKER_SCORE_KEY;
 		vector<PokerPlayer*> playerList;
 		double pot=0;
-		Player* winner;
+		PokerPlayer* winner;
 	public:
 		Poker();
 		Poker(vector<PokerPlayer*> playerList);
@@ -24,7 +24,9 @@ class Poker {
 		const int getHandScore(const Hand&);
 		void payout();
 		Player* getWinner() { return winner; }
-		void discardRound(int);
-		void pokerActionRound(int);
+		void playerActionRound(int);
+		void computerActionRound(PokerPlayer*);
+		void playerDiscardRound(PokerPlayer*);
+		void computerDiscardRound(PokerPlayer*);
 		void revealHands();
 };

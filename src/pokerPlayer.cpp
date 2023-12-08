@@ -29,6 +29,14 @@ PokerPlayer::~PokerPlayer() {
     delete currAction;
 }
 
+PokerAction* PokerPlayer::getRecentMove() {
+    if (currAction == nullptr) {
+        currAction = new PokerAction(Bet, 0);
+    }
+
+    return currAction;
+}
+
 void PokerPlayer::updateStatistics(int gamesWon, int gamesPlayed){
     pokerStats.update(gamesWon, gamesPlayed);
 }

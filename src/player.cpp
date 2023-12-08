@@ -57,20 +57,10 @@ Hand* Player::getPlayerHand(){
 
 bool Player::loadPlayer() 
 {
-    string fileName = "userdata/" + name + "Player.txt";
+    string fileName = "userdata/" + name + "Stats.txt";
     ifstream file(fileName);
 
     if (file.is_open()) {
-        
-        string playerName;
-        double playerBalance;
-
-        file >> playerName >> playerBalance;
-
-        name = playerName;
-
-        balance->setBalance(playerBalance);
-
         return true;
     }
      

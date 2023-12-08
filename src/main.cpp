@@ -132,19 +132,9 @@ int main() {
     {
         cout << "Unable to find a save file! Creating player now" << endl << endl << endl;
     }
-        
-
-        
-    if(player.savePlayer())
-    {
-        cout << "Successfully saved player" << endl << endl << endl;
-    }
-    else
-    {
-        cout << "Unable to save player" << endl << endl << endl;
-    }
 
     if (player.getPlayerBalance()->getBalance() <= 0) {
+        cout << RED << "You went bankrupt! Have some pity money." << RESET << endl << endl;
         player.getPlayerBalance()->appendBalance(100);
     }
 
@@ -156,7 +146,7 @@ int main() {
         if(menuInput == "1") //poker
         {
             PokerPlayer* playerOne = &player;
-            PokerPlayer* playerTwo = new PokerPlayer("Ram", 200);
+            PokerPlayer* playerTwo = new PokerComputer();
             vector<PokerPlayer*> playerVector;
             playerVector.push_back(playerOne);
             playerVector.push_back(playerTwo);
@@ -170,12 +160,10 @@ int main() {
         else if (menuInput == "2") // stats
         {
             player.viewStatistics();
-            menuInput = menu();
         }
         else if (menuInput == "3") //view balance
         {
             player.viewBalance();
-            menuInput = menu();
         }
         else if (menuInput == "4") // change password
         {
@@ -190,17 +178,14 @@ int main() {
             {
                 cout << RED << "Unable to change password..." << RESET << endl;
             }
-            menuInput = menu();
         }
         else if (menuInput == "5")
-        {
+        {   
+            cout << "Saving User Data..." << endl;
             cout << "We hope to see you again!" << endl;
             exit(0);
         }
     
     }
-    // login.registerUser("user1", "password1");
-    // login.registerUser("user2", "password2");
-    // login.registerUser("user3", "password3");
     return 0;
 }

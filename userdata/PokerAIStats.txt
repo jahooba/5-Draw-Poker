@@ -1,1 +1,1 @@
-PokerAI 20 300
+PokerAI 153 2120

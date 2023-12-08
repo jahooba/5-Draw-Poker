@@ -58,6 +58,10 @@ Balance::Balance(string name, double balance){
     fileName = "userdata/" + name + "Balance.txt";
 }
 
+Balance::~Balance() {
+    save();
+}
+
 double Balance::getBalance(){
     return balance;
 }
@@ -70,6 +74,7 @@ void Balance::appendBalance(double add){
 
 void Balance::setBalance(double newBalance){
     balance = newBalance;
+    save();
 }
 
 void Balance::load(){
@@ -82,6 +87,8 @@ void Balance::load(){
             }
         }
     }
+
+    file.close();
 }
 
 void Balance::save(){

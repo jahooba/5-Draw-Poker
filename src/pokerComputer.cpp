@@ -59,8 +59,8 @@ PokerAction* PokerComputer::pokerMove() {
 
     else {
 
-        if ((currAction->bet == currMaxBet && currMaxBet > 0) || handScore == 0) {
-            if (handScore > 7 && rand() % 6 != 0|| rand() % 100 == 1) {
+        if ((abs(currAction->bet - currMaxBet) < 0.1 && currMaxBet > 0) || handScore == 0) {
+            if (handScore > 3 && rand() % 2 == 0 || rand() % 100 == 1) {
                 todoAction = Bet;
                 betAmountAdded = ((rand() % 3 + 1)* handScore << (rand() % 2 + 1)) / 4;
             }
@@ -104,6 +104,9 @@ PokerAction* PokerComputer::pokerMove() {
     }
 
     //financial code
+    if ((todoAction != Fold) && (currAction->bet + betAmountAdded < currMaxBet)) {
+        betAmountAdded = currMaxBet - currAction->bet;
+    }
 
     if (currAction->bet + betAmountAdded > absoluteMaxBet) {
         betAmountAdded = absoluteMaxBet - currAction->bet;
@@ -114,7 +117,7 @@ PokerAction* PokerComputer::pokerMove() {
         betAmountAdded = balance->getBalance();
     }
 
-    if (currMaxBet == currAction->bet + betAmountAdded) {
+    if (currMaxBet - (currAction->bet + betAmountAdded) > 0.01 || currMaxBet - (currAction->bet + betAmountAdded) < 0.01) {
         todoAction = Call;
     }
     
