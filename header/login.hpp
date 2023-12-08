@@ -33,5 +33,7 @@ private:
 
     void saveUserData();
 
+    void clearFile();
+
     int hashPassword(const string& password);
 };

@@ -157,6 +157,15 @@ int main() {
     {
         string newPwd;
         cout << "Enter your new password" << endl;
+        cin >> newPwd;
+        if(login.changePassword(res, newPwd))
+        {
+            cout << GREEN << "Successfully changed password!!" << RESET << endl;
+        }
+        else
+        {
+            cout << RED << "Unable to change password..." << RESET << endl;
+        }
     }
     else if (menuInput == "5")
     {
