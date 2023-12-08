@@ -23,7 +23,7 @@ PokerPlayer::PokerPlayer(string name, double balance, Hand* hand) : Player(name,
 PokerPlayer::~PokerPlayer() {
 
     if (currAction == nullptr) {
-        currAction = new PokerAction(Fold, 0);
+        currAction = new PokerAction(Bet, 0);
     }
 
     delete currAction;
@@ -42,20 +42,50 @@ void PokerPlayer::viewBalance() {
 }
 
 PokerAction* PokerPlayer::pokerMove() {
-    return pokerMove(Fold, 0);
+    PokerActionType action = Bet;
+    double bet = 0;
+
+    if (currAction == nullptr) {
+        currAction = new PokerAction(action, bet);
+    }
+
+    this->currAction->type = action;
+    this->currAction->bet = bet;
+
+    return currAction;
 }
 
-PokerAction* PokerPlayer::pokerMove(PokerActionType action, double bet) {
-    balance->appendBalance(bet * -1);
+PokerAction* PokerPlayer::pokerMove(PokerActionType action, double betAmountAdded) {
+    PokerActionType todoAction = action;
+    
     if (currAction == nullptr) {
-        PokerAction* newAction = new PokerAction(action, bet);
-        currAction = newAction;
+        currAction = new PokerAction(Fold, 0);
+    }
+    
+    //financial code
+
+    if (currAction->bet + betAmountAdded > absoluteMaxBet) {
+        betAmountAdded = absoluteMaxBet - currAction->bet;
     }
 
-    else {
-        this->currAction->type = action;
-        this->currAction->bet += bet;
+    //should only run on lowest bank acc player, due to how absoluteMaxBet works 
+    if (betAmountAdded > balance->getBalance()) {
+        betAmountAdded = balance->getBalance();
     }
+
+    if (currMaxBet == currAction->bet + betAmountAdded) {
+        todoAction = Call;
+    }
+    
+    if (betAmountAdded == 0) {
+        todoAction = Check;
+    }
+
+    balance->appendBalance(betAmountAdded * -1);
+    
+    //gameplay code
+    this->currAction->type = todoAction;
+    this->currAction->bet += betAmountAdded;
 
     return currAction;
 }

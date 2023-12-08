@@ -19,6 +19,5 @@ add_subdirectory(src)
 add_subdirectory(tests)
 
 add_executable(PokerGame
-src/main.cpp src/balance.cpp src/deck.cpp src/hand.cpp src/login.cpp src/player.cpp src/poker.cpp src/pokerPlayer.cpp src/pokerScoreKey.cpp src/statistics.cpp
+  src/main.cpp src/balance.cpp src/deck.cpp src/hand.cpp src/login.cpp src/player.cpp src/poker.cpp src/pokerComputer.cpp src/pokerPlayer.cpp src/pokerScoreKey.cpp src/statistics.cpp
 )
-

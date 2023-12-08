@@ -25,6 +25,8 @@ class PokerPlayer: public Player{
 protected: 
     Statistics pokerStats;
     PokerAction* currAction = nullptr;
+    double currMaxBet = 0;
+    double absoluteMaxBet = 0;
     
 public:
     PokerPlayer();
@@ -35,7 +37,10 @@ public:
     void updateStatistics(int, int);
     void viewStatistics();
     void viewBalance();
-    PokerAction* pokerMove();
     PokerAction* pokerMove(PokerActionType, double);
+    virtual PokerAction* pokerMove();
+    PokerAction* pokerMove(PokerActionType, double betAmountAdded);
     PokerAction* getRecentMove() { return currAction; }
+    void setCurrMaxBet(double newCurrMaxBet) { currMaxBet = newCurrMaxBet; }
+    void setAbsMaxBet(double newAbsMaxBet) { absoluteMaxBet = newAbsMaxBet; }
 };

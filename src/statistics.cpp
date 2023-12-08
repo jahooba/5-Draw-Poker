@@ -81,9 +81,9 @@ void Statistics::print(){
     cout << "Games Played Total - " << YELLOW << gamesPlayed << RESET << endl;
 }
 
-void Statistics::update(int wins, int gamesPlayed){
-    this->wins = wins;
-    this->gamesPlayed = gamesPlayed;
+void Statistics::update(int winsAdded, int gamesPlayedAdded){
+    this->wins += winsAdded;
+    this->gamesPlayed += gamesPlayedAdded;
     save();
 }
 
