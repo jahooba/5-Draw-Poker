@@ -15,7 +15,6 @@ TEST(statisticsTests, validConstructor){
 
 TEST(statisticsTests, updateAndSaveTests){
     Statistics stats = Statistics("Adam");
-    stats.clearFile();
     stats.update(32, 56);
     int temp1;
     int temp2;
@@ -33,6 +32,7 @@ TEST(statisticsTests, updateAndSaveTests){
     EXPECT_EQ(temp1, 32);
     EXPECT_EQ(temp2, 56);
 
+    stats.clearFile();
     tempFile.close();
 }
 
