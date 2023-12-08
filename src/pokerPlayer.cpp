@@ -86,3 +86,12 @@ PokerAction* PokerPlayer::pokerMove(PokerActionType action, double betAmountAdde
 
     return currAction;
 }
+
+void PokerPlayer::clearAction() {
+    if (currAction == nullptr) {
+        currAction = new PokerAction(Fold, 0);
+    }
+
+    delete currAction;
+    currAction = nullptr;
+}

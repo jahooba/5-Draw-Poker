@@ -42,6 +42,9 @@ int PokerComputer::getHandScore() {
 }
 
 PokerAction* PokerComputer::pokerMove() {
+    if (currAction == nullptr) {
+        currAction = new PokerAction(Bet, 0);
+    }
     int handScore = PokerComputer::getHandScore();
 
     int betAmountAdded = 0;
