@@ -1,7 +1,11 @@
 #include<iostream>
 #include "../header/login.hpp"
 #include "../header/player.hpp"
-#include "../header/pokerPlayer.hpp"  
+#include "../header/pokerPlayer.hpp"
+#include "../header/pokerComputer.hpp"
+#include "../header/poker.hpp"
+#include "../header/pokerScoreKey.hpp"
+#include "../header/hand.hpp"
 
 using namespace std;
 
@@ -119,6 +123,7 @@ int main() {
     string res = userLogin(login);
     //------------------------------------LOGIN COMPLETE---------
     PokerPlayer player(res);
+
     if(player.loadPlayer())
     {
         cout << "Successfully found a save file! Loading player now" << endl << endl << endl;
@@ -139,46 +144,59 @@ int main() {
         cout << "Unable to save player" << endl << endl << endl;
     }
 
+    if (player.getPlayerBalance()->getBalance() <= 0) {
+        player.getPlayerBalance()->appendBalance(100);
+    }
 
-    string menuInput = menu();
-    while(menuInput != "5")
+    string menuInput = "";
+    while (menuInput != "5")
     {
-
+        menuInput = menu();
     
-    if(menuInput == "1") //poker
-    {
-        cout << "TODO" << endl;
-    }
-    else if (menuInput == "2") // stats
-    {
-        player.viewStatistics();
-        menuInput = menu();
-    }
-    else if (menuInput == "3") //view balance
-    {
-        player.viewBalance();
-        menuInput = menu();
-    }
-    else if (menuInput == "4") // change password
-    {
-        string newPwd;
-        cout << "Enter your new password" << endl;
-        cin >> newPwd;
-        if(login.changePassword(res, newPwd))
+        if(menuInput == "1") //poker
         {
-            cout << GREEN << "Successfully changed password!!" << RESET << endl;
+            PokerPlayer* playerOne = &player;
+            PokerPlayer* playerTwo = new PokerPlayer("Ram", 200);
+            vector<PokerPlayer*> playerVector;
+            playerVector.push_back(playerOne);
+            playerVector.push_back(playerTwo);
+
+            Poker game(playerVector);
+
+            game.Game_Start();
+
+            delete playerTwo;
         }
-        else
+        else if (menuInput == "2") // stats
         {
-            cout << RED << "Unable to change password..." << RESET << endl;
+            player.viewStatistics();
+            menuInput = menu();
         }
-        menuInput = menu();
-    }
-    else if (menuInput == "5")
-    {
-        cout << "TODO" << endl;
-        exit(0);
-    }
+        else if (menuInput == "3") //view balance
+        {
+            player.viewBalance();
+            menuInput = menu();
+        }
+        else if (menuInput == "4") // change password
+        {
+            string newPwd;
+            cout << "Enter your new password" << endl;
+            cin >> newPwd;
+            if(login.changePassword(res, newPwd))
+            {
+                cout << GREEN << "Successfully changed password!!" << RESET << endl;
+            }
+            else
+            {
+                cout << RED << "Unable to change password..." << RESET << endl;
+            }
+            menuInput = menu();
+        }
+        else if (menuInput == "5")
+        {
+            cout << "We hope to see you again!" << endl;
+            exit(0);
+        }
     
     }
     // login.registerUser("user1", "password1");
