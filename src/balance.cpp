@@ -4,6 +4,12 @@
 #include <fstream>
 #include <cstring>
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+
 using namespace std;
 
 Balance::Balance(string name){
@@ -58,6 +64,7 @@ double Balance::getBalance(){
 
 void Balance::appendBalance(double add){
     balance = balance + add;
+    save();
 }
 
 
@@ -87,6 +94,12 @@ void Balance::save(){
     }
 
     file.close();
+}
+
+void Balance::print(){
+    load();
+    cout << "Balance - " << YELLOW << name << RESET << endl;
+    cout << "You currently have a balance of " << YELLOW << balance << RESET << "." <<endl;
 }
 
 void Balance::clearFile() {

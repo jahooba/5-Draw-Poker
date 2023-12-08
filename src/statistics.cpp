@@ -4,6 +4,12 @@
 #include <fstream>
 #include <cstring>
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+
 Statistics::Statistics() {
     fileName = "EMPTY";
     playerName = "DEFAULT";
@@ -70,9 +76,9 @@ void Statistics::clearFile() {
 
 void Statistics::print(){
     load();
-    cout << "Stats - " << playerName << endl;
-    cout << "Games Won Total - " << wins << endl;
-    cout << "Games Played Total - " << gamesPlayed << endl;
+    cout << "Stats - " << YELLOW << playerName << RESET << endl;
+    cout << "Games Won Total - " << YELLOW << wins << RESET <<endl;
+    cout << "Games Played Total - " << YELLOW << gamesPlayed << RESET << endl;
 }
 
 void Statistics::update(int wins, int gamesPlayed){

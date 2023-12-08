@@ -141,17 +141,17 @@ int main() {
 
 
     string menuInput = menu();
-    if(menuInput == "1")
+    if(menuInput == "1") //poker
     {
         cout << "TODO" << endl;
     }
-    else if (menuInput == "2")
+    else if (menuInput == "2") // stats
     {
-        cout << "TODO" << endl;
+        player.viewStatistics();
     }
-    else if (menuInput == "3")
+    else if (menuInput == "3") //view balance
     {
-        cout << "TODO" << endl;
+        player.viewBalance();
     }
     else if (menuInput == "4") // change password
     {

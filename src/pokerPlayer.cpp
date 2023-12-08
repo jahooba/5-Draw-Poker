@@ -37,6 +37,10 @@ void PokerPlayer::viewStatistics() {
     pokerStats.print();
 }
 
+void PokerPlayer::viewBalance() {
+    balance->print();
+}
+
 PokerAction* PokerPlayer::pokerMove() {
     return pokerMove(Fold, 0);
 }
