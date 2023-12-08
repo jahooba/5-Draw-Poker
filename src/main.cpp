@@ -62,7 +62,7 @@ std::string userLogin(Login &login)
         string inp;
         cin >> inp;
         if(inp == "q")
-            exit(0);
+            return "notFound";
         userLogin(login);
     }
     else if(logSuccess == 3)
@@ -72,7 +72,7 @@ std::string userLogin(Login &login)
         string inp;
         cin >> inp;
         if(inp == "q")
-            exit(0);
+            return "notFound";
         userLogin(login);
     }
     return "";
@@ -121,6 +121,8 @@ int main() {
     }
 
     string res = userLogin(login);
+    if(res == "notFound")
+        return 0;
     //------------------------------------LOGIN COMPLETE---------
     PokerPlayer player(res);
 
@@ -183,9 +185,10 @@ int main() {
         {   
             cout << "Saving User Data..." << endl;
             cout << "We hope to see you again!" << endl;
-            exit(0);
         }
     
     }
+
+
     return 0;
 }
