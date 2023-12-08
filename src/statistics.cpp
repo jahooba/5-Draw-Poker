@@ -76,8 +76,8 @@ void Statistics::print(){
 }
 
 void Statistics::update(int wins, int gamesPlayed){
-    this->wins = wins;
-    this->gamesPlayed = gamesPlayed;
+    this->wins += wins;
+    this->gamesPlayed += gamesPlayed;
     save();
 }
 
