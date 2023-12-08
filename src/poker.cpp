@@ -22,10 +22,10 @@ void Poker::Game_Start(){
 
     //While the player has enough money and wants to play or only one player left
     while (playAgain == true){
-        if(balance<=5){
+        if(balance <= 5){
             cout << "Sorry, you don't have enough money to play :(" << endl;
             playAgain = false;
-            break;
+            return;
         }
         else{
             playerList.at(0)->getPlayerBalance()->appendBalance(-5);
