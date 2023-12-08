@@ -94,19 +94,15 @@ bool Login::changePassword(string& username, string& password)
 
 void Login::clearFile() {
     try {
-        // Open the file in truncation mode
-        std::ofstream outputFile(filename, std::ios::trunc);
+        std::ofstream outputFile(fileName, std::ios::trunc);
 
-        // Check if the file is open
         if (!outputFile.is_open()) {
-            throw std::runtime_error("Unable to open file: " + filename);
+            throw std::runtime_error("Unable to open file: " + fileName);
         }
 
-        // Close the file
         outputFile.close();
 
     } catch (const std::exception& e) {
-        // Handle exceptions
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 }
