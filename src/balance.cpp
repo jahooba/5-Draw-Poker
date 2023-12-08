@@ -58,6 +58,7 @@ double Balance::getBalance(){
 
 void Balance::appendBalance(double add){
     balance = balance + add;
+    save();
 }
 
 

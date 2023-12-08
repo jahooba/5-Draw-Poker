@@ -8,6 +8,7 @@ add_library(simpleLibrary
   login.cpp
   statistics.cpp
   pokerPlayer.cpp
+  pokerComputer.cpp
 )
 
 find_library(M_LIB m)

@@ -229,6 +229,11 @@ void PokerScoreKey::revealHands(Hand& handOne, Hand& handTwo){
 
 int PokerScoreKey::rankHand(const Hand& h) {
     string handStr = h.viewHand();
+
+    if (handStr == "Empty!") {
+        return 0;
+    }
+
     int handRank = 0;
     // Rank values 
     const int SFR = 9,     
@@ -279,6 +284,10 @@ int PokerScoreKey::rankHand(const Hand& h) {
     }
     else if (isPair(h)== true){
         handRank = PAIR;
+    }
+
+    else {
+        handRank = HIGH;
     }
 
     return handRank;

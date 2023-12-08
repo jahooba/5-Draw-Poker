@@ -4,14 +4,13 @@
 using namespace std;
 
 
+TEST(pokerPlayerTests, validConstuctor){
+  EXPECT_NO_THROW(PokerPlayer temp = PokerPlayer("Alex"));
+}
 
 TEST(pokerPlayerTests, getName1){
   PokerPlayer temp = PokerPlayer("Alex");
   EXPECT_EQ(temp.getName(), "Alex");
-}
-
-TEST(pokerPlayerTests, validConstuctor){
-  EXPECT_NO_THROW(PokerPlayer temp = PokerPlayer("Alex"));
 }
 
 TEST(pokerPlayerTests, getName2){
